@@ -23,6 +23,7 @@
   $treatmentName ="....";
   $total ="0";
   $recevid = "0";
+  $clicked_value ="0";
 
   $errormessage ="";
   $success="";
@@ -36,21 +37,57 @@
   // Check if a value has been clicked
   if (isset($_GET['value'])) {
     $treatmentName = $_GET['value'];
-    if($treatmentName == 'CBC'){
-      $clicked_value = 1 ;
-      $total = 1000 ;
+    if($treatmentName == 'Implant'){
+      $clicked_value = 1;
     }
-    if($treatmentName == 'BBD'){
-      $clicked_value = 2 ;
-      $total = 1500;
+    if($treatmentName == 'Orthodontic'){
+      $clicked_value = 2;
     }
-    if($treatmentName == 'ADS'){
-      $clicked_value = 3 ;
-      $total = 500 ; 
+    if($treatmentName == 'RCT'){
+      $clicked_value = 3;
     }
-    if($treatmentName == 'CLN'){
-      $clicked_value = 4 ;
-      $total = 600;
+    if($treatmentName == 'Impacted surgery'){
+      $clicked_value = 5;
+    }
+    if($treatmentName == 'Wisdome extraction'){
+      $clicked_value = 6;
+    }
+    if($treatmentName == 'sample extraction'){
+      $clicked_value = 7;
+    }
+
+    if($treatmentName == 'Crown'){
+      $clicked_value = 8;
+    }
+    if($treatmentName == 'Bridg'){
+      $clicked_value = 9;
+    }
+    if($treatmentName == 'complete denture'){
+      $clicked_value = 10;
+    }
+    if($treatmentName == 'bleeching'){
+      $clicked_value = 11;
+    }
+    if($treatmentName == 'oral higien'){
+      $clicked_value = 12;
+    }
+    if($treatmentName == 'maxillofacial surgery'){
+      $clicked_value = 13;
+    }
+    if($treatmentName == 'laminate veneer'){
+      $clicked_value = 14;
+    }
+    if($treatmentName == 'TMJ disorder'){
+      $clicked_value = 15;
+    }
+    if($treatmentName == 'Space maintainer'){
+      $clicked_value = 16;
+    }
+    if($treatmentName == 'oral pathology'){
+      $clicked_value = 17;
+    }
+    if($treatmentName == 'consultation'){
+      $clicked_value = 18;
     }
   }
 
@@ -75,7 +112,7 @@
     $address = $_POST["address"];
     $note = $_POST["note"];
     $recevid = $_POST["recevid"];
-    $total = $_POST["recevid"];
+    $total = $_POST["total"];
 
 
   
@@ -289,12 +326,12 @@
             </div>
 
           </div>
-          <div class="col-md-6">
+          <div class="col-md-6" >
             <h3>Treatments</h3>
-            <ul id="UI">
+            <ul id="UI" style ="max-height: 40vh; overflow-y: scroll; padding:5px 0px;">
               <?php
                 // Example data
-                $data = array('CBC', 'BBD', 'ADS', 'CLN');
+                $data = array('Implant', 'Orthodontic', 'Impacted surgery', 'Wisdome extraction', 'sample extraction', 'Sample filling', 'Crown', 'Bridg', 'complete denture', 'bleeching', 'oral higien', 'maxillofacial surgery', 'laminate veneer', 'TMJ disorder', 'Space maintainer', 'oral pathology', 'consultation');
 
                 // Loop through the data and create a list item for each value
                 foreach ($data as $value) {

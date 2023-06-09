@@ -2,9 +2,13 @@
 .earningsec{
     margin-top: 25px;
 }
+a:hover{
+    text-decoration: none;
+    color: #000;
+}
 button:hover{
     box-shadow: 0px 0px 10px 1px;
-    transition: ease-in-out;    
+    transition: ease-in-out 200ms;
 }
 .boxs{
     width: 100%;
@@ -30,6 +34,7 @@ button:hover{
     width: 80%;
     height: 100vh;
     background-color: #ececec;
+    color: #fff;
     border-radius: 20px;
     transition: ease-in-out 200ms;
 }
@@ -37,14 +42,17 @@ button:hover{
     width: 200px;
     height: 30px;
     margin: 10px;
-    background-color: #b4b4b4;
+    background-color: #a2d3fe;
+    text-decoration: none;
+    color: #ffffff !important;
     font-size: 18px;
     border: solid 1px #000;
     border-radius: 4px;
 }
 .list:hover{
-    box-shadow: 0 0 10px 2px;
+    box-shadow: 0 0 10px 1px;
     transition: 0.3ms;
+    text-decoration: none;
 }
 
 .Registarion h4, input{
@@ -91,6 +99,5 @@ button:hover{
     margin-left:  5vh;
     padding: 6px;
     font-size: 20px !important;
-    background-color: #bebebe;
-    border: solid 1px #000;
+    border: solid 1px #3f5f86;
 }
