@@ -197,7 +197,12 @@
       </button>
       <a href="Dashboard.php"><button class="app-content-headerButton">Back</button></a>
     </div>
-    <section class="Registarion">
+    <section class="Registarion" style="
+    background-color: #1b2536;
+    border-radius: 20px;
+    color:#fff;
+    border: solid 1px #fff;
+    box-shadow: 0px 0px 20px 0px;">
       <div class="container">
         <br><br>
       <form method="post">
@@ -304,7 +309,7 @@
             </div>
           </div>
           <div class="col-md-5">
-          <div class="row"><h5> Total Amount:   </h5> <input style="margin-left: 15px; padding: 0; " type="text" name="total" value="<?php echo"$total"; ?>"> </div>
+          <div class="row"><h5> Total:   </h5> <input style="margin-left: 40px; padding: 0; " type="text" name="total" value="<?php echo"$total"; ?>"> </div>
           <br>  <div class="row"><h5> Recived:   </h5> <input style="margin-left: 15px; padding: 0; " type="text" name="recevid" value="<?php echo"$recevid"; ?>"> </div>
 
             <div class="row">

@@ -128,8 +128,8 @@ else{
   <meta charset="UTF-8">
   <title>DMS</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
-  <link rel="stylesheet" href="style.css">
-  <link rel="stylesheet" href="NewStyle.css">
+  <link rel="stylesheet" type="text/css" href="style.css">
+  <link rel="stylesheet" type="text/css" href="NewStyle.css">
 
   <!-- Boots strap-->
   <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet">
@@ -204,7 +204,15 @@ else{
       </button>
       <a href="Dashboard.php"><button class="app-content-headerButton">Back</button></a>
     </div>
-    <section class="invoice">
+    <section class="invoice" style=" margin-left: 30vh;
+    max-width: 50%;
+    min-height: 80vh;
+    background-color: #1b2536;
+    border-radius: 20px;
+    color:#fff;
+    border: solid 1px #fff;
+    box-shadow: 0px 0px 20px 0px;">
+    
       <div class="container">
         <br><br>
             <div class="row">
@@ -278,19 +286,29 @@ else{
             </div>
                                       <br> 
             <div class="row">
-              <div class="col-md-2"></div>
+            <div class="col-md-2"></div>
+
               <div class="col-md">
-              <a href="index.php"><button class="app-content-headerButton" type="button" id="btn5" role="button">Cancel</button></a>
+              <a href="index.php">
+                <button class="app-content-headerButton" type="button" id="btn5" role="button">Cancel</button>
+              </a>
               </div>
               <div class="col-md">
-                <a href="index.php"><button class="app-content-headerButton" type="submit" id="btn4" role="button">Submit</button></a>
+                <a href="index.php">
+                  <button class="app-content-headerButton" type="submit" id="btn4" role="button">Submit</button>
+                </a>
               </div>
               <div class="col-md">
               <a href ="update.php">
                 <button class="app-content-headerButton" type="button" id="btn5" role="button">Update</button>
               </a>
-
             </div>
+            <div class="col-md">
+              <a href="Delete.php">
+                <button class="app-content-headerButton" type="button" id="btn5" role="button">Delete</button>
+              </a>
+              </div>
+
               <div class="col-md-2"></div>
             </div>          
           </div>
