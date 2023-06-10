@@ -1,5 +1,29 @@
 <?php
     session_start(); 
+    $servername = "localhost";
+    $userName= "root";
+    $password = "";
+    $database = "dms";
+    // Create Connection
+    $con = new mysqli($servername, $userName, $password, $database);
+
+    // Check connection
+    if($con->connect_error){
+      die("Connection Failed: ". $con-> connect_error);
+    }
+
+    $search ="asd";
+
+     if($_SERVER['REQUEST_METHOD'] == 'POST'){
+      $search = $_POST["Search"];
+     }
+     else{
+       echo "ERROR";      
+     }
+
+    $_SESSION['Search'] = $search;
+    echo "Search Assigned :  ".$search;
+
 ?>
 
 <!DOCTYPE html>
@@ -85,11 +109,20 @@
       <a href="Registration.php"><button class="app-content-headerButton" id="Registerbtn"> Register Patient</button></a>
     </div>
 
+
+
+    <form method="POST" action="Search.php">
     <div class="app-content-actions">
-    <a href="Search.php"><button class="app-content-headerButton" id="Registerbtn"> Search Patient by ID </button></a>
-      <input class="search-bar" type="text" id="mySearchBox" placeholder="Search by ID value">
-    </div>
+
+    <input class="search-bar" type="text" name="Search" value="Emran">
+    <a href='Search.php'>
+      <button class='app-content-headerButton' type="submit" role="button"> Search Patient by ID </button>
+    </a>
     
+    </div>
+    </form>
+
+
     <div class="products-area-wrapper tableView">
       <!-- Header Names -->
       <section class="Patientlist">
@@ -127,7 +160,7 @@
          
         </div>
 
-<form method="GET" action="invoice.php"> 
+<form method="POST" action="invoice.php"> 
 
 <!----------------------------------------------------------------------------------------
 
@@ -135,17 +168,7 @@
 
 ------------------------------------------------------------------------------------------>
     <?php
-          $servername = "localhost";
-          $userName= "root";
-          $password = "";
-          $database = "dms";
-          // Create Connection
-          $con = new mysqli($servername, $userName, $password, $database);
-
-          // Check connection
-          if($con->connect_error){
-            die("Connection Failed: ". $con-> connect_error);
-          }
+         
 
           // Get all element of paitent form
           $sql = "SELECT * FROM view_patient ORDER BY P_ID DESC;";
