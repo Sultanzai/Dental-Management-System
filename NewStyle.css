@@ -4,11 +4,12 @@
 }
 a:hover{
     text-decoration: none;
-    color: #000;
+    color: #000000;
 }
 button:hover{
-    box-shadow: 0px 0px 10px 1px;
+    box-shadow: 0px 0px 5px 0.5px;
     transition: ease-in-out 200ms;
+    color: rgb(246, 246, 246);
 }
 .boxs{
     width: 100%;
@@ -99,5 +100,5 @@ button:hover{
     margin-left:  5vh;
     padding: 6px;
     font-size: 20px !important;
-    border: solid 1px #3f5f86;
+    border: solid 1px #5b8daf77;
 }

@@ -87,7 +87,10 @@
 
     <div class="app-content-actions">
     <a href="Search.php"><button class="app-content-headerButton" id="Registerbtn"> Search Patient by ID </button></a>
+
+    <!--
       <input class="search-bar" type="text" id="mySearchBox" placeholder="Search by ID value">
+      -->
     </div>
     
     <div class="products-area-wrapper tableView">
@@ -142,13 +145,15 @@
           // Create Connection
           $con = new mysqli($servername, $userName, $password, $database);
 
+          $search="";
+
           // Check connection
           if($con->connect_error){
             die("Connection Failed: ". $con-> connect_error);
           }
 
           // Get all element of paitent form
-          $sql = "SELECT * FROM view_patient ORDER BY P_ID DESC;";
+          $sql = "SELECT * FROM `view_patient` WHERE P_Name LIKE '$search' OR P_SName Like '$search' or P_ID ='$search';";
           $resutl = $con->query($sql);
 
           
@@ -197,6 +202,8 @@
       document.querySelector("Registarion").classList.add("active");
     });
   </script>
+
+
 
 
 </body>
