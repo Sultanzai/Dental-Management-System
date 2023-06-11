@@ -15,7 +15,7 @@
     $search ="asd";
 
      if($_SERVER['REQUEST_METHOD'] == 'POST'){
-      $search = $_POST["Search"];
+      $search = $_POST["search"];
      }
      else{
        echo "ERROR";      
@@ -112,14 +112,14 @@
 
 
     <form method="POST" action="Search.php">
-    <div class="app-content-actions">
+      <div class="app-content-actions">
 
-    <input class="search-bar" type="text" name="Search" value="Emran">
-    <a href='Search.php'>
-      <button class='app-content-headerButton' type="submit" role="button"> Search Patient by ID </button>
-    </a>
-    
-    </div>
+      <input name="search" class="search-bar" type="text" value="Emran">
+      <a href='Search.php'>
+        <button class='app-content-headerButton' type="submit" role="button"> Search Patient by ID </button>
+      </a>
+      
+      </div>
     </form>
 
 
