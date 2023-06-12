@@ -20,12 +20,12 @@
     $montlyrecevid ="";
 
 
-    
+
+    #################### Daily #############################    
     
     #Daily patient 
     $DPsql ="SELECT COUNT(P_ID) AS Patient FROM tbl_patient WHERE P_RegDate = DATE(NOW());";
     $DPrun = mysqli_query($con,$DPsql);
-
     if (mysqli_num_rows($DPrun) > 0) {
       // Fetch the result as an associative array
       $DProw = mysqli_fetch_assoc($DPrun);
@@ -36,25 +36,76 @@
     #Daily Total 
     $DTsql ="SELECT SUM(PB_Total) AS total FROM tbl_patient_balance WHERE PB_ReceiveDate = DATE(NOW()); ";
     $DTrun = mysqli_query($con,$DTsql);
-
     if (mysqli_num_rows($DTrun) > 0) {
-      // Fetch the result as an associative array
       $row = mysqli_fetch_assoc($DTrun);
-      // Print the total sum for today's date
       $dailytotal = $row["total"];
     }
     
     #Daily recevid 
     $DRsql ="SELECT SUM(PB_Receive) AS Recevid FROM tbl_patient_balance WHERE PB_ReceiveDate = DATE(NOW());";
     $DRrun = mysqli_query($con,$DRsql);
-
     if (mysqli_num_rows($DRrun) > 0) {
-      // Fetch the result as an associative array
       $DRrow = mysqli_fetch_assoc($DRrun);
-      // Print the total sum for today's date
       $dailyrecevid = $DRrow["Recevid"];
     }
+
+    #################### WEEkly #############################    
+    #Weekly patient 
+    $WPsql ="SELECT COUNT(P_ID) AS Patient from tbl_patient where week(P_RegDate)=week(now());";
+    $WPrun = mysqli_query($con,$WPsql);
+    if (mysqli_num_rows($WPrun) > 0) {
+      // Fetch the result as an associative array
+      $WProw = mysqli_fetch_assoc($WPrun);
+      // Print the total sum for today's date
+      $weeklypaitent = $WProw["Patient"];
+    }
     
+     #Weekly Total 
+     $WTsql ="SELECT SUM(PB_Total) AS total from tbl_patient_balance where week(PB_ReceiveDate)=week(now());
+     ";
+     $WTrun = mysqli_query($con,$WTsql);
+     if (mysqli_num_rows($WTrun) > 0) {
+       $row = mysqli_fetch_assoc($WTrun);
+       $weeklytotal = $row["total"];
+     }
+
+      #Weekly recevid 
+      $WRsql ="SELECT SUM(PB_Receive) AS Recevid from tbl_patient_balance where week(PB_ReceiveDate)=week(now());";
+      $WRrun = mysqli_query($con,$WRsql);
+      if (mysqli_num_rows($WRrun) > 0) {
+        $WRrow = mysqli_fetch_assoc($WRrun);
+        $weeklyrecevid = $WRrow["Recevid"];
+      }
+
+
+
+          #################### Month #############################    
+    #Monthly patient 
+    $MPsql ="SELECT COUNT(P_ID) AS Patient from tbl_patient where month(P_RegDate)=month(now());";
+    $MPrun = mysqli_query($con,$MPsql);
+    if (mysqli_num_rows($MPrun) > 0) {
+      // Fetch the result as an associative array
+      $MProw = mysqli_fetch_assoc($MPrun);
+      // Print the total sum for today's date
+      $montlypaitent = $MProw["Patient"];
+    }
+    
+     #Monthly Total 
+     $MTsql ="SELECT SUM(PB_Total) AS total from tbl_patient_balance where month(PB_ReceiveDate)=month(now());
+     ";
+     $MTrun = mysqli_query($con,$MTsql);
+     if (mysqli_num_rows($MTrun) > 0) {
+       $row = mysqli_fetch_assoc($MTrun);
+       $montlytotal = $row["total"];
+     }
+
+      #Montly recevid 
+      $MRsql ="SELECT SUM(PB_Receive) AS Recevid from tbl_patient_balance where month(PB_ReceiveDate)=month(now());";
+      $MRrun = mysqli_query($con,$MRsql);
+      if (mysqli_num_rows($MRrun) > 0) {
+        $MRrow = mysqli_fetch_assoc($MRrun);
+        $montlyrecevid = $MRrow["Recevid"];
+      }
 ?>
 
 
@@ -186,19 +237,19 @@
             <div class="col-md">
               <div class="boxs">
                 <div class="row"><h2> Patient Registed</h2></div><br>
-                <div class="row"><h2> 25 </h3></div>
+                <div class="row"><h2> <?php echo $weeklypaitent?> </h3></div>
               </div>
             </div>
             <div class="col-md">
               <div class="boxs">
                 <div class="row"><h2> Total Amount </h2></div><br>
-                <div class="row"><h2> 10000 </h3></div>
+                <div class="row"><h2> <?php echo $weeklytotal?> </h3></div>
               </div>
             </div>
             <div class="col-md">
               <div class="boxs">
                 <div class="row"><h2> Recevid Amount</h2></div><br>
-                <div class="row"><h2> 7000 </h3></div>
+                <div class="row"><h2> <?php echo $weeklyrecevid?> </h3></div>
               </div>
             </div>
           <!--
@@ -220,19 +271,19 @@
             <div class="col-md">
               <div class="boxs">
                 <div class="row"><h2> Patient Registed</h2></div><br>
-                <div class="row"><h2> 25 </h3></div>
+                <div class="row"><h2> <?php echo $montlypaitent ?> </h3></div>
               </div>
             </div>
             <div class="col-md">
               <div class="boxs">
                 <div class="row"><h2> Total Amount </h2></div><br>
-                <div class="row"><h2> 10000 </h3></div>
+                <div class="row"><h2> <?php echo $montlytotal?> </h3></div>
               </div>
             </div>
             <div class="col-md">
               <div class="boxs">
                 <div class="row"><h2> Recevid Amount</h2></div><br>
-                <div class="row"><h2> 7000 </h3></div>
+                <div class="row"><h2> <?php echo $montlyrecevid?> </h3></div>
               </div>
             </div>
           <!--
