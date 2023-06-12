@@ -1,11 +1,26 @@
 <?php
     session_start(); 
-    
-    $search="";
+    $servername = "localhost";
+    $userName= "root";
+    $password = "";
+    $database = "dms";
+    // Create Connection
+    $con = new mysqli($servername, $userName, $password, $database);
 
-    $search = $_SESSION['Search'];
-    echo "Fetched : ".$search;
+    $from = "";
+    $to = "";
+
+    if($_SERVER['REQUEST_METHOD']=="POST"){
+      $from = $_POST["from"];
+      $to = $_POST["to"];
+    }
+
 ?>
+
+
+
+
+
 
 <!DOCTYPE html>
 <html lang="en" >
@@ -13,15 +28,11 @@
   <meta charset="UTF-8">
   <title>DMS</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
-<link rel="stylesheet" href="./style.css">
-<link rel="stylesheet" href="NewStyle.css">
+  <link rel="stylesheet" href="./style.css">
+  <link rel="stylesheet" href="NewStyle.css">
 
   <!-- Boots strap-->
   <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet">
-
-  <!-- Jquery DataTables library for search bar -->
-<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/dt-1.10.25/datatables.min.css"/>
-<script type="text/javascript" src="https://cdn.datatables.net/v/dt/dt-1.10.25/datatables.min.js"></script>
 
 </head>
 <body>
@@ -42,13 +53,13 @@
           <span>Dashboard</span>
         </a>
       </li>
-      <li class="sidebar-list-item active">
+      <li class="sidebar-list-item">
         <a href="index.php">
           <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-shopping-bag"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
           <span>Patients </span>
         </a>
       </li>
-      <li class="sidebar-list-item">
+      <li class="sidebar-list-item active">
         <a href="Report.php">
           <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-pie-chart"><path d="M21.21 15.89A10 10 0 1 1 8 2.83"/><path d="M22 12A10 10 0 0 0 12 2v10z"/></svg>
           <span>Report</span>
@@ -69,7 +80,6 @@
     </ul>
 
 
-
     <!--User Profile -->
     <div class="account-info">
 
@@ -85,16 +95,29 @@
 
     <!-- Header Product with add product-->
     <div class="app-content-header">
-      <h1 class="app-content-headerText">Products</h1>
-
-      <a href="Registration.php"><button class="app-content-headerButton" id="Registerbtn"> Register Patient</button></a>
+      <h1 class="app-content-headerText">Report</h1>
     </div>
 
-    <div class="app-content-actions">
-    <a href="Index.php"><button class="app-content-headerButton" id="Registerbtn"> Back </button></a>
-
+    <div class="container">
+    <form method="post" action="Report.php">
+      <div class="row">
+          <div class="col-md-8">
+            <div class="row" id="searchbar">
+              <div class="col-md-4"><span>From: </span> <input name="from" type="date"> </div>
+              <div class="col-md-4"><span> TO: </span> <input name="to" type="date"> </div>
+              <div class="col-md-4">
+                <a href='Report.php'>
+                  <button class='app-content-headerButton' type="submit" role="button"> Search </button>
+                </a>
+              </div>            
+            </div>
+          </div>
+        <div class="col-md-4"></div>
+    </form>  
+      </div>
     </div>
     
+
     <div class="products-area-wrapper tableView">
       <!-- Header Names -->
       <section class="Patientlist">
@@ -111,28 +134,32 @@
               <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 512 512"><path fill="currentColor" d="M496.1 138.3L375.7 17.9c-7.9-7.9-20.6-7.9-28.5 0L226.9 138.3c-7.9 7.9-7.9 20.6 0 28.5 7.9 7.9 20.6 7.9 28.5 0l85.7-85.7v352.8c0 11.3 9.1 20.4 20.4 20.4 11.3 0 20.4-9.1 20.4-20.4V81.1l85.7 85.7c7.9 7.9 20.6 7.9 28.5 0 7.9-7.8 7.9-20.6 0-28.5zM287.1 347.2c-7.9-7.9-20.6-7.9-28.5 0l-85.7 85.7V80.1c0-11.3-9.1-20.4-20.4-20.4-11.3 0-20.4 9.1-20.4 20.4v352.8l-85.7-85.7c-7.9-7.9-20.6-7.9-28.5 0-7.9 7.9-7.9 20.6 0 28.5l120.4 120.4c7.9 7.9 20.6 7.9 28.5 0l120.4-120.4c7.8-7.9 7.8-20.7-.1-28.5z"/></svg>
             </button>
           </div>
-          <div class="product-cell category">Phone<button class="sort-button">
+          <div class="product-cell category">Note<button class="sort-button">
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 512 512"><path fill="currentColor" d="M496.1 138.3L375.7 17.9c-7.9-7.9-20.6-7.9-28.5 0L226.9 138.3c-7.9 7.9-7.9 20.6 0 28.5 7.9 7.9 20.6 7.9 28.5 0l85.7-85.7v352.8c0 11.3 9.1 20.4 20.4 20.4 11.3 0 20.4-9.1 20.4-20.4V81.1l85.7 85.7c7.9 7.9 20.6 7.9 28.5 0 7.9-7.8 7.9-20.6 0-28.5zM287.1 347.2c-7.9-7.9-20.6-7.9-28.5 0l-85.7 85.7V80.1c0-11.3-9.1-20.4-20.4-20.4-11.3 0-20.4 9.1-20.4 20.4v352.8l-85.7-85.7c-7.9-7.9-20.6-7.9-28.5 0-7.9 7.9-7.9 20.6 0 28.5l120.4 120.4c7.9 7.9 20.6 7.9 28.5 0l120.4-120.4c7.8-7.9 7.8-20.7-.1-28.5z"/></svg>
           </button>
         </div>
-        <div class="product-cell category">Address<button class="sort-button">
+        <div class="product-cell category">Register Date<button class="sort-button">
           <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 512 512"><path fill="currentColor" d="M496.1 138.3L375.7 17.9c-7.9-7.9-20.6-7.9-28.5 0L226.9 138.3c-7.9 7.9-7.9 20.6 0 28.5 7.9 7.9 20.6 7.9 28.5 0l85.7-85.7v352.8c0 11.3 9.1 20.4 20.4 20.4 11.3 0 20.4-9.1 20.4-20.4V81.1l85.7 85.7c7.9 7.9 20.6 7.9 28.5 0 7.9-7.8 7.9-20.6 0-28.5zM287.1 347.2c-7.9-7.9-20.6-7.9-28.5 0l-85.7 85.7V80.1c0-11.3-9.1-20.4-20.4-20.4-11.3 0-20.4 9.1-20.4 20.4v352.8l-85.7-85.7c-7.9-7.9-20.6-7.9-28.5 0-7.9 7.9-7.9 20.6 0 28.5l120.4 120.4c7.9 7.9 20.6 7.9 28.5 0l120.4-120.4c7.8-7.9 7.8-20.7-.1-28.5z"/></svg>
         </button>
       </div>
       
-          <div class="product-cell status-cell">Patient Treatment<button class="sort-button">
+          <div class="product-cell status-cell">Treatment<button class="sort-button">
               <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 512 512"><path fill="currentColor" d="M496.1 138.3L375.7 17.9c-7.9-7.9-20.6-7.9-28.5 0L226.9 138.3c-7.9 7.9-7.9 20.6 0 28.5 7.9 7.9 20.6 7.9 28.5 0l85.7-85.7v352.8c0 11.3 9.1 20.4 20.4 20.4 11.3 0 20.4-9.1 20.4-20.4V81.1l85.7 85.7c7.9 7.9 20.6 7.9 28.5 0 7.9-7.8 7.9-20.6 0-28.5zM287.1 347.2c-7.9-7.9-20.6-7.9-28.5 0l-85.7 85.7V80.1c0-11.3-9.1-20.4-20.4-20.4-11.3 0-20.4 9.1-20.4 20.4v352.8l-85.7-85.7c-7.9-7.9-20.6-7.9-28.5 0-7.9 7.9-7.9 20.6 0 28.5l120.4 120.4c7.9 7.9 20.6 7.9 28.5 0l120.4-120.4c7.8-7.9 7.8-20.7-.1-28.5z"/></svg>
             </button></div>
           <div class="product-cell sales">Total<button class="sort-button">
               <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 512 512"><path fill="currentColor" d="M496.1 138.3L375.7 17.9c-7.9-7.9-20.6-7.9-28.5 0L226.9 138.3c-7.9 7.9-7.9 20.6 0 28.5 7.9 7.9 20.6 7.9 28.5 0l85.7-85.7v352.8c0 11.3 9.1 20.4 20.4 20.4 11.3 0 20.4-9.1 20.4-20.4V81.1l85.7 85.7c7.9 7.9 20.6 7.9 28.5 0 7.9-7.8 7.9-20.6 0-28.5zM287.1 347.2c-7.9-7.9-20.6-7.9-28.5 0l-85.7 85.7V80.1c0-11.3-9.1-20.4-20.4-20.4-11.3 0-20.4 9.1-20.4 20.4v352.8l-85.7-85.7c-7.9-7.9-20.6-7.9-28.5 0-7.9 7.9-7.9 20.6 0 28.5l120.4 120.4c7.9 7.9 20.6 7.9 28.5 0l120.4-120.4c7.8-7.9 7.8-20.7-.1-28.5z"/></svg>
-            </button></div>
-          <div class="product-cell stock">Paid<button class="sort-button">
+            </button>
+          </div>
+          <div class="product-cell stock">Recived<button class="sort-button">
               <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 512 512"><path fill="currentColor" d="M496.1 138.3L375.7 17.9c-7.9-7.9-20.6-7.9-28.5 0L226.9 138.3c-7.9 7.9-7.9 20.6 0 28.5 7.9 7.9 20.6 7.9 28.5 0l85.7-85.7v352.8c0 11.3 9.1 20.4 20.4 20.4 11.3 0 20.4-9.1 20.4-20.4V81.1l85.7 85.7c7.9 7.9 20.6 7.9 28.5 0 7.9-7.8 7.9-20.6 0-28.5zM287.1 347.2c-7.9-7.9-20.6-7.9-28.5 0l-85.7 85.7V80.1c0-11.3-9.1-20.4-20.4-20.4-11.3 0-20.4 9.1-20.4 20.4v352.8l-85.7-85.7c-7.9-7.9-20.6-7.9-28.5 0-7.9 7.9-7.9 20.6 0 28.5l120.4 120.4c7.9 7.9 20.6 7.9 28.5 0l120.4-120.4c7.8-7.9 7.8-20.7-.1-28.5z"/></svg>
-            </button></div>
+            </button>
+          </div>
+          <div class="product-cell stock">Register By <button class="sort-button">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 512 512"><path fill="currentColor" d="M496.1 138.3L375.7 17.9c-7.9-7.9-20.6-7.9-28.5 0L226.9 138.3c-7.9 7.9-7.9 20.6 0 28.5 7.9 7.9 20.6 7.9 28.5 0l85.7-85.7v352.8c0 11.3 9.1 20.4 20.4 20.4 11.3 0 20.4-9.1 20.4-20.4V81.1l85.7 85.7c7.9 7.9 20.6 7.9 28.5 0 7.9-7.8 7.9-20.6 0-28.5zM287.1 347.2c-7.9-7.9-20.6-7.9-28.5 0l-85.7 85.7V80.1c0-11.3-9.1-20.4-20.4-20.4-11.3 0-20.4 9.1-20.4 20.4v352.8l-85.7-85.7c-7.9-7.9-20.6-7.9-28.5 0-7.9 7.9-7.9 20.6 0 28.5l120.4 120.4c7.9 7.9 20.6 7.9 28.5 0l120.4-120.4c7.8-7.9 7.8-20.7-.1-28.5z"/></svg>
+            </button>
+          </div>
          
         </div>
-
-<form method="GET" action="invoice.php"> 
 
 <!----------------------------------------------------------------------------------------
 
@@ -140,71 +167,45 @@
 
 ------------------------------------------------------------------------------------------>
     <?php
-          $servername = "localhost";
-          $userName= "root";
-          $password = "";
-          $database = "dms";
-          // Create Connection
-          $con = new mysqli($servername, $userName, $password, $database);
-
-          // Check connection
-          if($con->connect_error){
-            die("Connection Failed: ". $con-> connect_error);
-          }
-
           
-          // Get all element of paitent form
-          $sql = "SELECT * FROM `view_patient` WHERE P_Name LIKE '$search' OR P_SName Like '$search' or P_ID ='$search';";
+          $sql = "SELECT * FROM view_report WHERE P_RegDate >= '$from' AND P_RegDate <= '$to';";
           $resutl = $con->query($sql);
-
-          
-          if(!$resutl){
-            die("Invalid Query: " . $con->error);
-          }
-          
+                
+            if(!$resutl){
+              die("Invalid Query: " . $con->error);
+            }  
 
           //While loop to read database data
           while($row = $resutl->fetch_assoc()){
-              $id = $row["P_ID"];
             echo " 
-            <a href='invoice.php?id=$id'> 
             <div class= products-row>
-            
               <table id = 'myDataTable'> 
               <div class=product-cell> <span>$row[P_ID]</span> </div>
               <div class= product-cell category ><span class= cell-label >Category:</span>$row[P_Name]</div>
               <div class= product-cell category ><span class= cell-label >Category:</span>$row[P_SName]</div>
-              <div class= product-cell sales ><span class= cell-label >Sales:</span>$row[P_Phone]</div>
-              <div class= product-cell sales ><span class= cell-label >Sales:</span>$row[P_Address]</div>
+              <div class= product-cell sales ><span class= cell-label >Sales:</span>$row[P_Note]</div>
+              <div class= product-cell sales ><span class= cell-label >Sales:</span>$row[P_RegDate]</div>
               <div class= product-cell sales ><span class= cell-label >Sales:</span>$row[PT_Name]</div>
               <div class= product-cell sales ><span class= cell-label >Sales:</span>$row[PB_Total]</div>
               <div class= product-cell stock ><span class= cell-label >Stock:</span>$row[PB_Receive]</div>
+              <div class= product-cell stock ><span class= cell-label >Stock:</span>$row[Name]</div>
+
               </table> 
               
             </div>
 
-            </a>
             ";
-
           }
       ?>
 
-
     </section>
-        </from>
     </div>
-  </div>
+
+  
+    </div>
 </div>
 <!-- partial -->
   <script  src="./script.js"></script>
-  <script> 
-    document.querySelector("#Registerbtn").addEventListener("click", function(){
-      document.querySelector("Registarion").classList.add("active");
-    });
-  </script>
-
-
-
 
 </body>
 </html>

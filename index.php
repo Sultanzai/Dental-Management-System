@@ -18,11 +18,11 @@
       $search = $_POST["search"];
      }
      else{
-       echo "ERROR";      
+      # echo "ERROR";      
      }
 
     $_SESSION['Search'] = $search;
-    echo "Search Assigned :  ".$search;
+   # echo "Search Assigned :  ".$search;
 
 ?>
 
@@ -68,7 +68,7 @@
         </a>
       </li>
       <li class="sidebar-list-item">
-        <a href="#">
+        <a href="Report.php">
           <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-pie-chart"><path d="M21.21 15.89A10 10 0 1 1 8 2.83"/><path d="M22 12A10 10 0 0 0 12 2v10z"/></svg>
           <span>Report</span>
         </a>
@@ -114,10 +114,20 @@
     <form method="POST" action="Search.php">
       <div class="app-content-actions">
 
-      <input name="search" class="search-bar" type="text" value="Emran">
-      <a href='Search.php'>
-        <button class='app-content-headerButton' type="submit" role="button"> Search Patient by ID </button>
-      </a>
+      <div class="container">
+        <div class="row">
+          <div class="col-md-6">
+            <div class="row">
+              <input name="search" class="search-bar" type="text" value="Emran"><span> >> </span> 
+              <a href='Search.php'>
+                <button class='app-content-headerButton' type="submit" role="button"> Search </button>
+              </a>
+            </div>
+          </div>
+          <div class="col-md-6"></div>
+        </div>
+      </div>
+   
       
       </div>
     </form>
@@ -154,7 +164,7 @@
           <div class="product-cell sales">Total<button class="sort-button">
               <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 512 512"><path fill="currentColor" d="M496.1 138.3L375.7 17.9c-7.9-7.9-20.6-7.9-28.5 0L226.9 138.3c-7.9 7.9-7.9 20.6 0 28.5 7.9 7.9 20.6 7.9 28.5 0l85.7-85.7v352.8c0 11.3 9.1 20.4 20.4 20.4 11.3 0 20.4-9.1 20.4-20.4V81.1l85.7 85.7c7.9 7.9 20.6 7.9 28.5 0 7.9-7.8 7.9-20.6 0-28.5zM287.1 347.2c-7.9-7.9-20.6-7.9-28.5 0l-85.7 85.7V80.1c0-11.3-9.1-20.4-20.4-20.4-11.3 0-20.4 9.1-20.4 20.4v352.8l-85.7-85.7c-7.9-7.9-20.6-7.9-28.5 0-7.9 7.9-7.9 20.6 0 28.5l120.4 120.4c7.9 7.9 20.6 7.9 28.5 0l120.4-120.4c7.8-7.9 7.8-20.7-.1-28.5z"/></svg>
             </button></div>
-          <div class="product-cell stock">Paid<button class="sort-button">
+          <div class="product-cell stock">Recived<button class="sort-button">
               <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 512 512"><path fill="currentColor" d="M496.1 138.3L375.7 17.9c-7.9-7.9-20.6-7.9-28.5 0L226.9 138.3c-7.9 7.9-7.9 20.6 0 28.5 7.9 7.9 20.6 7.9 28.5 0l85.7-85.7v352.8c0 11.3 9.1 20.4 20.4 20.4 11.3 0 20.4-9.1 20.4-20.4V81.1l85.7 85.7c7.9 7.9 20.6 7.9 28.5 0 7.9-7.8 7.9-20.6 0-28.5zM287.1 347.2c-7.9-7.9-20.6-7.9-28.5 0l-85.7 85.7V80.1c0-11.3-9.1-20.4-20.4-20.4-11.3 0-20.4 9.1-20.4 20.4v352.8l-85.7-85.7c-7.9-7.9-20.6-7.9-28.5 0-7.9 7.9-7.9 20.6 0 28.5l120.4 120.4c7.9 7.9 20.6 7.9 28.5 0l120.4-120.4c7.8-7.9 7.8-20.7-.1-28.5z"/></svg>
             </button></div>
          

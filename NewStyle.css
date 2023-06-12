@@ -39,8 +39,23 @@ button:hover{
     padding-left: 10px;
 }
 .repo{
-    margin-top: 10vh;
+    margin-top: 5vh;
 }
+#searchbar{
+    margin-top:5vh;
+    margin-bottom:20px;
+    color: #fff;
+}
+#searchbar input{
+    margin-left: 10px;
+    max-height: 30px;
+}
+
+
+
+
+
+
 
 
 
