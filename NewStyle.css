@@ -1,6 +1,9 @@
 
 .earningsec{
     margin-top: 25px;
+    text-align: left;
+    overflow-y:scroll;
+    overflow-x: 2px;
 }
 a:hover{
     text-decoration: none;
@@ -12,22 +15,40 @@ button:hover{
     color: rgb(246, 246, 246);
 }
 .boxs{
-    width: 100%;
+    text-align: left;
+    width: 80%;
     height: 100%;
-    padding: 30px;
-    display: flex;
-    align-content: center;
-    justify-content: center;
+    padding: 20px;
     background-color: rgb(20, 2, 46);
     border-radius: 5%;
-    border: solid #fff 4px;
+    border: solid #4cb3fd 2px;
     text-align: center;
     color: #fff;
 }
 .boxs:hover{
-    background-color: blueviolet;
+    background-color: rgb(101, 21, 158);
     transition: 0.3s;
+    box-shadow: 0px 0px 10px 1px;
 }
+.earningsec h1{
+    color: #fff;
+    padding-bottom: 20px;
+}
+.earningsec h3, h2{
+    text-align: left;
+    padding-left: 10px;
+}
+.repo{
+    margin-top: 10vh;
+}
+
+
+
+
+
+
+
+
 .Registarion{
     transform: translate() scale(1.25);
     margin-top: 30px;

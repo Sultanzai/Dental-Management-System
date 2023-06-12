@@ -1,3 +1,67 @@
+<?php
+    session_start(); 
+    $servername = "localhost";
+    $userName= "root";
+    $password = "";
+    $database = "dms";
+    // Create Connection
+    $con = new mysqli($servername, $userName, $password, $database);
+
+    $dailypaitent ="";
+    $dailytotal ="";
+    $dailyrecevid ="";
+    
+    $weeklypaitent ="";
+    $weeklytotal ="";
+    $weeklyrecevid ="";
+
+    $montlypaitent ="";
+    $montlytotal ="";
+    $montlyrecevid ="";
+
+
+    
+    
+    #Daily patient 
+    $DPsql ="SELECT COUNT(P_ID) AS Patient FROM tbl_patient WHERE P_RegDate = DATE(NOW());";
+    $DPrun = mysqli_query($con,$DPsql);
+
+    if (mysqli_num_rows($DPrun) > 0) {
+      // Fetch the result as an associative array
+      $DProw = mysqli_fetch_assoc($DPrun);
+      // Print the total sum for today's date
+      $dailypaitent = $DProw["Patient"];
+    }
+    
+    #Daily Total 
+    $DTsql ="SELECT SUM(PB_Total) AS total FROM tbl_patient_balance WHERE PB_ReceiveDate = DATE(NOW()); ";
+    $DTrun = mysqli_query($con,$DTsql);
+
+    if (mysqli_num_rows($DTrun) > 0) {
+      // Fetch the result as an associative array
+      $row = mysqli_fetch_assoc($DTrun);
+      // Print the total sum for today's date
+      $dailytotal = $row["total"];
+    }
+    
+    #Daily recevid 
+    $DRsql ="SELECT SUM(PB_Receive) AS Recevid FROM tbl_patient_balance WHERE PB_ReceiveDate = DATE(NOW());";
+    $DRrun = mysqli_query($con,$DRsql);
+
+    if (mysqli_num_rows($DRrun) > 0) {
+      // Fetch the result as an associative array
+      $DRrow = mysqli_fetch_assoc($DRrun);
+      // Print the total sum for today's date
+      $dailyrecevid = $DRrow["Recevid"];
+    }
+    
+?>
+
+
+
+
+
+
 <!DOCTYPE html>
 <html lang="en" >
 <head>
@@ -81,31 +145,108 @@
     </div>
 
     <section class="earningsec">
-      <div class="container">
-        <div class="row">
-          <div class="col-md">
-            <div class="boxs">
-              <h1> Patient: 15 </h1>
+      <section class="repo">  
+        <div class="container">
+          <h1> Daily Report</h1>
+          <div class="row">
+            <div class="col-md">
+              <div class="boxs">
+                <div class="row"><h2> Patient Registed</h2></div><br>
+                <div class="row"><h3> <?php echo $dailypaitent?> </h3></div>
+              </div>
             </div>
-          </div>
-          <div class="col-md">
-            <div class="boxs">
-              <h1> Treatments: 12000 </h1>
+            <div class="col-md">
+              <div class="boxs">
+                <div class="row"><h2> Total Amount </h2></div><br>
+                <div class="row"><h3><?php echo $dailytotal?>  </h3></div>
+              </div>
             </div>
-          </div>
-          <div class="col-md">
-            <div class="boxs">
-              <h1> Income: 7000 </h1>
+            <div class="col-md">
+              <div class="boxs">
+                <div class="row"><h2> Recevid Amount</h2></div><br>
+                <div class="row"><h2> <?php echo $dailyrecevid?> </h3></div>
+              </div>
             </div>
-          </div>
-          <div class="col-md">
-            <div class="boxs">
-              <h1> Expances: 400 </h1>
+          <!--
+            <div class="col-md">
+              <div class="boxs">
+                <div class="row"><h1> No </h1></div><br>
+                <div class="row"><h2> 7000 </h3></div>
+              </div>
             </div>
+          -->
           </div>
         </div>
-      </div>
-    <section>
+      </section>
+
+      <section class="repo">  
+        <div class="container">
+          <h1> Weekly Report</h1>
+          <div class="row">
+            <div class="col-md">
+              <div class="boxs">
+                <div class="row"><h2> Patient Registed</h2></div><br>
+                <div class="row"><h2> 25 </h3></div>
+              </div>
+            </div>
+            <div class="col-md">
+              <div class="boxs">
+                <div class="row"><h2> Total Amount </h2></div><br>
+                <div class="row"><h2> 10000 </h3></div>
+              </div>
+            </div>
+            <div class="col-md">
+              <div class="boxs">
+                <div class="row"><h2> Recevid Amount</h2></div><br>
+                <div class="row"><h2> 7000 </h3></div>
+              </div>
+            </div>
+          <!--
+            <div class="col-md">
+              <div class="boxs">
+                <div class="row"><h1> No </h1></div><br>
+                <div class="row"><h2> 7000 </h3></div>
+              </div>
+            </div>
+          -->
+          </div>
+        </div>
+      </section>
+
+      <section class="repo">  
+        <div class="container">
+          <h1> Monthly Report</h1>
+          <div class="row">
+            <div class="col-md">
+              <div class="boxs">
+                <div class="row"><h2> Patient Registed</h2></div><br>
+                <div class="row"><h2> 25 </h3></div>
+              </div>
+            </div>
+            <div class="col-md">
+              <div class="boxs">
+                <div class="row"><h2> Total Amount </h2></div><br>
+                <div class="row"><h2> 10000 </h3></div>
+              </div>
+            </div>
+            <div class="col-md">
+              <div class="boxs">
+                <div class="row"><h2> Recevid Amount</h2></div><br>
+                <div class="row"><h2> 7000 </h3></div>
+              </div>
+            </div>
+          <!--
+            <div class="col-md">
+              <div class="boxs">
+                <div class="row"><h1> No </h1></div><br>
+                <div class="row"><h2> 7000 </h3></div>
+              </div>
+            </div>
+          -->
+          </div>
+        </div>
+      </section>
+      <section>
 
 
     
