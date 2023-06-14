@@ -27,27 +27,36 @@
         
         if(!$run){
           $error = "Fail to login";
+          echo "<script>
+          alert('Login Faild');
+        </script>";
+
           die("Invalid Query: " . $con->error);
         }
         else{
           
         if (mysqli_num_rows($run) > 0) {
           $row = mysqli_fetch_assoc($run);
+
           $Name = $row["Name"];
           $pas = $row["Password"];
           $userID = $row["UserId"];
           $type = $row["Type"];
-          echo "<script>
-            alert('Login Successfully');
-          </script>";
+          if($type =="Admin" OR $type =="User"){
+                    
+            #SESSION TO GFT USER RECORD
+            $_SESSION["Username"] =$Name;
+            $_SESSION["type"] =$type; 
+            $_SESSION["userid"] = $userID;
+
+            header("location: /DMS/dist/index.php");
+            exit;  
+          }
+          
         }
         
       }
 
-    #SESSION TO GFT USER RECORD
-    $_SESSION["Username"] =$Name;
-    $_SESSION["Password"] =$pas; 
-    $_SESSION["userid"] = $userID;
 
         
 ?>
