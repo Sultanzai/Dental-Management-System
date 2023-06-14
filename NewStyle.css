@@ -5,6 +5,12 @@
     overflow-y:scroll;
     overflow-x: 2px;
 }
+img{
+    width: 100px;
+    height: 100px;
+    background-color: #ffffffc4;
+    border-radius: 50%;
+}
 a:hover{
     text-decoration: none;
     color: #000000;
