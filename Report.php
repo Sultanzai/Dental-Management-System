@@ -14,14 +14,20 @@
     $TYPE = $_SESSION['type'];
 
 
-    $from = "";
-    $to = "";
-
-    if($_SERVER['REQUEST_METHOD']=="POST"){
-      $from = $_POST["from"];
-      $to = $_POST["to"];
+    if(empty($USERID) OR empty($USERNAME) OR empty($TYPE)){
+      
+      header("location: /DMS/dist/login.php");
+      exit;
     }
+    else{
+      $from = "";
+      $to = "";
 
+      if($_SERVER['REQUEST_METHOD']=="POST"){
+        $from = $_POST["from"];
+        $to = $_POST["to"];
+      }
+    }
 ?>
 
 

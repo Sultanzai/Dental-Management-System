@@ -12,6 +12,16 @@
     $USERID = $_SESSION['userid'];
     $TYPE = $_SESSION['type'];
 
+    echo"CHECK :". $USERID, $USERNAME, $TYPE;
+
+
+    #################### Daily #############################    
+    if(empty($USERID) OR empty($USERNAME) OR empty($TYPE)){
+      
+      header("location: /DMS/dist/login.php");
+      exit;
+    }
+    else{
 
     // Check connection
     if($con->connect_error){
@@ -29,7 +39,7 @@
 
     $_SESSION['Search'] = $search;
    # echo "Search Assigned :  ".$search;
-
+    }
 ?>
 
 <!DOCTYPE html>

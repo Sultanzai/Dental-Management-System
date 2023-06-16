@@ -25,10 +25,13 @@
     $montlytotal ="";
     $montlyrecevid ="";
 
-
-
+    if(empty($USERID) OR empty($USERNAME) OR empty($TYPE)){
+      
+      header("location: /DMS/dist/login.php");
+      exit;
+    }
+    else{
     #################### Daily #############################    
-    
     #Daily patient 
     $DPsql ="SELECT COUNT(P_ID) AS Patient FROM tbl_patient WHERE P_RegDate = DATE(NOW());";
     $DPrun = mysqli_query($con,$DPsql);
@@ -112,6 +115,10 @@
         $MRrow = mysqli_fetch_assoc($MRrun);
         $montlyrecevid = $MRrow["Recevid"];
       }
+
+
+      
+  }
 ?>
 
 

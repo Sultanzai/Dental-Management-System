@@ -9,9 +9,15 @@
     $TYPE = $_SESSION['type'];
 
 
-
+    if(empty($USERID) OR empty($USERNAME) OR empty($TYPE)){
+      
+      header("location: /DMS/dist/login.php");
+      exit;
+    }
+    else{
     $search = $_SESSION['Search'];
     echo "Fetched : ".$search;
+    }
 ?>
 
 <!DOCTYPE html>

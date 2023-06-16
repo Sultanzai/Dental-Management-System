@@ -34,133 +34,139 @@
   $errormessage ="";
   $success="";
   
- 
-  $sqlId = "SELECT MAX(P_ID) AS maxid FROM tbl_patient;";
-  $max = $con->query($sqlId);
-
-
-
-  // Check if a value has been clicked
-  if (isset($_GET['value'])) {
-    $treatmentName = $_GET['value'];
-    if($treatmentName == 'Implant'){
-      $clicked_value = 1;
-    }
-    if($treatmentName == 'Orthodontic'){
-      $clicked_value = 2;
-    }
-    if($treatmentName == 'RCT'){
-      $clicked_value = 3;
-    }
-    if($treatmentName == 'Impacted surgery'){
-      $clicked_value = 5;
-    }
-    if($treatmentName == 'Wisdome extraction'){
-      $clicked_value = 6;
-    }
-    if($treatmentName == 'sample extraction'){
-      $clicked_value = 7;
-    }
-
-    if($treatmentName == 'Crown'){
-      $clicked_value = 8;
-    }
-    if($treatmentName == 'Bridg'){
-      $clicked_value = 9;
-    }
-    if($treatmentName == 'complete denture'){
-      $clicked_value = 10;
-    }
-    if($treatmentName == 'bleeching'){
-      $clicked_value = 11;
-    }
-    if($treatmentName == 'oral higien'){
-      $clicked_value = 12;
-    }
-    if($treatmentName == 'maxillofacial surgery'){
-      $clicked_value = 13;
-    }
-    if($treatmentName == 'laminate veneer'){
-      $clicked_value = 14;
-    }
-    if($treatmentName == 'TMJ disorder'){
-      $clicked_value = 15;
-    }
-    if($treatmentName == 'Space maintainer'){
-      $clicked_value = 16;
-    }
-    if($treatmentName == 'oral pathology'){
-      $clicked_value = 17;
-    }
-    if($treatmentName == 'consultation'){
-      $clicked_value = 18;
-    }
+  if(empty($USERID) OR empty($USERNAME) OR empty($TYPE)){
+      
+    header("location: /DMS/dist/login.php");
+    exit;
   }
+  else{
+  
+    $sqlId = "SELECT MAX(P_ID) AS maxid FROM tbl_patient;";
+    $max = $con->query($sqlId);
 
-  
-  
-  if ($max->num_rows > 0) {
-    // Get the maximum ID from the result set
-    $row = $max->fetch_assoc();
-    $maxres = $row["maxid"];
-    $maxres = $maxres+1;
-    } else {
-        echo "Max ID not Selected";
+
+
+    // Check if a value has been clicked
+    if (isset($_GET['value'])) {
+      $treatmentName = $_GET['value'];
+      if($treatmentName == 'Implant'){
+        $clicked_value = 1;
+      }
+      if($treatmentName == 'Orthodontic'){
+        $clicked_value = 2;
+      }
+      if($treatmentName == 'RCT'){
+        $clicked_value = 3;
+      }
+      if($treatmentName == 'Impacted surgery'){
+        $clicked_value = 5;
+      }
+      if($treatmentName == 'Wisdome extraction'){
+        $clicked_value = 6;
+      }
+      if($treatmentName == 'sample extraction'){
+        $clicked_value = 7;
+      }
+
+      if($treatmentName == 'Crown'){
+        $clicked_value = 8;
+      }
+      if($treatmentName == 'Bridg'){
+        $clicked_value = 9;
+      }
+      if($treatmentName == 'complete denture'){
+        $clicked_value = 10;
+      }
+      if($treatmentName == 'bleeching'){
+        $clicked_value = 11;
+      }
+      if($treatmentName == 'oral higien'){
+        $clicked_value = 12;
+      }
+      if($treatmentName == 'maxillofacial surgery'){
+        $clicked_value = 13;
+      }
+      if($treatmentName == 'laminate veneer'){
+        $clicked_value = 14;
+      }
+      if($treatmentName == 'TMJ disorder'){
+        $clicked_value = 15;
+      }
+      if($treatmentName == 'Space maintainer'){
+        $clicked_value = 16;
+      }
+      if($treatmentName == 'oral pathology'){
+        $clicked_value = 17;
+      }
+      if($treatmentName == 'consultation'){
+        $clicked_value = 18;
+      }
     }
 
-  // Using POST server request method 
-  if($_SERVER['REQUEST_METHOD'] == 'POST'){
-    $name = $_POST["name"];
-    $sname = $_POST["sname"];
-    $gender = $_POST["gender"];
-    $age = $_POST["age"];
-    $phone = $_POST["phone"];
-    $address = $_POST["address"];
-    $note = $_POST["note"];
-    $recevid = $_POST["recevid"];
-    $total = $_POST["total"];
+    
+    
+    if ($max->num_rows > 0) {
+      // Get the maximum ID from the result set
+      $row = $max->fetch_assoc();
+      $maxres = $row["maxid"];
+      $maxres = $maxres+1;
+      } else {
+          echo "Max ID not Selected";
+      }
+
+    // Using POST server request method 
+    if($_SERVER['REQUEST_METHOD'] == 'POST'){
+      $name = $_POST["name"];
+      $sname = $_POST["sname"];
+      $gender = $_POST["gender"];
+      $age = $_POST["age"];
+      $phone = $_POST["phone"];
+      $address = $_POST["address"];
+      $note = $_POST["note"];
+      $recevid = $_POST["recevid"];
+      $total = $_POST["total"];
 
 
-  
+    
 
-      do {
-        if(empty($name) || empty($phone) || empty($treatmentName) ){
-          $errormessage="All the field are Required";
-          break;
-        }
+        do {
+          if(empty($name) || empty($phone) || empty($treatmentName) ){
+            $errormessage="All the field are Required";
+            break;
+          }
 
-        // INSERT INTO Patient Table 
-        $sql = "INSERT INTO `tbl_patient`( `P_Name`, `P_SName`,  `P_Gender`, `P_Age`, `P_Phone`, `P_Address`,  `P_Note`, `U_ID`, `PT_ID`) VALUES
-        ('$name', '$sname', '$gender','$age','$phone','$address','$note', 1 , '$clicked_value' );";
-        $res = $con->query($sql);
+          // INSERT INTO Patient Table 
+          $sql = "INSERT INTO `tbl_patient`( `P_Name`, `P_SName`,  `P_Gender`, `P_Age`, `P_Phone`, `P_Address`,  `P_Note`, `U_ID`, `PT_ID`) VALUES
+          ('$name', '$sname', '$gender','$age','$phone','$address','$note', 1 , '$clicked_value' );";
+          $res = $con->query($sql);
 
-        $newsql = "INSERT INTO `tbl_patient_balance`(`PB_Total`, `PB_Receive`, `U_ID`, `P_ID`) 
-        VALUES ('$total','$recevid','1','$maxres');";
-        $res2 = $con->query($newsql);
+          $newsql = "INSERT INTO `tbl_patient_balance`(`PB_Total`, `PB_Receive`, `U_ID`, `P_ID`) 
+          VALUES ('$total','$recevid','1','$maxres');";
+          $res2 = $con->query($newsql);
 
-        if(!$res){
-          $errormessage = "invalid Query: ". $con->error;
-          break;
-        }
-          $name ="";
-          $sname ="";
-          $gender ="";
-          $age = "";
-          $phone = "";
-          $address = "";
-          $note = "";
-          $treatmentName ="";
-          $total ="";
-          $recevid = "";
+          if(!$res){
+            $errormessage = "invalid Query: ". $con->error;
+            break;
+          }
+            $name ="";
+            $sname ="";
+            $gender ="";
+            $age = "";
+            $phone = "";
+            $address = "";
+            $note = "";
+            $treatmentName ="";
+            $total ="";
+            $recevid = "";
 
-          $success = "patient Registed";
+            $success = "patient Registed";
 
-          header("location: /DMS/dist/index.php");
+            header("location: /DMS/dist/index.php");
 
-      } while (false);
+        } while (false);
 
+      }
     }
-
 ?>
 
 

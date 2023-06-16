@@ -30,43 +30,49 @@
   $errormessage ="";
   $success="";
 
- if($_SERVER['REQUEST_METHOD'] == 'GET'){
-    
-  if(!isset($_GET["id"])){
-    Echo"ID IS NULL ";
+  if(empty($USERID) OR empty($USERNAME) OR empty($TYPE)){
+      
+    header("location: /DMS/dist/login.php");
+    exit;
   }
+  else{
+    if($_SERVER['REQUEST_METHOD'] == 'GET'){
+        
+      if(!isset($_GET["id"])){
+        Echo"ID IS NULL ";
+      }
 
-    $id = $_GET["id"];
+        $id = $_GET["id"];
 
-        // SQL query to get Patient By ID 
-        $sql = "SELECT * FROM `view_patient` WHERE `P_ID` = $id";
-        $res = $con->query($sql);
-        $row = $res->fetch_assoc();
+            // SQL query to get Patient By ID 
+            $sql = "SELECT * FROM `view_patient` WHERE `P_ID` = $id";
+            $res = $con->query($sql);
+            $row = $res->fetch_assoc();
 
-        $name = $row['P_Name'];
-        $sname = $row['P_SName'];
-        $note = $row['P_Note'];
-        $treatment = $row['PT_Name'];
-        $recevid = $row['PB_Receive'];
-        $total = $row['PB_Total'];
-        // Remming of the total treatment 
-        $remming = $row['PB_Total'] - $row['PB_Receive'];
+            $name = $row['P_Name'];
+            $sname = $row['P_SName'];
+            $note = $row['P_Note'];
+            $treatment = $row['PT_Name'];
+            $recevid = $row['PB_Receive'];
+            $total = $row['PB_Total'];
+            // Remming of the total treatment 
+            $remming = $row['PB_Total'] - $row['PB_Receive'];
 
 
-  // SESSIONS Data and initilizaions 
-  $userdata = array(
-    "newid"=> $id, 
-    "name"=> $row['P_Name'], 
-    "sname"=> $row['P_SName'], 
-    "phone"=> $row['P_Phone'],
-    "address"=> $row['P_Address'],
-    "treatment"=> $row['PT_Name'], 
-    "note"=> $row['P_Note'], 
-    "total"=> $row['PB_Total'], 
-    "recived"=> $row['PB_Receive']
-  );
+        // SESSIONS Data and initilizaions 
+        $userdata = array(
+          "newid"=> $id, 
+          "name"=> $row['P_Name'], 
+          "sname"=> $row['P_SName'], 
+          "phone"=> $row['P_Phone'],
+          "address"=> $row['P_Address'],
+          "treatment"=> $row['PT_Name'], 
+          "note"=> $row['P_Note'], 
+          "total"=> $row['PB_Total'], 
+          "recived"=> $row['PB_Receive']
+        );
 
-$_SESSION["userdata"] = $userdata;
+      $_SESSION["userdata"] = $userdata;
 
 
 
@@ -76,52 +82,52 @@ $_SESSION["userdata"] = $userdata;
         else{
           $success = "Query pass successfuly ";
         }
-        
-    }
-else{
-        do{
-          
-          $id = $_POST["id"];
-          $recevid = $_POST["recevid"];
-          $payment = $_POST["payment"];
-          $total = $_POST["total"];
-          
-          $remming = intval($total) - intval($recevid);
-
-          if(empty($payment)){
-          $errormessage= "Payment field is empty";
-          break;
-          }
-
-          //String conversion and sum of the recive payment 
-          $totalpay = intval($payment) + intval($recevid);
-
-          if( $totalpay > $total || 0 > $totalpay ){
-            echo "<script>
-            alert('Invalid Input please enter the valid amount!');
-          </script>";
-            break;
-          }
-          else{
-          $newsql = "UPDATE tbl_patient_balance SET PB_Receive = $totalpay WHERE P_ID = $id";
-          $newres = $con->query($newsql);
-          }       
             
-          if(!$newres){
-            $errormessage = "invalid Query: ". $con->error;
-            echo "Invalid Update Questy inolve";
-            break;
-          }
-          else{
-            header("location: /DMS/dist/index.php");
-            exit;
-          }
-
         }
-        while(false);
-        
-      }
+    else{
+          do{
+            
+            $id = $_POST["id"];
+            $recevid = $_POST["recevid"];
+            $payment = $_POST["payment"];
+            $total = $_POST["total"];
+            
+            $remming = intval($total) - intval($recevid);
 
+            if(empty($payment)){
+            $errormessage= "Payment field is empty";
+            break;
+            }
+
+            //String conversion and sum of the recive payment 
+            $totalpay = intval($payment) + intval($recevid);
+
+            if( $totalpay > $total || 0 > $totalpay ){
+              echo "<script>
+              alert('Invalid Input please enter the valid amount!');
+            </script>";
+              break;
+            }
+            else{
+            $newsql = "UPDATE tbl_patient_balance SET PB_Receive = $totalpay WHERE P_ID = $id";
+             $newres = $con->query($newsql);
+            }       
+                
+            if(!$newres){
+              $errormessage = "invalid Query: ". $con->error;
+              echo "Invalid Update Questy inolve";
+              break;
+            }
+            else{
+              header("location: /DMS/dist/index.php");
+              exit;
+            }
+
+          }
+           while(false);
+            
+        }
+  }
 
 
 

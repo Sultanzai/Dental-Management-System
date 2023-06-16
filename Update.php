@@ -37,8 +37,14 @@
   
   $errormessage ="";
   $success="";
-  $currentDate = date('Y-m-d');
+  #$currentDate = date('Y-m-d');
  
+  if(empty($USERID) OR empty($USERNAME) OR empty($TYPE)){
+      
+    header("location: /DMS/dist/login.php");
+    exit;
+  }
+  else{
 
   // Check if a value has been clicked
   if (isset($_GET['value'])) {
@@ -116,7 +122,7 @@
         }
 
         // Update Patient Table 
-        $sql = "UPDATE `tbl_patient` SET `P_Name`='$name',`P_SName`='$sname',`P_Phone`='$phone',`P_Address`='$address',`P_RegDate`='$currentDate',`P_Note`='$note'
+        $sql = "UPDATE `tbl_patient` SET `P_Name`='$name',`P_SName`='$sname',`P_Phone`='$phone',`P_Address`='$address',`P_Note`='$note'
          WHERE `P_ID`='$id'";
         $res = $con->query($sql);
 
@@ -150,7 +156,7 @@
       } while (false);
 
     }
-
+  }
 
 
 ?>
