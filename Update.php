@@ -127,7 +127,7 @@
         $res = $con->query($sql);
 
         //Update paitent balance
-        $newsql = "UPDATE `tbl_patient_balance` SET `PB_Total`='$total',`PB_Receive`='$recevid',`PB_ReceiveDate`='$currentDate',`U_ID`='$USERID' WHERE `P_ID`='$id'";
+        $newsql = "UPDATE `tbl_patient_balance` SET `PB_Total`='$total',`PB_Receive`='$recevid'/,`U_ID`='$USERID' WHERE `P_ID`='$id'";
         $res2 = $con->query($newsql);
 
         if(!$res){
@@ -174,7 +174,7 @@
   <link rel="stylesheet" href="NewStyle.css">
 
   <!-- Boots strap-->
-  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet">
+  <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
 </head>
 <body>
@@ -382,16 +382,17 @@ else{
             </div>
           </div>
           <div class="col-md-5">
-          <div class="row"><h5> Total:   </h5> <input style="margin-left: 40px; padding: 0; " type="text" name="total" value="<?php echo"$total"; ?>"> </div>
-          <br>  <div class="row"><h5> Recived:   </h5> <input style="margin-left: 15px; padding: 0; " type="text" name="recevid" value="<?php echo"$recevid"; ?>"> </div>
+          <div class="row"><h5> Total:   </h5> <input style="width: 280px;  padding-left: 3; " type="text" name="total" value="<?php echo"$total"; ?>"> </div>
+          <br>  <div class="row"><h5> Recived:   </h5> <input style="width: 280px;  padding-left: 3; " type="text" name="recevid" value="<?php echo"$recevid"; ?>"> </div>
 
             <div class="row">
               <div class="col-md-6">
                 <a href="index.php"><button class="app-content-headerButton" type="button" id="btn3" role="button">Cancel</button></a>
               </div>
-              <div class="col-md-6">
+              <div class="col-md-4">
                 <button class="app-content-headerButton" type="submit" id="btn2">Submit</button>
               </div>
+              <div class="col-md-2"></div>
             </div>
           </div>
         </div>

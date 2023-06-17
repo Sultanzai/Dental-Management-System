@@ -45,8 +45,8 @@
           if($type =="Admin" OR $type =="User"){
                     
             #SESSION TO GFT USER RECORD
-            $_SESSION["Username"] =$Name;
-            $_SESSION["type"] =$type; 
+            $_SESSION["Username"] = $Name;
+            $_SESSION["type"] = $type; 
             $_SESSION["userid"] = $userID;
 
             header("location: /DMS/dist/index.php");
@@ -67,7 +67,9 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>DMS</title>
-  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet">
+
+  <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
   <link rel="stylesheet" href="./Logincss.css">
 </head>
 <body>

@@ -12,9 +12,6 @@
     $USERID = $_SESSION['userid'];
     $TYPE = $_SESSION['type'];
 
-    echo"CHECK :". $USERID, $USERNAME, $TYPE;
-
-
     #################### Daily #############################    
     if(empty($USERID) OR empty($USERNAME) OR empty($TYPE)){
       
@@ -34,11 +31,11 @@
       $search = $_POST["search"];
      }
      else{
-      # echo "ERROR";      
+       echo "ERROR";      
      }
 
-    $_SESSION['Search'] = $search;
-   # echo "Search Assigned :  ".$search;
+    $_SESSION["data"] = $search;
+    echo "Search Assigned :  ".$search;
     }
 ?>
 
@@ -52,7 +49,7 @@
 <link rel="stylesheet" href="NewStyle.css">
 
   <!-- Boots strap-->
-  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet">
+  <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
   <!-- Jquery DataTables library for search bar -->
 <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/dt-1.10.25/datatables.min.css"/>
@@ -160,7 +157,7 @@ else{
         <div class="row">
           <div class="col-md-6">
             <div class="row">
-              <input name="search" class="search-bar" type="text" value="Emran"><span> >> </span> 
+              <input style ="max-width: 280px; padding-left: 35px" class="search-bar" type="text" name="search"><span> . </span> 
               <a href='Search.php'>
                 <button class='app-content-headerButton' type="submit" role="button"> Search </button>
               </a>

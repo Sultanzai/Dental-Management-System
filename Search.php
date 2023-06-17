@@ -15,7 +15,7 @@
       exit;
     }
     else{
-    $search = $_SESSION['Search'];
+    $search = $_SESSION["data"];
     echo "Fetched : ".$search;
     }
 ?>
@@ -30,7 +30,7 @@
 <link rel="stylesheet" href="NewStyle.css">
 
   <!-- Boots strap-->
-  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet">
+  <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
   <!-- Jquery DataTables library for search bar -->
 <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/dt-1.10.25/datatables.min.css"/>
