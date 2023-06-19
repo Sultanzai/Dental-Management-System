@@ -39,13 +39,15 @@ $rem = $total - $recevid;
   $current_date = date('Y-m-d');  
   
   ?>
+
 <!DOCTYPE html>
 <html lang="en" >
 <head>
   <meta charset="UTF-8">
   <title>DMS</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
-  <link rel="stylesheet" href="print.css" type ="text/css" media="print">
+  <link rel="stylesheet" href="print.css" media="print">
+
   <link rel="stylesheet" href="print.css.map">
 
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lora:400,700|Montserrat:300,400,700">
@@ -70,18 +72,18 @@ $rem = $total - $recevid;
           <table class="invoice">
             <tr class="header">
             <td class="align-left">
-            <h2>Azka Oral Dental Care</h2>
-
+            <h2 style="margin-top: -80px">Azka Oral Dental Care</h2>
             </td>  
             <td class="align-center">
                 <img src="imgs/logo.PNG" alt="Company Name" />
               </td>
               <td class="align-right"  style="text-align: right">
-              <h2>مرکز تخصصی دندان ازکا </h2>               
+                <h2 style="margin-top: 0px">مرکز تخصصی دندان ازکا </h2>
+                <br><br>
+                <h4> دکتور احمد حسن یوسفزی متخصص جراحی وجه</h4>
+                <h4>دكتور محمد ويس حضرتی معالج امراض جوف دهن و دندان </h4>
+
               </td>
-
-
-
             </tr>
             <tr class="header">
               <td class="align-right">
@@ -108,16 +110,16 @@ $rem = $total - $recevid;
                 <table>
                   <thead>
                     <tr>
-                      <th class="desc">Treatment Description</th>
-                      <th class="id">Treatment Name</th>
+                      <th class="desc">Treatment Name</th>
+                      <th class="id">Description</th>
                       <th class="amt">Price</th>
                     </tr>
                   </thead>
                   <tbody>
                     <?php echo "
                     <tr class='item'>
-                      <td class='desc'>$note</td>
                       <td class='id num'>$treatmentName</td>
+                      <td class='desc'>$note</td>
                       <td class='amt'>$total</td>
                     </tr>
                     ";
@@ -177,7 +179,7 @@ $rem = $total - $recevid;
         </div>
       </section>
  <script>
- window.print();
+window.print();
  </script>
       </div>
     </main>

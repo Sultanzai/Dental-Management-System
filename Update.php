@@ -127,7 +127,7 @@
         $res = $con->query($sql);
 
         //Update paitent balance
-        $newsql = "UPDATE `tbl_patient_balance` SET `PB_Total`='$total',`PB_Receive`='$recevid'/,`U_ID`='$USERID' WHERE `P_ID`='$id'";
+        $newsql = "UPDATE `tbl_patient_balance` SET `PB_Total`='$total',`PB_Receive`='$recevid',`U_ID`='$USERID' WHERE `P_ID`='$id'";
         $res2 = $con->query($newsql);
 
         if(!$res){

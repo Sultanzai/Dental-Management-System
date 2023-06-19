@@ -25,7 +25,7 @@
       die("Connection Failed: ". $con-> connect_error);
     }
 
-    $search ="asd";
+    $search ="";
 
      if($_SERVER['REQUEST_METHOD'] == 'POST'){
       $search = $_POST["search"];
@@ -34,7 +34,7 @@
        echo "ERROR";      
      }
 
-    $_SESSION["data"] = $search;
+    $_SESSION["search"] = $search;
     echo "Search Assigned :  ".$search;
     }
 ?>
@@ -149,18 +149,21 @@ else{
     </div>
 
 
-
     <form method="POST" action="Search.php">
+
       <div class="app-content-actions">
 
       <div class="container">
         <div class="row">
           <div class="col-md-6">
             <div class="row">
-              <input style ="max-width: 280px; padding-left: 35px" class="search-bar" type="text" name="search"><span> . </span> 
+              
+              <input type="text" name="search" style ="max-width: 280px; padding-left: 35px" class="search-bar" ><span> . </span> 
               <a href='Search.php'>
                 <button class='app-content-headerButton' type="submit" role="button"> Search </button>
               </a>
+
+
             </div>
           </div>
           <div class="col-md-6"></div>
@@ -169,8 +172,7 @@ else{
    
       
       </div>
-    </form>
-
+      </form>
 
     <div class="products-area-wrapper tableView">
       <!-- Header Names -->

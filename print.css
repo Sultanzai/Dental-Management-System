@@ -3,7 +3,6 @@ body {
   font-weight: 400;
   color: #322d28;
 }
-
 header.top-bar h1 {
   font-family: "Montserrat", sans-serif;
 }
@@ -21,10 +20,10 @@ table.invoice {
   background: #fff;
 }
 table.invoice .num {
-  font-weight: 200;
+  font-weight: 400;
   text-transform: uppercase;
   letter-spacing: 1.5px;
-  font-size: 0.8em;
+  font-size: 1em;
 }
 table.invoice tr, table.invoice td {
   background: #fff;
@@ -33,9 +32,13 @@ table.invoice tr, table.invoice td {
   color: #322d28;
 }
 table.invoice tr.header td img {
-  max-width: 300px;
+  max-width: 200px;
+  margin-top: -50px;
+  padding-top: 0px;
 }
 table.invoice tr.header td h2 {
+  margin-top: -50px;
+  padding-top: 0px;
   font-family: "Montserrat", sans-serif;
   font-weight: 200;
   font-size: 20px;
@@ -115,7 +118,7 @@ table.invoice tr.totals table tr.total td:last-child {
 }/*# sourceMappingURL=print.css.map */
 h4{
   text-align: right;
-  font-size: 22px !important;
+  font-size: 16px !important;
 }
 .button{
   display: none;

@@ -15,7 +15,7 @@
       exit;
     }
     else{
-    $search = $_SESSION["data"];
+    $search = $_SESSION["search"];
     echo "Fetched : ".$search;
     }
 ?>
