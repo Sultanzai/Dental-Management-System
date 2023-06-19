@@ -177,7 +177,7 @@ $rem = $total - $recevid;
         </div>
       </section>
  <script>
-  //window.print();
+ window.print();
  </script>
       </div>
     </main>
