@@ -322,9 +322,9 @@ else{
                 <input type="text" name="payment" value="<?php echo $payment; ?>"> 
               </div>
             </div>
-                                      <br> 
+            <br> 
             <div class="row">
-            <div class="col-md-2"></div>
+            <div class="col-md-3"></div>
 
               <div class="col-md">
               <a href="index.php">
@@ -342,13 +342,27 @@ else{
               </a>
             </div>
             <div class="col-md">
-              <a href="Delete.php">
-                <button class="app-content-headerButton" type="button" id="btn5" role="button">Delete</button>
-              </a>
+            
               </div>
 
-              <div class="col-md-2"></div>
-            </div>          
+            </div>        
+            <br>
+            <div class="row">
+              <div class="col-md-4"></div>
+              <div class="col-md-2">
+                &nbsp;&nbsp;  
+                <a href="printInv.php">
+                  <button class="app-content-headerButton" type="button" id="btn5" role="button">Print</button>
+                </a>
+              </div>              
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              <div class="col-md-2">
+                <a href="Delete.php">
+                  <button class="app-content-headerButton" type="button" id="btn5" role="button"> Delete</button>
+                </a>
+              </div>
+              <div class="col-md-3"></div>
+            </div>  
           </div>
         </form>
       </div>

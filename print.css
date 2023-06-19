@@ -36,11 +36,10 @@ table.invoice tr.header td img {
   max-width: 300px;
 }
 table.invoice tr.header td h2 {
-  text-align: right;
   font-family: "Montserrat", sans-serif;
   font-weight: 200;
-  font-size: 2rem;
-  color: #1779ba;
+  font-size: 20px;
+  color: #050642;
 }
 table.invoice tr.intro td:nth-child(2) {
   text-align: right;
@@ -91,8 +90,8 @@ table.invoice tr.totals table tr:nth-last-child(2) td:last-child:after {
   content: "";
   height: 4px;
   width: 110%;
-  border-top: 1px solid #1779ba;
-  border-bottom: 1px solid #1779ba;
+  border-top: 1px solid #050642;
+  border-bottom: 1px solid #050642;
   position: relative;
   right: 0;
   bottom: -0.575rem;
@@ -112,5 +111,13 @@ table.invoice tr.totals table tr.total td:last-child {
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 2px;
-  color: #1779ba;
+  color: #050642;
 }/*# sourceMappingURL=print.css.map */
+h4{
+  text-align: right;
+  font-size: 22px !important;
+}
+.button{
+  display: none;
+  visibility: none;
+}
