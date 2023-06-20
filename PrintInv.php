@@ -127,15 +127,16 @@ $rem = $total - $recevid;
       </div>
     </div>
     
-
-		<div class="user-info">
+<?php 
+echo "
+		<div class='user-info'>
 			<div>
-        <p>ID</p>
-				<p>Name</p>
-				<p>S/name</p>
+        		<p>ID: &nbsp; $id</p>
+				<p>Name: &nbsp; $name</p>
+				<p>S/name: &nbsp; $sname</p>
 			</div>
 			<div>
-				<p>Date: 20/06/2023</p>
+				<p>Recipt Date: $current_date</p>
 			</div>
 		</div>
 		<table>
@@ -148,22 +149,25 @@ $rem = $total - $recevid;
 			</thead>
 			<tbody>
 				<tr>
-					<td>CBCS</td>
-					<td>400 Discount from Wais</td>
-					<td>1200</td>
+					<td>$treatmentName</td>
+					<td>$note</td>
+					<td>$total</td>
 				</tr>
 				
 			</tbody>
 		</table>
-		<div class="total">
+		<div class='total'>
 			<div>
 			</div>
 			<div>
-				<p>Total: 1200</p>
-				<p>Paid: 800</p>
-				<p>Remming: 400</p>
+				<p>Total:&nbsp; $total</p>
+				<p>Paid:&nbsp; $recevid</p>
+				<p>Remming:&nbsp; $rem</p>
 			</div>
 		</div>
+		
+		";
+		?>
 		<div class="display-field">
 			<div>
         <h3>Contact US </h3>
@@ -182,7 +186,7 @@ $rem = $total - $recevid;
 	</div>
 
   <script>
-    //window.print();
+    window.print();
   </script>
 </body>
 </html>
