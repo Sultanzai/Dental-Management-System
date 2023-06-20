@@ -31,17 +31,19 @@ table.invoice tr, table.invoice td {
   font-weight: 400;
   color: #322d28;
 }
-table.invoice tr.header td img {
-  max-width: 200px;
-  margin-top: -50px;
-  padding-top: 0px;
+img {
+  z-index: 2;
+  max-width: 250px;
+  max-height: 250px;
+  margin-top: -60vh;
+  margin-left: 20vh;
+
 }
 table.invoice tr.header td h2 {
-  margin-top: -50px;
   padding-top: 0px;
   font-family: "Montserrat", sans-serif;
   font-weight: 200;
-  font-size: 20px;
+  font-size: 25px;
   color: #050642;
 }
 table.invoice tr.intro td:nth-child(2) {
@@ -118,7 +120,10 @@ table.invoice tr.totals table tr.total td:last-child {
 }/*# sourceMappingURL=print.css.map */
 h4{
   text-align: right;
-  font-size: 16px !important;
+  font-size: 18px !important;
+  padding: 3px;
+  border-bottom: solid 1px #454545;
+  right: 10px;
 }
 .button{
   display: none;

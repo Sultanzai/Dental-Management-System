@@ -40,150 +40,149 @@ $rem = $total - $recevid;
   
   ?>
 
+
 <!DOCTYPE html>
-<html lang="en" >
+<html>
 <head>
-  <meta charset="UTF-8">
-  <title>DMS</title>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
-  <link rel="stylesheet" href="print.css" media="print">
-
-  <link rel="stylesheet" href="print.css.map">
-
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lora:400,700|Montserrat:300,400,700">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/foundation/6.3.1/css/foundation-flex.min.css">
-  <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
-
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/foundation/6.3.1/js/foundation.js"></script>
-
-
-  <!-- Boots strap-->
-  <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
-
+	<title>Invoice Form</title>
+	<style>
+		body {
+			font-family: Arial, sans-serif;
+			margin: 0;
+			padding: 0;
+		}
+		.container {
+			max-width: 800px;
+			margin: 0 auto;
+			padding: 20px;
+		}
+		.header {
+			display: flex;
+			justify-content: space-between;
+			align-items: center;
+			margin-bottom: 20px;
+		}
+		.header img {
+			max-height: 200px;
+		}
+		.user-info {
+			display: flex;
+			justify-content: space-between;
+			align-items: center;
+			margin-bottom: 20px;
+		}
+		table {
+			width: 100%;
+			border-collapse: collapse;
+			margin-bottom: 20px;
+		}
+		th, td {
+			padding: 10px;
+			border: 1px solid #ddd;
+			text-align: center;
+		}
+		.total {
+			display: flex;
+			justify-content: space-between;
+			align-items: center;
+		}
+		.display-field {
+			display: flex;
+			justify-content: space-between;
+			align-items: center;
+			margin-bottom: 20px;
+		}
+    h2{
+      font-family:sans-serif;
+      font-size: 24px;
+    }
+    h4{
+      font-size: 20px;
+      font-family:'Times New Roman', Times, serif;
+      margin-top: -40px;
+      padding-bottom: 20px;
+      text-align: right;
+    }
+	</style>
 </head>
 <body>
-  <div class="row expanded">
-    <main class="columns">
-      <div class="inner-container">
-  
-      <section class="row">
-        <div class="callout large invoice-container">
-          <table class="invoice">
-            <tr class="header">
-            <td class="align-left">
-            <h2 style="margin-top: -80px">Azka Oral Dental Care</h2>
-            </td>  
-            <td class="align-center">
-                <img src="imgs/logo.PNG" alt="Company Name" />
-              </td>
-              <td class="align-right"  style="text-align: right">
-                <h2 style="margin-top: 0px">مرکز تخصصی دندان ازکا </h2>
-                <br><br>
-                <h4> دکتور احمد حسن یوسفزی متخصص جراحی وجه</h4>
-                <h4>دكتور محمد ويس حضرتی معالج امراض جوف دهن و دندان </h4>
+	<div class="container">
 
-              </td>
-            </tr>
-            <tr class="header">
-              <td class="align-right">
-                <h2>RECIPT</h2>
-              </td>
-            </tr>
-<?php echo"
-            <tr class='intro'>
-              <td class=>
-                <span class='num'>Patient ID</span> $id <br>
-                Patient Name: $name<br>
-                Patient S /Name: $sname
 
-              </td>
-              <td class='text-right'>
-              Recipt Date: 
-              $current_date
-              </td>
-            </tr>
-            ";
-            ?>
-            <tr class="details">
-              <td colspan="2">
-                <table>
-                  <thead>
-                    <tr>
-                      <th class="desc">Treatment Name</th>
-                      <th class="id">Description</th>
-                      <th class="amt">Price</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <?php echo "
-                    <tr class='item'>
-                      <td class='id num'>$treatmentName</td>
-                      <td class='desc'>$note</td>
-                      <td class='amt'>$total</td>
-                    </tr>
-                    ";
-                    ?>
-                  </tbody>
-                </table>
-              </td> 
-            </tr>
-            <tr class="totals">
-              <td></td>
-              <td>
-                <table>
-                  
-                <?php echo"
-
-                  <tr class='subtotal'>
-                    <td class='num'>Total</td>
-                    <td class='num'>$total</td>
-                  </tr>
-                  <tr class='fees'>
-                    <td class='num'>Remming</td>
-                    <td class='num'>$rem</td>
-                  </tr>
-                  <tr class='tax'>
-                    <td class='num'>Paid</td>
-                    <td class='num'>$recevid</td>
-                  </tr>
-                  <tr class='total'>
-                    <td>Total</td>
-                    <td>$recevid</td>
-                  </tr>
-                ";
-                  ?>
-                </table>
-              </td>
-            </tr>
-          </table>
-          
-          <section class="additional-info">
-          <div class="row">
-            <div class="columns">
-              <h5>Contact us</h5>
-              <p>Whats App <br>
-                +93 770 000 0000<br>
-                +93 770 000 0000<br>
-                Address: Qala fatual xxxxx  x  x xx<br>
-                Street: 12 moqabel felani</p>
-            </div>
-            <div class="columns">
-              <h5>Follow us at</h5>
-              <p>Facebook.com/Azka<br>
-                Instageram/Azka<br>
-                </p>
-            </div>
-          </div>
-          </section>
-        </div>
-      </section>
- <script>
-window.print();
- </script>
+    <div class="header">
+			<div>
+        <h2>Azka Oral Dental Care</h2>
       </div>
-    </main>
-  </div>
+			<img src="imgs/logo.PNG" alt="Logo">
+      <div>
+        <h2 >مرکز تخصصی دندان ازکا </h2>
+      </div>
+    </div>
+    <div class="header">
+			<div>
+        <h4> دکتور احمد حسن یوسفزی <br>متخصص جراحی وجه</h4>
+      </div>
+      <div>
+        <h4>دكتور محمد ويس حضرتی<br> معالج امراض جوف دهن و دندان </h4>
+      </div>
+    </div>
+    
 
+		<div class="user-info">
+			<div>
+        <p>ID</p>
+				<p>Name</p>
+				<p>S/name</p>
+			</div>
+			<div>
+				<p>Date: 20/06/2023</p>
+			</div>
+		</div>
+		<table>
+			<thead>
+				<tr>
+					<th>Treatment Name</th>
+					<th>Description</th>
+					<th>Price</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td>CBCS</td>
+					<td>400 Discount from Wais</td>
+					<td>1200</td>
+				</tr>
+				
+			</tbody>
+		</table>
+		<div class="total">
+			<div>
+			</div>
+			<div>
+				<p>Total: 1200</p>
+				<p>Paid: 800</p>
+				<p>Remming: 400</p>
+			</div>
+		</div>
+		<div class="display-field">
+			<div>
+        <h3>Contact US </h3>
+				<p>Address: Qala fatulla adsews of the clinic</p>
+        <p> +93 77 451 4122</p>
+
+        <p> +93 77 451 4122</p>
+
+			</div>
+			<div>
+        <h3>Find Us in </h3>
+				<p>azkaoraldentalcare</p>
+				<p>azkaoraldentalcare@gmail.com</p>
+			</div>
+		</div>
+	</div>
+
+  <script>
+    //window.print();
+  </script>
 </body>
 </html>
