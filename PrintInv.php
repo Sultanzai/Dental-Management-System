@@ -47,7 +47,7 @@ $rem = $total - $recevid;
 	<title>Invoice Form</title>
 	<style>
 		body {
-			font-family: Arial;
+			font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 			margin: 0;
 			padding: 0;
 		}

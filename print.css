@@ -121,6 +121,7 @@ table.invoice tr.totals table tr.total td:last-child {
 h4{
 
   text-align: right;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
   font-size: 18px !important;
   padding: 3px;
   border-bottom: solid 1px #353535;
