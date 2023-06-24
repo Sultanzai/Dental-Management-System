@@ -50,24 +50,24 @@
       $dailytotal = $row["total"];
     }
     
-    #Daily recevid 
-    $DRsql ="SELECT SUM(PB_Receive) AS Recevid FROM tbl_patient_balance WHERE PB_ReceiveDate = DATE(NOW());";
-    $DRrun = mysqli_query($con,$DRsql);
-    if (mysqli_num_rows($DRrun) > 0) {
-      $DRrow = mysqli_fetch_assoc($DRrun);
-      $dailyrecevid = $DRrow["Recevid"];
-    }
+    // #Daily recevid 
+    // $DRsql ="SELECT SUM(PB_Receive) AS Recevid FROM tbl_patient_balance WHERE PB_ReceiveDate = DATE(NOW());";
+    // $DRrun = mysqli_query($con,$DRsql);
+    // if (mysqli_num_rows($DRrun) > 0) {
+    //   $DRrow = mysqli_fetch_assoc($DRrun);
+    //   $dailyrecevid = $DRrow["Recevid"];
+    // }
 
-    #################### WEEkly #############################    
-    #Weekly patient 
-    $WPsql ="SELECT COUNT(P_ID) AS Patient from tbl_patient where week(P_RegDate)=week(now());";
-    $WPrun = mysqli_query($con,$WPsql);
-    if (mysqli_num_rows($WPrun) > 0) {
-      // Fetch the result as an associative array
-      $WProw = mysqli_fetch_assoc($WPrun);
-      // Print the total sum for today's date
-      $weeklypaitent = $WProw["Patient"];
-    }
+    // #################### WEEkly #############################    
+    // #Weekly patient 
+    // $WPsql ="SELECT COUNT(P_ID) AS Patient from tbl_patient where week(P_RegDate)=week(now());";
+    // $WPrun = mysqli_query($con,$WPsql);
+    // if (mysqli_num_rows($WPrun) > 0) {
+    //   // Fetch the result as an associative array
+    //   $WProw = mysqli_fetch_assoc($WPrun);
+    //   // Print the total sum for today's date
+    //   $weeklypaitent = $WProw["Patient"];
+    // }
     
      #Weekly Total 
      $WTsql ="SELECT SUM(PB_Total) AS total from tbl_patient_balance where week(PB_ReceiveDate)=week(now());
