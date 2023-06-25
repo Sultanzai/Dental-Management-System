@@ -56,7 +56,7 @@
     $note = $_POST["note"];
     $recevid = $_POST["recevid"];    
     $total = $_POST["total"];
-    $treatmentName = $_POST["tra"];
+    $treatmentName = $_POST["tre"];
 
   
 
@@ -122,8 +122,8 @@
         }
 
         // Update Patient Table 
-        $sql = "UPDATE `tbl_patient` SET `P_Name`='$name',`P_SName`='$sname',`P_Phone`='$phone',`P_Address`='$address',`P_Note`='$note'
-         WHERE `P_ID`='$id'";
+        $sql = "UPDATE `tbl_patient` SET `P_Name`='$name',`P_SName`='$sname',`P_Phone`='$phone',`P_Address`='$address',`P_Note`='$note', 'PT_ID'=$clicked_value
+         WHERE `P_ID`=$id;";
         $res = $con->query($sql);
 
         //Update paitent balance
@@ -328,80 +328,76 @@ else{
 
               <select name ="tre">
                 <?php 
+
                 if($treatmentName == "Implant"){
                   echo "<option value ='Implant' selected> Implant</option> "; 
                 }
                 if($treatmentName == "Orthodontic"){
                   echo "<option value ='Orthodontic' selected> Orthodontic</option> "; 
                 }
-                if($treatmentName == "Impacted"){
-                  echo "<option value ='Impacted' selected> Impacted</option> "; 
+                if($treatmentName == "RCT"){
+                  echo "<option value ='RCT' selected> RCT</option> "; 
                 }
-                if($treatmentName == "surgery"){
-                  echo "<option value ='surgery' selected> surgery</option> "; 
+                if($treatmentName == "Impacted surgery"){
+                  echo "<option value ='Impacted surgery' selected> Impacted surgery</option> "; 
                 }
-                if($treatmentName == "Wisdome"){
-                  echo "<option value ='Wisdome' selected> Wisdome</option> "; 
+                if($treatmentName == "Wisdome extraction"){
+                  echo "<option value ='Wisdome extraction' selected> Wisdome extraction</option> "; 
                 }
-                if($treatmentName == "extraction"){
-                  echo "<option value ='extraction' selected> extraction</option> "; 
+                if($treatmentName == "sample extraction"){
+                  echo "<option value ='sample extraction' selected> sample extraction</option> "; 
                 }
-                if($treatmentName == "sample"){
-                  echo "<option value ='sample' selected> sample</option> "; 
+                if($treatmentName == "Crown"){
+                  echo "<option value ='Crown' selected> Crown</option> "; 
                 }
-                if($treatmentName == "Orthodontic"){
-                  echo "<option value ='Orthodontic' selected> Orthodontic</option> "; 
+                if($treatmentName == "Bridg"){
+                  echo "<option value ='Bridg' selected> Bridg</option> "; 
                 }
-                if($treatmentName == "Orthodontic"){
-                  echo "<option value ='Orthodontic' selected> Orthodontic</option> "; 
+                if($treatmentName == "complete denture"){
+                  echo "<option value ='complete denture' selected> complete denture</option> "; 
                 }
-                if($treatmentName == "Orthodontic"){
-                  echo "<option value ='Orthodontic' selected> Orthodontic</option> "; 
+                if($treatmentName == "bleeching"){
+                  echo "<option value ='bleeching' selected> bleeching</option> "; 
                 }
-                if($treatmentName == "Orthodontic"){
-                  echo "<option value ='Orthodontic' selected> Orthodontic</option> "; 
+                if($treatmentName == "oral higien"){
+                  echo "<option value ='oral higien' selected> oral higien</option> "; 
                 }
-                if($treatmentName == "Orthodontic"){
-                  echo "<option value ='Orthodontic' selected> Orthodontic</option> "; 
+                if($treatmentName == "maxillofacial surgery"){
+                  echo "<option value ='maxillofacial surgery' selected> maxillofacial surgery</option> "; 
                 }
-                if($treatmentName == "Orthodontic"){
-                  echo "<option value ='Orthodontic' selected> Orthodontic</option> "; 
+                if($treatmentName == "laminate veneer"){
+                  echo "<option value ='laminate veneer' selected> laminate veneer</option> "; 
                 }
-                if($treatmentName == "Orthodontic"){
-                  echo "<option value ='Orthodontic' selected> Orthodontic</option> "; 
+                if($treatmentName == "TMJ disorder"){
+                  echo "<option value ='TMJ disorder' selected> TMJ disorder</option> "; 
                 }
-                if($treatmentName == "Orthodontic"){
-                  echo "<option value ='Orthodontic' selected> Orthodontic</option> "; 
+                if($treatmentName == "Space maintainer"){
+                  echo "<option value ='Space maintainer' selected> Space maintainer</option> "; 
                 }
-                if($treatmentName == "Orthodontic"){
-                  echo "<option value ='Orthodontic' selected> Orthodontic</option> "; 
+                if($treatmentName == "oral pathology"){
+                  echo "<option value ='oral pathology' selected> oral pathology</option> "; 
                 }
-                if($treatmentName == "Orthodontic"){
-                  echo "<option value ='Orthodontic' selected> Orthodontic</option> "; 
-                }
-                if($treatmentName == "Orthodontic"){
-                  echo "<option value ='Orthodontic' selected> Orthodontic</option> "; 
-                }
-                if($treatmentName == "Orthodontic"){
-                  echo "<option value ='Orthodontic' selected> Orthodontic</option> "; 
-                }
+                if($treatmentName == "consultation"){
+                  echo "<option value ='consultation' selected> consultation</option> "; 
+                } 
+                
                 ?>
-                  
-                }
+
                 <option value ="Implant"> Implant</option>
                 <option value ="Orthodontic"> Orthodontic</option>
                 <option value ="RCT"> RCT</option>
-                <option value ="surgery"> surgery</option>
-                <option value ="Wisdome"> Wisdome</option>
-                <option value ="extraction"> extraction</option>
-                <option value ="sample"> sample</option>
-                <option value ="extraction"> extraction</option>
-                <option value ="Sample"> Sample</option>
-                <option value ="filling"> filling</option>
+                <option value ="Impacted surgery"> Impacted surgery</option>
+                <option value ="Wisdome extraction"> Wisdome extraction</option>
+                <option value ="sample extraction"> sample extraction</option>
                 <option value ="Crown"> Crown</option>
                 <option value ="Bridg"> Bridg</option>
                 <option value ="complete denture"> complete denture</option>
                 <option value ="bleeching"> bleeching</option>
+                <option value ="Crown"> Crown</option>
+                <option value ="Bridg"> Bridg</option>
+                <option value ="complete denture"> complete denture</option>
+                <option value ="bleeching"> bleeching</option>
+                <option value ="oral higien"> oral higien</option>
                 <option value ="maxillofacial surgery"> maxillofacial surgery</option>
                 <option value ="laminate veneer"> laminate veneer</option>
                 <option value ="TMJ disorder"> TMJ disorder</option>
@@ -447,15 +443,28 @@ else{
               ?>
             </div>
           </div>
-          <div class="col-md-5">
-          <div class="row"><h5> Total:   </h5> <input style="width: 280px;  padding-left: 3; " type="text" name="total" value="<?php echo"$total"; ?>"> </div>
-          <br>  <div class="row"><h5> Recived:   </h5> <input style="width: 280px;  padding-left: 3; " type="text" name="recevid" value="<?php echo"$recevid"; ?>"> </div>
 
             <div class="row">
-              <div class="col-md-6">
+              <div class="col-md">
+                <h4> Total:</h4>
+                <input style ="margin-left:215px; margin-top: -140px;" type="text" name="total" value="<?php echo"$total"; ?>"> 
+              </div>
+            </div>  
+
+            <div class="row">
+              <div class="col-md">  
+                <h4> Recived:</h4> 
+                <input style ="margin-left:215px; margin-top: -140px;"  type="text" name="recevid" value="<?php echo"$recevid"; ?>">
+              </div>
+            </div>
+              
+          <div class="row">
+
+          <div class="col-md-4"></div>
+              <div class="col-md-3">
                 <a href="index.php"><button class="app-content-headerButton" type="button" id="btn3" role="button">Cancel</button></a>
               </div>
-              <div class="col-md-4">
+              <div class="col-md-3">
                 <button class="app-content-headerButton" type="submit" id="btn2">Submit</button>
               </div>
               <div class="col-md-2"></div>
