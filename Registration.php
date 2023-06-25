@@ -26,11 +26,11 @@
   $phone = "";
   $address = "";
   $note = "";
-  $treatmentName ="....";
+  $treatmentName ="Implant";
   $total ="0";
   $recevid = "0";
   $clicked_value ="0";
-
+  
   $errormessage ="";
   $success="";
   
@@ -45,10 +45,31 @@
     $max = $con->query($sqlId);
 
 
+    
+    if ($max->num_rows > 0) {
+      // Get the maximum ID from the result set
+      $row = $max->fetch_assoc();
+      $maxres = $row["maxid"];
+      $maxres = $maxres+1;
+      } else {
+          echo "Max ID not Selected";
+      }
 
-    // Check if a value has been clicked
-    if (isset($_GET['value'])) {
-      $treatmentName = $_GET['value'];
+    // Using POST server request method 
+    if($_SERVER['REQUEST_METHOD'] == 'POST'){
+      $name = $_POST["name"];
+      $sname = $_POST["sname"];
+      $gender = $_POST["gender"];
+      $age = $_POST["age"];
+      $phone = $_POST["phone"];
+      $address = $_POST["address"];
+      $note = $_POST["note"];
+      $recevid = $_POST["recevid"];
+      $total = $_POST["total"];
+      $treatmentName = $_POST["tre"];
+      
+
+
       if($treatmentName == 'Implant'){
         $clicked_value = 1;
       }
@@ -67,7 +88,6 @@
       if($treatmentName == 'sample extraction'){
         $clicked_value = 7;
       }
-
       if($treatmentName == 'Crown'){
         $clicked_value = 8;
       }
@@ -101,33 +121,7 @@
       if($treatmentName == 'consultation'){
         $clicked_value = 18;
       }
-    }
 
-    
-    
-    if ($max->num_rows > 0) {
-      // Get the maximum ID from the result set
-      $row = $max->fetch_assoc();
-      $maxres = $row["maxid"];
-      $maxres = $maxres+1;
-      } else {
-          echo "Max ID not Selected";
-      }
-
-    // Using POST server request method 
-    if($_SERVER['REQUEST_METHOD'] == 'POST'){
-      $name = $_POST["name"];
-      $sname = $_POST["sname"];
-      $gender = $_POST["gender"];
-      $age = $_POST["age"];
-      $phone = $_POST["phone"];
-      $address = $_POST["address"];
-      $note = $_POST["note"];
-      $recevid = $_POST["recevid"];
-      $total = $_POST["total"];
-
-
-    
 
         do {
           if(empty($name) || empty($phone) || empty($treatmentName) ){
@@ -284,11 +278,11 @@ else{
     border: solid 1px #fff;
     box-shadow: 0px 0px 20px 0px;>
       <div class="container">
-        <br><br>
+        <br>
       <form method="post">
         
         <div class="row">
-          <div class="col-md-6">
+          <div class="col-md">
 
             <div class="row">
               <div class="col-md-4">
@@ -348,9 +342,35 @@ else{
               <div class="col-md-4">
                 <h4>Treatment </h4>
               </div>
-              <div class="col-md-8">
-                <h4> <?php echo '<p> ' . $treatmentName . ' </p>'?> </h4>
-              </div>
+              
+            <div class="col-md-8">
+        
+              <select name ="tre">
+                <option value ="Implant"> Implant</option>
+                <option value ="Orthodontic"> Orthodontic</option>
+                <option value ="Impacted"> Impacted</option>
+                <option value ="surgery"> surgery</option>
+                <option value ="Wisdome"> Wisdome</option>
+                <option value ="extraction"> extraction</option>
+                <option value ="sample"> sample</option>
+                <option value ="extraction"> extraction</option>
+                <option value ="Sample"> Sample</option>
+                <option value ="filling"> filling</option>
+                <option value ="Crown"> Crown</option>
+                <option value ="Bridg"> Bridg</option>
+                <option value ="complete denture"> complete denture</option>
+                <option value ="bleeching"> bleeching</option>
+                <option value ="maxillofacial surgery"> maxillofacial surgery</option>
+                <option value ="laminate veneer"> laminate veneer</option>
+                <option value ="TMJ disorder"> TMJ disorder</option>
+                <option value ="Space maintainer"> Space maintainer</option>
+                <option value ="oral pathology"> oral pathology</option>
+                <option value ="consultation"> consultation</option>
+              </select>
+
+
+
+            </div>
             </div>
 
             <div class="row">
@@ -363,28 +383,12 @@ else{
             </div>
 
           </div>
-          <div class="col-md-6" >
-            <h3>Treatments</h3>
-            <ul id="UI" style ="max-height: 40vh; overflow-y: scroll; padding:5px 0px;">
-              <?php
-                // Example data
-                $data = array('Implant', 'Orthodontic', 'Impacted surgery', 'Wisdome extraction', 'sample extraction', 'Sample filling', 'Crown', 'Bridg', 'complete denture', 'bleeching', 'oral higien', 'maxillofacial surgery', 'laminate veneer', 'TMJ disorder', 'Space maintainer', 'oral pathology', 'consultation');
 
-                // Loop through the data and create a list item for each value
-                foreach ($data as $value) {
-                  echo '<li Class="list"><a href="?value=' . $value . '">' . $value . '</a></li>';
-                }
-              ?>
-              
-            </ul>
-
-          
-          </div>
 
         </div>
      
         <div class="row">
-          <div class="col-md-7">
+          <div class="col-md-4">
             <div class="row">
               <?php 
               if(!empty($errormessage)){
@@ -405,10 +409,20 @@ else{
               ?>
             </div>
           </div>
-          <div class="col-md-5">
-          <div class="row"><h5> Total:   </h5> <input style="width: 280px;  padding-left: 3; " type="text" name="total"> </div>
+          <div class="col-md">
+          <div class="row">
+          <div class="col-md">  
+          <h5> Total:</h5> 
+          <input type="text" name="total"> 
+          </div>
+          </div>
           <br>  
-          <div class="row"><h5> Recived:   </h5> <input style="width: 280px; padding-left: 3; " type="text" name="recevid"> </div>
+          <div class="row">
+          <div class="col-md">  
+          <h5> Recived:</h5> 
+          <input type="text" name="recevid"> 
+          </div>
+          </div>
 
             <div class="row">
               <div class="col-md-6">

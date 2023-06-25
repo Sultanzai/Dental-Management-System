@@ -62,7 +62,7 @@ button:hover{
     transform: translate() scale(1.25);
     margin-top: 30px;
     margin-left: 10%;
-    width: 80%;
+    width: 50%;
     height: 100vh;
     background-color: #ececec;
     color: #fff;
@@ -86,9 +86,15 @@ button:hover{
     text-decoration: none;
 }
 
-.Registarion h4, input{
-    padding: 5px 10px;
+.Registarion h4{
+    padding: 5px 80px;
     font-size: 20px;
+}
+.Registarion input{
+    margin-bottom: 10px;
+    padding: 3px 3px;
+    font-size: 18px;
+    font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
 }
 
 .Registarion a{
