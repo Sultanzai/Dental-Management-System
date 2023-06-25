@@ -348,27 +348,27 @@ else{
               <select name ="tre">
                 <option value ="Implant"> Implant</option>
                 <option value ="Orthodontic"> Orthodontic</option>
-                <option value ="Impacted"> Impacted</option>
-                <option value ="surgery"> surgery</option>
-                <option value ="Wisdome"> Wisdome</option>
-                <option value ="extraction"> extraction</option>
-                <option value ="sample"> sample</option>
-                <option value ="extraction"> extraction</option>
-                <option value ="Sample"> Sample</option>
-                <option value ="filling"> filling</option>
+                <option value ="RCT"> RCT</option>
+                <option value ="Impacted surgery"> Impacted surgery</option>
+                <option value ="Wisdome extraction"> Wisdome extraction</option>
+                <option value ="sample extraction"> sample extraction</option>
                 <option value ="Crown"> Crown</option>
                 <option value ="Bridg"> Bridg</option>
                 <option value ="complete denture"> complete denture</option>
                 <option value ="bleeching"> bleeching</option>
+                <option value ="Crown"> Crown</option>
+                <option value ="Bridg"> Bridg</option>
+                <option value ="complete denture"> complete denture</option>
+                <option value ="bleeching"> bleeching</option>
+                <option value ="oral higien"> oral higien</option>
                 <option value ="maxillofacial surgery"> maxillofacial surgery</option>
                 <option value ="laminate veneer"> laminate veneer</option>
                 <option value ="TMJ disorder"> TMJ disorder</option>
                 <option value ="Space maintainer"> Space maintainer</option>
                 <option value ="oral pathology"> oral pathology</option>
                 <option value ="consultation"> consultation</option>
+
               </select>
-
-
 
             </div>
             </div>
