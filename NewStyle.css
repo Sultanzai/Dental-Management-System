@@ -4,7 +4,7 @@
     text-align: left;
     overflow-y:scroll;
     overflow-x: 2px;
-}
+/* }
 img{
     width: 100px;
     height: 100px;
@@ -39,11 +39,11 @@ button:hover{
 .earningsec h1{
     color: #fff;
     padding-bottom: 20px;
-}
-.earningsec h3, h2{
+} */
+/* .earningsec h3, h2{
     text-align: left;
     padding-left: 10px;
-}
+} */
 .repo{
     margin-top: 5vh;
 }
