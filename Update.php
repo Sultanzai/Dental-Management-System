@@ -72,12 +72,15 @@
     $clicked_value = 3;
   }
   if($treatmentName == 'Impacted surgery'){
-    $clicked_value = 5;
+    $clicked_value = 4;
   }
   if($treatmentName == 'Wisdome extraction'){
-    $clicked_value = 6;
+    $clicked_value = 5;
   }
   if($treatmentName == 'sample extraction'){
+    $clicked_value = 6;
+  }
+  if($treatmentName == 'sample filling'){
     $clicked_value = 7;
   }
   if($treatmentName == 'Crown'){
@@ -122,8 +125,8 @@
         }
 
         // Update Patient Table 
-        $sql = "UPDATE `tbl_patient` SET `P_Name`='$name',`P_SName`='$sname',`P_Phone`='$phone',`P_Address`='$address',`P_Note`='$note', 'PT_ID'=$clicked_value
-         WHERE `P_ID`=$id;";
+        $sql = "UPDATE `tbl_patient` SET `P_Name`='$name',`P_SName`='$sname',`P_Phone`='$phone',`P_Address`='$address',`P_Note`='$note', `PT_ID`='$clicked_value'
+         WHERE `P_ID`='$id';";
         $res = $con->query($sql);
 
         //Update paitent balance
@@ -347,6 +350,9 @@ else{
                 if($treatmentName == "sample extraction"){
                   echo "<option value ='sample extraction' selected> sample extraction</option> "; 
                 }
+                if($treatmentName == "sample filling"){
+                  echo "<option value ='sample filling' selected> sample filling</option> "; 
+                }
                 if($treatmentName == "Crown"){
                   echo "<option value ='Crown' selected> Crown</option> "; 
                 }
@@ -389,6 +395,7 @@ else{
                 <option value ="Impacted surgery"> Impacted surgery</option>
                 <option value ="Wisdome extraction"> Wisdome extraction</option>
                 <option value ="sample extraction"> sample extraction</option>
+                <option value ="sample filling"> sample filling</option>
                 <option value ="Crown"> Crown</option>
                 <option value ="Bridg"> Bridg</option>
                 <option value ="complete denture"> complete denture</option>
