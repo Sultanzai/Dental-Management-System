@@ -14,11 +14,29 @@
     $USERNAME = $_SESSION['Username'];
     $USERID = $_SESSION['userid'];
     $TYPE = $_SESSION['type'];
+  
+    $Name ="";
+    $ExType = "";
+    $Amount ="";
 
-  $Name ="";
-  $ExType = "";
-  $Amount ="";
-  $current_date = date('Y-m-d'); 
+    if($_SERVER['REQUEST_METHOD'] == 'GET'){
+        
+      if(!isset($_GET["id"])){
+        Echo"ID IS NULL ";
+      }
+
+        $id = $_GET["id"];
+      
+          // Show Expances Data 
+          $sql = "SELECT * FROM `tbl_expances` WHERE `Ex_ID` = $id";
+          $res = $con->query($sql);
+          $row = $res->fetch_assoc();
+
+          $Name = $row['Ex_Name'];
+          $ExType = $row['Ex_Type'];
+          $Amount = $row['Ex_amount'];
+
+      }
 
   $errormessage ="";
   $success="";
@@ -41,16 +59,13 @@
         do {
           if(empty($Name) || empty($ExType) || empty($Amount) ){
             $errormessage="All the field are Required";
-            echo $errormessage;
             break;
           }
 
-          // INSERT INTO Expances 
-
-          $sql = "INSERT INTO `tbl_expances`(`Ex_Name`, `Ex_Type`, `Ex_amount`, `ex_date`, `User_ID`) VALUES ('$Name','$ExType','$Amount','$current_date','$USERNAME');";
-          $res = $con->query($sql);
-
-          if(!$res){
+          $sql2 = "UPDATE `tbl_expances` SET `Ex_Name`='$Name',`Ex_Type`='$ExType',`Ex_amount`='$Amount' WHERE `EX_ID`='$id'";
+          $res2 = $con->query($sql2);
+ 
+          if(!$res2){
             $errormessage = "invalid Query: ". $con->error;
             break;
           }
@@ -60,7 +75,7 @@
 
             $success = "patient Registed";
 
-            header("location: /DMS/dist/index.php");
+            header("location: /DMS/dist/ExpanceReport.php");
 
         } while (false);
 
@@ -184,11 +199,12 @@ else{
     box-shadow: 0px 0px 20px 0px;>
       <div class="container">
         <br> <br> 
-      <form method="post">
+      <form method="post" action="ExpanceReport.php">
         
         <div class="row">
           <div class="col-md">
 
+          
             <div class="row">
               <div class="col-md-4">
                 <h4> Types </h4>
@@ -197,7 +213,27 @@ else{
             <div class="col-md-8">
         
               <select name ="type">
-                <option value ="Kitchen"> Kitchen</option>
+
+              <?php 
+              if($ExType =="Kitchen"){
+                echo"<option value ='Kitchen' selected> Kitchen</option>";
+              }
+              if($ExType =="Stuffs"){
+                echo"<option value ='Stuffs' selected> Stuffs</option>";
+              } 
+              if($ExType =="Cleaner"){
+                echo"<option value ='Cleaner' selected> Cleaner</option>";
+              }
+              if($ExType =="Clinic"){
+                echo"<option value ='Clinic' selected> Clinic</option>";
+              }
+              if($ExType =="Employes Salary"){
+                echo"<option value ='Employes Salary' selected> Employes Salary</option>";
+              }
+
+?>
+              
+              <option value ="Kitchen"> Kitchen</option>
                 <option value ="Stuffs"> Stuffs</option>
                 <option value ="Cleaner"> Cleaner</option>
                 <option value ="Employes Salary"> Employes Salary</option>
@@ -231,15 +267,20 @@ else{
 
         </div>
      
-            <div class="row">
-              <div class="col-md-3"></div>
+        <div class="row">
+          <div class="col-md-2"></div>
               <div class="col-md-3">
-                <a href="index.php"><button class="app-content-headerButton" type="button" id="btn3" role="button">Cancel</button></a>
+                <a href="ExpanceReport.php"><button class="app-content-headerButton" type="button" id="btn3" role="button">Back</button></a>
               </div>
-              <div class="col-md-6">
-                <button class="app-content-headerButton" type="submit" id="btn2">Submit</button>
+              <div class="col-md-3">
+                <button class="app-content-headerButton" type="submit" id="btn3" role="button">Update</button>
               </div>
-          </div>
+              <div class="col-md-3">
+                <button class="app-content-headerButton" type="button" id="btn2">Delete</button>
+              </div>
+            </div>
+
+
         </div>
       </div>
       </form>
@@ -247,7 +288,7 @@ else{
 
 
     
-  </div>
+  </div> 
 </div>
 <!-- partial -->
   <script  src="./script.js"></script>

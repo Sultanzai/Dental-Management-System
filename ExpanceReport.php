@@ -20,10 +20,11 @@
       exit;
     }
     else{
-      $from = "";
-      $to = "";
 
-      if($_SERVER['REQUEST_METHOD']=="POST"){
+      $from ;
+      $to ;
+
+      if($_SERVER['REQUEST_METHOD']=='POST'){
         $from = $_POST["from"];
         $to = $_POST["to"];
       }
@@ -137,7 +138,7 @@ else{
     </div>
 
     <div class="container">
-    <form method="post" action="ExpanceRepot.php">
+    <form method="POST" action="ExpanceReport.php">
       <div class="row">
           <div class="col-md-8">
             <div class="row" id="searchbar">
@@ -150,7 +151,13 @@ else{
               </div>            
             </div>
           </div>
-        <div class="col-md-4"></div>
+          <div class="col-md-2"></div>
+        <div class="col-md-2">
+          <br><br>
+        <a href='Expances.php'>
+          <button class='app-content-headerButton'> Add Expances </button>
+        </a>
+        </div>
     </form>  
       </div>
     </div>
@@ -211,6 +218,8 @@ else{
           //While loop to read database data
           while($row = $resutl->fetch_assoc()){
             echo " 
+            <a href='ExpancesUpdate.php?id=$row[Ex_ID]'> 
+
             <div class= products-row>
               <table id = 'myDataTable'> 
               <div class=product-cell> <span>$row[Ex_ID]</span> </div>
@@ -223,6 +232,7 @@ else{
               </table> 
               
             </div>
+            </a>
 
             ";
           }
