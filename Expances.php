@@ -15,14 +15,11 @@
     $USERID = $_SESSION['userid'];
     $TYPE = $_SESSION['type'];
 
-
-  
-  $maxres ="empty";
-
   $Name ="";
   $ExType = "";
   $Amount ="";
-  
+  $current_date = date('Y-m-d'); 
+
   $errormessage ="";
   $success="";
   
@@ -44,13 +41,14 @@
         do {
           if(empty($Name) || empty($ExType) || empty($Amount) ){
             $errormessage="All the field are Required";
+            echo $errormessage;
             break;
           }
 
           // INSERT INTO Expances 
-          $sql = "";
-          $res = $con->query($sql);
 
+          $sql = "INSERT INTO `tbl_expances`(`Ex_Name`, `Ex_Type`, `Ex_amount`, `ex_date`, `User_ID`) VALUES ('$Name','$ExType','$Amount','$current_date','$USERID');";
+          $res = $con->query($sql);
 
           if(!$res){
             $errormessage = "invalid Query: ". $con->error;
@@ -178,14 +176,14 @@ else{
       </button>
       <a href="index.php"><button class="app-content-headerButton">Back</button></a>
     </div>
-    <section class="Registarion" style="
+    <section class="Expances" style="
     background-color: #1b2536;
     border-radius: 20px;
     color:#fff;
     border: solid 1px #fff;
     box-shadow: 0px 0px 20px 0px;>
       <div class="container">
-        <br>
+        <br> <br> 
       <form method="post">
         
         <div class="row">
@@ -193,16 +191,7 @@ else{
 
             <div class="row">
               <div class="col-md-4">
-                <h4>Name </h4>
-              </div>
-              <div class="col-md-8">
-                <input type="text" name="name" value="<?php echo $Name?>">
-              </div>
-            </div>
-
-            <div class="row">
-              <div class="col-md-4">
-                <h4>Expances Types </h4>
+                <h4> Types </h4>
               </div>
               
             <div class="col-md-8">
@@ -220,6 +209,15 @@ else{
 
             <div class="row">
               <div class="col-md-4">
+                <h4> Info </h4>
+              </div>
+              <div class="col-md-8">
+                <input type="text" name="name" value="<?php echo $Name?>">
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-md-4">
                 <h4>Amount </h4>
               </div>
               <div class="col-md-8">
@@ -233,53 +231,14 @@ else{
 
         </div>
      
-        <div class="row">
-          <div class="col-md-4">
             <div class="row">
-              <?php 
-              if(!empty($errormessage)){
-                echo"
-                <h2>$errormessage </h2>
-                ";
-              }
-              ?>
-            </div>
-            <div class="row">
-               <?php 
-              if(!empty($success)){
-                echo"
-                <h2> $success </h2>
-              </div>
-                ";
-              }
-              ?>
-            </div>
-          </div>
-          <div class="col-md">
-          <div class="row">
-          <div class="col-md">  
-          <h5> Total:</h5> 
-          <input type="text" name="total"> 
-          </div>
-          </div>
-          <br>  
-          <div class="row">
-          <div class="col-md">  
-          <h5> Recived:</h5> 
-          <input type="text" name="recevid"> 
-          </div>
-          </div>
-
-            <div class="row">
-              <div class="col-md-6">
+              <div class="col-md-3"></div>
+              <div class="col-md-3">
                 <a href="index.php"><button class="app-content-headerButton" type="button" id="btn3" role="button">Cancel</button></a>
               </div>
-              <div class="col-md-4">
+              <div class="col-md-6">
                 <button class="app-content-headerButton" type="submit" id="btn2">Submit</button>
               </div>
-              <div class="col-md-2"></div>
-
-            </div>
           </div>
         </div>
       </div>

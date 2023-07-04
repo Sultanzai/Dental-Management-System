@@ -69,6 +69,18 @@ button:hover{
     border-radius: 20px;
     transition: ease-in-out 200ms;
 }
+
+.Expances{
+    transform: translate() scale(1.25);
+    margin-top: 30px;
+    margin-left: 10%;
+    width: 50%;
+    height: 50vh;
+    background-color: #ececec;
+    color: #fff;
+    border-radius: 20px;
+    transition: ease-in-out 200ms;
+}
 .list{
     width: 200px;
     height: 30px;
@@ -86,18 +98,18 @@ button:hover{
     text-decoration: none;
 }
 
-.Registarion h4{
+.Registarion,.Expances h4{
     padding: 5px 80px;
     font-size: 20px;
 }
-.Registarion input{
+.Registarion,.Expances input{
     margin-bottom: 10px;
     padding: 3px 3px;
     font-size: 18px;
     font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
 }
 
-.Registarion a{
+.Registarion,.Expances a{
     text-decoration: none;
     color: #000;
     padding: 10px;
