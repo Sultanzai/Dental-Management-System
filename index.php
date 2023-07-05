@@ -30,12 +30,8 @@
      if($_SERVER['REQUEST_METHOD'] == 'POST'){
       $search = $_POST["search"];
      }
-     else{
-       echo "ERROR";      
-     }
 
     $_SESSION["search"] = $search;
-    echo "Search Assigned :  ".$search;
     }
 ?>
 
@@ -94,7 +90,7 @@ if($TYPE =="Admin"){
       </a>
     </li>
     <li class= sidebar-list-item >
-      <a href= Expances.php >
+      <a href= ExpanceReport.php  >
         <svg xmlns= http://www.w3.org/2000/svg  width= '18'  height= '18'  viewBox= '0 0 24 24'  fill= none  stroke= currentColor  stroke-width= 2  stroke-linecap= round  stroke-linejoin= round  class= feather feather-inbox ><polyline points= '22 12 16 12 14 15 10 15 8 12 2 12' /><path d= 'M5.45 5.11L2 12v6a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-6l-3.45-6.89A2 2 0 0 0 16.76 4H7.24a2 2 0 0 0-1.79 1.11z' /></svg>
         <span>Expances</span>
       </a>
@@ -149,7 +145,7 @@ else{
     </div>
 
 
-    <form method="POST" action="Search.php">
+    <form method="POST" action="index.php">
 
       <div class="app-content-actions">
 
@@ -158,7 +154,7 @@ else{
           <div class="col-md-6">
             <div class="row">
               
-              <input type="text" name="search" style ="max-width: 280px; padding-left: 35px" class="search-bar" ><span> . </span> 
+              <input type="text" name="search" style ="max-width: 280px; padding-left: 30px" class="search-bar" ><span> . </span> 
               <a href='Search.php'>
                 <button class='app-content-headerButton' type="submit" role="button"> Search </button>
               </a>
@@ -220,12 +216,18 @@ else{
 ------------------------------------------------------------------------------------------>
     <?php
          
-
+          if(empty($search)){
           // Get all element of paitent form
           $sql = "SELECT * FROM view_patient ORDER BY P_ID DESC;";
           $resutl = $con->query($sql);
-
+          }
           
+          else{
+          // Get all element of paitent form
+          $sql = "SELECT * FROM `view_patient` WHERE P_Name LIKE '$search' OR P_SName Like '$search' or P_ID ='$search';";
+          $resutl = $con->query($sql);
+          }
+
           if(!$resutl){
             die("Invalid Query: " . $con->error);
           }

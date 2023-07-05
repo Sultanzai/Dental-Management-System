@@ -199,7 +199,7 @@ else{
     box-shadow: 0px 0px 20px 0px;>
       <div class="container">
         <br> <br> 
-      <form method="post" action="ExpanceReport.php">
+      <form method="post" action="ExpancesUpdate.php">
         
         <div class="row">
           <div class="col-md">

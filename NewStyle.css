@@ -97,7 +97,9 @@ button:hover{
     transition: 0.3ms;
     text-decoration: none;
 }
-
+#Registerbtn{
+    margin-top: 20px;
+}
 .Registarion,.Expances h4{
     padding: 5px 80px;
     font-size: 20px;

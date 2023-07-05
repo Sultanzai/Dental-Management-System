@@ -87,9 +87,9 @@ if($TYPE =="Admin"){
       </a>
     </li>
     <li class= sidebar-list-item >
-      <a href= # >
+      <a href= ExpanceReport.php >
         <svg xmlns= http://www.w3.org/2000/svg  width= '18'  height= '18'  viewBox= '0 0 24 24'  fill= none  stroke= currentColor  stroke-width= 2  stroke-linecap= round  stroke-linejoin= round  class= feather feather-inbox ><polyline points= '22 12 16 12 14 15 10 15 8 12 2 12' /><path d= 'M5.45 5.11L2 12v6a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-6l-3.45-6.89A2 2 0 0 0 16.76 4H7.24a2 2 0 0 0-1.79 1.11z' /></svg>
-        <span>Print Receipt</span>
+        <span>Expances</span>
       </a>
     </li>
 
@@ -154,9 +154,9 @@ else{
           <div class="col-md-2"></div>
         <div class="col-md-2">
           <br><br>
-        <a href='Expances.php'>
-          <button class='app-content-headerButton'> Add Expances </button>
-        </a>
+
+          <button class='app-content-headerButton'> <a href='Expances.php' style=" color:#fff; text-decoration: none;"> Add Expances </a></button>
+
         </div>
     </form>  
       </div>
@@ -203,12 +203,12 @@ else{
     <?php
           
           if(empty($from) OR empty($to)){
-            $sql = "SELECT * FROM tbl_expances;";
+            $sql = "SELECT * FROM tbl_expances ORDER BY Ex_ID DESC;";
             $resutl = $con->query($sql);
           }
           else{
             
-          $sql = "SELECT * FROM tbl_expances WHERE ex_date >= '$from' AND ex_date <= '$to';";
+          $sql = "SELECT * FROM tbl_expances WHERE ex_date >= '$from' AND ex_date <= '$to' ORDER BY Ex_ID DESC;";
           $resutl = $con->query($sql);
         }    
             if(!$resutl){

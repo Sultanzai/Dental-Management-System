@@ -60,7 +60,7 @@
 
             $success = "patient Registed";
 
-            header("location: /DMS/dist/index.php");
+            header("location: /DMS/dist/ExpanceReport.php");
 
         } while (false);
 
