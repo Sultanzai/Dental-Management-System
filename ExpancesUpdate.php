@@ -28,13 +28,13 @@
         $id = $_GET["id"];
       
           // Show Expances Data 
-          // $sql = "SELECT * FROM `tbl_expances` WHERE `Ex_ID` = $id";
-          // $res = $con->query($sql);
-          // $row = $res->fetch_assoc();
+          $sql = "SELECT * FROM `tbl_expances` WHERE `Ex_ID` = $id";
+          $res = $con->query($sql);
+          $row = $res->fetch_assoc();
 
-          // $Name = $row['Ex_Name'];
-          // $ExType = $row['Ex_Type'];
-          // $Amount = $row['Ex_amount'];
+          $Name = $row['Ex_Name'];
+          $ExType = $row['Ex_Type'];
+          $Amount = $row['Ex_amount'];
 
       }
 
