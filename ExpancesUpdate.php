@@ -62,8 +62,8 @@
             break;
           }
 
-          $sql2 = "UPDATE `tbl_expances` SET `Ex_Name`='$Name',`Ex_Type`='$ExType',`Ex_amount`='$Amount' WHERE `EX_ID`='$id'";
-          $res2 = $con->query($sql2);
+          $sqltwo = "UPDATE `tbl_expances` SET `Ex_Name`='$Name',`Ex_Type`='$ExType',`Ex_amount`='$Amount' WHERE `EX_ID`='$id'";
+          $res2 = $con->query($sqltwo);
  
           if(!$res2){
             $errormessage = "invalid Query: ". $con->error;
@@ -75,7 +75,6 @@
 
             $success = "patient Registed";
 
-            header("location: /DMS/dist/ExpanceReport.php");
 
         } while (false);
 
