@@ -275,8 +275,11 @@ else{
                 <button class="app-content-headerButton" type="submit" id="btn3" role="button">Update</button>
               </div>
               <div class="col-md-3">
-                <button class="app-content-headerButton" type="button" id="btn2">Delete</button>
-              </div>
+                <?php echo "
+                <button href=Delete.php class='app-content-headerButton' type='button' id='btn2'>Delete</button>
+";
+                ?>
+                </div>
             </div>
 
 
