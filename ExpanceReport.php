@@ -13,6 +13,10 @@
     $USERID = $_SESSION['userid'];
     $TYPE = $_SESSION['type'];
 
+    
+    $from = "";
+    $to = "";
+    $totalExpances = "";
 
     if(empty($USERID) OR empty($USERNAME) OR empty($TYPE)){
       
@@ -21,13 +25,15 @@
     }
     else{
 
-      $from ;
-      $to ;
-
       if($_SERVER['REQUEST_METHOD']=='POST'){
         $from = $_POST["from"];
         $to = $_POST["to"];
+        
+        #SESSION TO GFT DATE RECORD
+        $_SESSION["from"] = $from;
+        $_SESSION["to"] = $to; 
       }
+              
     }
 ?>
 
@@ -144,11 +150,17 @@ else{
             <div class="row" id="searchbar">
               <div class="col-md-4"><span>From: </span> <input name="from" type="date"> </div>
               <div class="col-md-4"><span> TO: </span> <input name="to" type="date"> </div>
-              <div class="col-md-4">
+              <div class="col-md-2">
                 <a href='ExpanceRepot.php'>
                   <button class='app-content-headerButton' type="submit" role="button"> Search </button>
                 </a>
-              </div>            
+              </div>  
+              <div class="col-md-2">
+                  <button class='app-content-headerButton' type="submit" role="button">
+                <a href='ExReportPrint.php'> Print </a> </button>
+
+              </div>
+              
             </div>
           </div>
           <div class="col-md-2"></div>
@@ -215,6 +227,12 @@ else{
               die("Invalid Query: " . $con->error);
             }  
 
+          $Tsql ="SELECT SUM(Ex_amount) AS Total FROM tbl_expances WHERE ex_date BETWEEN '$from' AND '$to';";
+          $Trun = mysqli_query($con,$Tsql);
+          if (mysqli_num_rows($Trun) > 0) {
+            $Trow = mysqli_fetch_assoc($Trun);
+            $totalExpances = $Trow["Total"];
+          }
           //While loop to read database data
           while($row = $resutl->fetch_assoc()){
             echo " 
@@ -233,9 +251,16 @@ else{
               
             </div>
             </a>
-
             ";
           }
+
+          echo"
+          <div class = products-row id = totals>
+            <table id = 'myDataTable'> 
+              <div style=' display:flex; justify-content: flex-end; padding-right: 100px; background-color: #3b366b; border: solid black 2px; font-size: 18px;' class= product-cell stock ><span class= cell-label ></span>TOTAL :  $totalExpances </div>
+            </table> 
+          </div>
+        ";
       ?>
 
     </section>

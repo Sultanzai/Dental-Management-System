@@ -16,6 +16,7 @@
     $TYPE = $_SESSION['type'];
   
     $id = "";
+    
     $Name ="";
     $ExType = "";
     $Amount ="";
@@ -26,15 +27,16 @@
         Echo"ID IS NULL ";
       }
 
-        $id = $_GET["XID"];
+       $id = $_GET["XID"];
         
     }
-        
+    
+      global $id;
+      $_SESSION["IDDELETE"] = $id;  
       echo "ID PASSED".$id;
-
-      $_SESSION["IDDELETE"] =$id;
+      
           // Show Expances Data 
-          $sql = "SELECT * FROM `tbl_expances` WHERE `Ex_ID` = $id";
+          $sql = "SELECT * FROM `tbl_expances` WHERE `Ex_ID` = '$id' ";
           $res = $con->query($sql);
           $row = $res->fetch_assoc();
 
@@ -52,7 +54,6 @@
   }
   else{
   
-
     // Using POST server request method 
     if($_SERVER['REQUEST_METHOD'] == 'POST'){
       $Name = $_POST["name"];
@@ -65,7 +66,8 @@
             break;
           }
 
-          $sqltwo = "UPDATE `tbl_expances` SET `Ex_Name`=$Name,`Ex_Type`=$ExType,`Ex_amount`=$Amount WHERE `EX_ID`=$id";
+          echo "ID PASSED".$id;
+          $sqltwo = "UPDATE `tbl_expances` SET `Ex_Name`= '$Name',`Ex_Type`= '$ExType',`Ex_amount`= '$Amount' WHERE `EX_ID` = '$id' ";
           $res2 = $con->query($sqltwo);
  
           if(!$res2){
@@ -76,6 +78,10 @@
             $ExType ="";
             $Amount ="";
 
+            echo "<script>
+            alert('Data Updated Successfully!');
+            </script>";
+          
             header("location: /DMS/dist/ExpanceReport.php");
 
             $success = "patient Registed";

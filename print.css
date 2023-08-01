@@ -3,6 +3,7 @@ body {
   font-weight: 400;
   color: #322d28;
 }
+
 header.top-bar h1 {
   font-family: "Montserrat", sans-serif;
 }
@@ -17,13 +18,13 @@ main .inner-container {
 }
 
 table.invoice {
-  background: #ffffff;
+  background: #fff;
 }
 table.invoice .num {
-  font-weight: 400;
+  font-weight: 200;
   text-transform: uppercase;
   letter-spacing: 1.5px;
-  font-size: 1em;
+  font-size: 0.8em;
 }
 table.invoice tr, table.invoice td {
   background: #fff;
@@ -31,20 +32,15 @@ table.invoice tr, table.invoice td {
   font-weight: 400;
   color: #322d28;
 }
-img {
-  z-index: 2;
-  max-width: 250px;
-  max-height: 250px;
-  margin-top: -60vh;
-  margin-left: 20vh;
-
+table.invoice tr.header td img {
+  max-width: 300px;
 }
 table.invoice tr.header td h2 {
-  padding-top: 0px;
+  text-align: right;
   font-family: "Montserrat", sans-serif;
   font-weight: 200;
-  font-size: 25px;
-  color: #04053d;
+  font-size: 2rem;
+  color: #1779ba;
 }
 table.invoice tr.intro td:nth-child(2) {
   text-align: right;
@@ -69,7 +65,7 @@ table.invoice tr.details table thead:after, table.invoice tr.details table tbody
   width: 100%;
   left: 0;
   margin-top: -1px;
-  background: #cecece;
+  background: #c8c3be;
 }
 table.invoice tr.totals td {
   padding-top: 0;
@@ -95,8 +91,8 @@ table.invoice tr.totals table tr:nth-last-child(2) td:last-child:after {
   content: "";
   height: 4px;
   width: 110%;
-  border-top: 1px solid #030439;
-  border-bottom: 1px solid #050638;
+  border-top: 1px solid #1779ba;
+  border-bottom: 1px solid #1779ba;
   position: relative;
   right: 0;
   bottom: -0.575rem;
@@ -116,18 +112,5 @@ table.invoice tr.totals table tr.total td:last-child {
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 2px;
-  color: #050642;
+  color: #1779ba;
 }/*# sourceMappingURL=print.css.map */
-h4{
-
-  text-align: right;
-  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-  font-size: 18px !important;
-  padding: 3px;
-  border-bottom: solid 1px #353535;
-  right: 10px;
-}
-.button{
-  display: none;
-  visibility: none;
-}
