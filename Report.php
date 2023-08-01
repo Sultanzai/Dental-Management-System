@@ -15,6 +15,11 @@
 
     $remaining ="";
 
+    $totalpaitent ="0";
+    $totalcash = "0";
+    $CashPaid ="0";
+    $totalRemaining = "0";
+
 
     if(empty($USERID) OR empty($USERNAME) OR empty($TYPE)){
       
@@ -29,6 +34,9 @@
         $from = $_POST["from"];
         $to = $_POST["to"];
       }
+
+
+   
     }
 ?>
 
@@ -48,7 +56,14 @@
 
   <!-- Boots strap-->
   <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    #totals{
+      background-color: #3b366b;
+      border: solid black 2px ;
+      font-weight: 600;
 
+    }
+  </style>
 </head>
 <body>
 <!-- partial:index.partial.html -->
@@ -211,7 +226,34 @@ else{
 
 ------------------------------------------------------------------------------------------>
     <?php
+          // Total Reports 
+          // patients
+          $DPsql ="SELECT COUNT(P_ID) AS Patient FROM view_report WHERE P_RegDate BETWEEN '$from' AND '$to';";
+          $DPrun = mysqli_query($con,$DPsql);
+          if (mysqli_num_rows($DPrun) > 0) {
+            $DProw = mysqli_fetch_assoc($DPrun);
+            $totalpaitent = $DProw["Patient"];
+          }
           
+          // Total
+          $Tsql ="SELECT SUM(PB_Total) AS Total FROM view_report WHERE P_RegDate BETWEEN '$from' AND '$to';";
+          $Trun = mysqli_query($con,$Tsql);
+          if (mysqli_num_rows($Trun) > 0) {
+            $Trow = mysqli_fetch_assoc($Trun);
+            $totalcash = $Trow["Total"];
+          }
+
+          // Receive
+          $Rsql ="SELECT SUM(PB_Receive) AS Remm FROM view_report WHERE P_RegDate BETWEEN '$from' AND '$to';";
+          $Rrun = mysqli_query($con,$Rsql);
+          if (mysqli_num_rows($Rrun) > 0) {
+            $Rrow = mysqli_fetch_assoc($Rrun);
+            $CashPaid = $Rrow["Remm"];
+          }
+
+          //Remaining 
+          $totalRemaining = $totalcash -$CashPaid;
+                
           $sql = "SELECT * FROM view_report WHERE P_RegDate >= '$from' AND P_RegDate <= '$to';";
           $resutl = $con->query($sql);
                 
@@ -228,19 +270,29 @@ else{
               <div class=product-cell> <span>$row[P_ID]</span> </div>
               <div class= product-cell category ><span class= cell-label >Category:</span>$row[P_Name]</div>
               <div class= product-cell category ><span class= cell-label >Category:</span>$row[P_SName]</div>
-              <div class= product-cell sales ><span class= cell-label >Sales:</span>$row[P_Note]</div>
-              <div class= product-cell sales ><span class= cell-label >Sales:</span>$row[P_RegDate]</div>
-              <div class= product-cell sales ><span class= cell-label >Sales:</span>$row[PT_Name]</div>
-              <div class= product-cell sales ><span class= cell-label >Sales:</span>$row[PB_Total]</div>
-              <div class= product-cell stock ><span class= cell-label >Stock:</span>$row[PB_Receive]</div>
-              <div class= product-cell stock ><span class= cell-label >Stock:</span>$remaining</div>
-              <div class= product-cell stock ><span class= cell-label >Stock:</span>$row[Name]</div>
+              <div class= product-cell sales ><span class= cell-label ></span>$row[P_RegDate]</div>
+              <div class= product-cell sales ><span class= cell-label ></span>$row[P_Note]</div>
+              <div class= product-cell sales ><span class= cell-label ></span>$row[PT_Name]</div>
+              <div class= product-cell sales ><span class= cell-label ></span>$row[PB_Total]</div>
+              <div class= product-cell stock ><span class= cell-label ></span>$row[PB_Receive]</div>
+              <div class= product-cell stock ><span class= cell-label ></span>$remaining</div>
+              <div class= product-cell stock ><span class= cell-label ></span>$row[Name]</div>
               </table> 
-              
             </div>
-
+            <br>
+            
             ";
           }
+          echo"
+            <div class = products-row id = totals>
+              <table id = 'myDataTable'> 
+                <div class= product-cell sales ><span class= cell-label ></span>PATIENTS:  $totalpaitent</div>
+                <div class= product-cell stock ><span class= cell-label ></span>TOTAL :  $totalcash </div>
+                <div class= product-cell stock ><span class= cell-label ></span>CASH RECIVED:  $CashPaid </div>
+                <div class= product-cell stock ><span class= cell-label ></span>REMAINING:  $totalRemaining</div>
+              </table> 
+            </div>
+          ";
       ?>
 
     </section>

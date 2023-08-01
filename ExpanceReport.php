@@ -218,7 +218,7 @@ else{
           //While loop to read database data
           while($row = $resutl->fetch_assoc()){
             echo " 
-            <a href='ExpancesUpdate.php?id=$row[Ex_ID]'> 
+            <a href='ExpancesUpdate.php?XID=$row[Ex_ID]'> 
 
             <div class= products-row>
               <table id = 'myDataTable'> 

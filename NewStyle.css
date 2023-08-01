@@ -20,6 +20,7 @@ button:hover{
     transition: ease-in-out 200ms;
     color: rgb(246, 246, 246);
 }
+/* Dashboard */
 .boxs{
     text-align: left;
     width: 80%;
@@ -57,7 +58,7 @@ button:hover{
     max-height: 30px;
 }
 
-
+/* Registration */
 .Registarion{
     transform: translate() scale(1.25);
     margin-top: 30px;

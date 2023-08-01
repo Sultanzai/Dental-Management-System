@@ -15,18 +15,24 @@
     $USERID = $_SESSION['userid'];
     $TYPE = $_SESSION['type'];
   
+    $id = "";
     $Name ="";
     $ExType = "";
     $Amount ="";
 
     if($_SERVER['REQUEST_METHOD'] == 'GET'){
         
-      if(!isset($_GET["id"])){
+      if(!isset($_GET["XID"])){
         Echo"ID IS NULL ";
       }
 
-        $id = $_GET["id"];
-      
+        $id = $_GET["XID"];
+        
+    }
+        
+      echo "ID PASSED".$id;
+
+      $_SESSION["IDDELETE"] =$id;
           // Show Expances Data 
           $sql = "SELECT * FROM `tbl_expances` WHERE `Ex_ID` = $id";
           $res = $con->query($sql);
@@ -35,8 +41,6 @@
           $Name = $row['Ex_Name'];
           $ExType = $row['Ex_Type'];
           $Amount = $row['Ex_amount'];
-
-      }
 
   $errormessage ="";
   $success="";
@@ -55,14 +59,13 @@
       $ExType = $_POST["type"];
       $Amount = $_POST["amount"];
 
-
         do {
           if(empty($Name) || empty($ExType) || empty($Amount) ){
-            $errormessage="All the field are Required";
+            echo"All the field are Required";
             break;
           }
 
-          $sqltwo = "UPDATE `tbl_expances` SET `Ex_Name`='$Name',`Ex_Type`='$ExType',`Ex_amount`='$Amount' WHERE `EX_ID`='$id'";
+          $sqltwo = "UPDATE `tbl_expances` SET `Ex_Name`=$Name,`Ex_Type`=$ExType,`Ex_amount`=$Amount WHERE `EX_ID`=$id";
           $res2 = $con->query($sqltwo);
  
           if(!$res2){
@@ -72,6 +75,8 @@
             $Name ="";
             $ExType ="";
             $Amount ="";
+
+            header("location: /DMS/dist/ExpanceReport.php");
 
             $success = "patient Registed";
 
@@ -272,13 +277,12 @@ else{
                 <a href="ExpanceReport.php"><button class="app-content-headerButton" type="button" id="btn3" role="button">Back</button></a>
               </div>
               <div class="col-md-3">
-                <button class="app-content-headerButton" type="submit" id="btn3" role="button">Update</button>
+                <button class="app-content-headerButton" type="submit" id="btn2" role="button">Update</button>
               </div>
               <div class="col-md-3">
-                <?php echo "
-                <button href=Delete.php class='app-content-headerButton' type='button' id='btn2'>Delete</button>
-";
-                ?>
+                <a href="ExpancesDelete.php">
+                  <button class="app-content-headerButton" type="button" id="btn2" role="button"> Delete</button>
+                </a>
                 </div>
             </div>
 
