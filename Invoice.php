@@ -264,7 +264,7 @@ else{
             <div class="row">
               <div class="col-md">
               <?php 
-                echo "<h2> S/Name: ".$sname."</h2>";
+                echo "<h2> F/Name: ".$sname."</h2>";
               ?>          
               </div>
             </div>
@@ -296,14 +296,14 @@ else{
             <div class="row">
               <div class="col-md">
               <?php 
-                echo "<h2> Recived: ".$recevid."</h2>";
+                echo "<h2> Cash Recived: ".$recevid."</h2>";
               ?>
               </div>
             </div>
             <div class="row">
               <div class="col-md">
               <?php 
-                echo "<h2> Remming: ".$remming."</h2>";
+                echo "<h2> Remaining: ".$remming."</h2>";
               ?>
               </div>
             </div>

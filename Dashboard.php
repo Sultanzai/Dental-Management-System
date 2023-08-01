@@ -16,14 +16,17 @@
     $dailypaitent ="";
     $dailytotal ="";
     $dailyrecevid ="";
-    
+    $dailyremaining = "";
+
     $weeklypaitent ="";
     $weeklytotal ="";
     $weeklyrecevid ="";
+    $weeklyremaining = "";
 
     $montlypaitent ="";
     $montlytotal ="";
     $montlyrecevid ="";
+    $montlyremaining = "";
 
     if(empty($USERID) OR empty($USERNAME) OR empty($TYPE)){
       
@@ -58,6 +61,12 @@
       $dailyrecevid = $DRrow["Recevid"];
     }
 
+    #Daily Remaining 
+    $dailyremaining = $dailytotal - $dailyrecevid;
+
+
+
+
     #################### WEEkly #############################    
     #Weekly patient 
     $WPsql ="SELECT COUNT(P_ID) AS Patient from tbl_patient where week(P_RegDate)=week(now());";
@@ -85,8 +94,8 @@
         $WRrow = mysqli_fetch_assoc($WRrun);
         $weeklyrecevid = $WRrow["Recevid"];
       }
-
-
+      #Weekly Remaining
+      $weeklyremaining = $weeklytotal - $weeklyrecevid;
 
           #################### Month #############################    
     #Monthly patient 
@@ -115,7 +124,9 @@
         $MRrow = mysqli_fetch_assoc($MRrun);
         $montlyrecevid = $MRrow["Recevid"];
       }
-
+      
+      #monthly Remaining
+      $montlyremaining = $montlytotal - $montlyrecevid;
 
       
   }
@@ -250,30 +261,30 @@ else{
           <div class="row">
             <div class="col-md">
               <div class="boxs">
-                <div class="row"><h2> Patient Registed</h2></div><br>
-                <div class="row"><h3> <?php echo $dailypaitent?> </h3></div>
+                <div class="row"><h4> Patient Registed</h4></div><br>
+                <div class="row"><h2> <?php echo $dailypaitent?> </h2></div>
               </div>
             </div>
             <div class="col-md">
               <div class="boxs">
-                <div class="row"><h2> Total Amount </h2></div><br>
-                <div class="row"><h3><?php echo $dailytotal?>  </h3></div>
+                <div class="row"><h3> Total Amount </h3></div><br>
+                <div class="row"><h2><?php echo $dailytotal?>  </h2></div>
               </div>
             </div>
             <div class="col-md">
               <div class="boxs">
-                <div class="row"><h2> Recevid Amount</h2></div><br>
-                <div class="row"><h2> <?php echo $dailyrecevid?> </h3></div>
+                <div class="row"><h3> Cash Recevid </h3></div><br>
+                <div class="row"><h2> <?php echo $dailyrecevid?> </h2></div>
               </div>
             </div>
-          <!--
+          
             <div class="col-md">
               <div class="boxs">
-                <div class="row"><h1> No </h1></div><br>
-                <div class="row"><h2> 7000 </h3></div>
+                <div class="row"><h3> Remaining </h3></div><br>
+                <div class="row"><h2> <?php echo $dailyremaining?> </h2></div>
               </div>
             </div>
-          -->
+         
           </div>
         </div>
       </section>
@@ -284,30 +295,30 @@ else{
           <div class="row">
             <div class="col-md">
               <div class="boxs">
-                <div class="row"><h2> Patient Registed</h2></div><br>
+                <div class="row"><h4> Patient Registed</h4></div><br>
                 <div class="row"><h2> <?php echo $weeklypaitent?> </h3></div>
               </div>
             </div>
             <div class="col-md">
               <div class="boxs">
-                <div class="row"><h2> Total Amount </h2></div><br>
+                <div class="row"><h3> Total Amount </h3></div><br>
                 <div class="row"><h2> <?php echo $weeklytotal?> </h3></div>
               </div>
             </div>
             <div class="col-md">
               <div class="boxs">
-                <div class="row"><h2> Recevid Amount</h2></div><br>
+                <div class="row"><h3> Cash Recevid </h3></div><br>
                 <div class="row"><h2> <?php echo $weeklyrecevid?> </h3></div>
               </div>
             </div>
-          <!--
+          
             <div class="col-md">
               <div class="boxs">
-                <div class="row"><h1> No </h1></div><br>
-                <div class="row"><h2> 7000 </h3></div>
+                <div class="row"><h3> Remaining </h3></div><br>
+                <div class="row"><h2> <?php echo $weeklyremaining?> </h2></div>
               </div>
             </div>
-          -->
+         
           </div>
         </div>
       </section>
@@ -318,30 +329,30 @@ else{
           <div class="row">
             <div class="col-md">
               <div class="boxs">
-                <div class="row"><h2> Patient Registed</h2></div><br>
-                <div class="row"><h2> <?php echo $montlypaitent ?> </h3></div>
+                <div class="row"><h4> Patient Registed</h4></div><br>
+                <div class="row"><h2> <?php echo $montlypaitent ?> </h2></div>
               </div>
             </div>
             <div class="col-md">
               <div class="boxs">
-                <div class="row"><h2> Total Amount </h2></div><br>
-                <div class="row"><h2> <?php echo $montlytotal?> </h3></div>
+                <div class="row"><h3> Total Amount </h3></div><br>
+                <div class="row"><h2> <?php echo $montlytotal?> </h2></div>
               </div>
             </div>
             <div class="col-md">
               <div class="boxs">
-                <div class="row"><h2> Recevid Amount</h2></div><br>
-                <div class="row"><h2> <?php echo $montlyrecevid?> </h3></div>
+                <div class="row"><h3> Cash Recevid </h3></div><br>
+                <div class="row"><h2> <?php echo $montlyrecevid?> </h2></div>
               </div>
             </div>
-          <!--
+          
             <div class="col-md">
               <div class="boxs">
-                <div class="row"><h1> No </h1></div><br>
-                <div class="row"><h2> 7000 </h3></div>
+                <div class="row"><h3> Remaining </h3></div><br>
+                <div class="row"><h2> <?php echo $montlyremaining?> </h2></div>
               </div>
             </div>
-          -->
+         
           </div>
         </div>
       </section>

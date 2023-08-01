@@ -295,7 +295,7 @@ else{
 
             <div class="row">
               <div class="col-md-4">
-                <h4>S/Name </h4>
+                <h4>F/Name </h4>
               </div>
               <div class="col-md-8">
                 <input type="text" name="sname" value="<?php echo $sname?>">
@@ -419,7 +419,7 @@ else{
           <br>  
           <div class="row">
           <div class="col-md">  
-          <h5> Recived:</h5> 
+          <h5>Cash Recived:</h5> 
           <input type="text" name="recevid"> 
           </div>
           </div>
