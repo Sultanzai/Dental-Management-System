@@ -33,6 +33,10 @@
       if($_SERVER['REQUEST_METHOD']=="POST"){
         $from = $_POST["from"];
         $to = $_POST["to"];
+
+        #SESSION TO GFT DATE RECORD
+        $_SESSION["from"] = $from;
+        $_SESSION["to"] = $to; 
       }
 
 
@@ -60,8 +64,8 @@
     #totals{
       background-color: #3b366b;
       border: solid black 2px ;
-      font-weight: 600;
-
+      style=' display:flex;
+      font-size: 20px !important;
     }
   </style>
 </head>
@@ -160,11 +164,16 @@ else{
             <div class="row" id="searchbar">
               <div class="col-md-4"><span>From: </span> <input name="from" type="date"> </div>
               <div class="col-md-4"><span> TO: </span> <input name="to" type="date"> </div>
-              <div class="col-md-4">
+              <div class="col-md-2">
                 <a href='Report.php'>
                   <button class='app-content-headerButton' type="submit" role="button"> Search </button>
                 </a>
-              </div>            
+              </div>  
+              <div class="col-md-2">
+                  <button class='app-content-headerButton' type="submit" role="button">
+                <a href='ReportPrint.php' style="color:#fff; text-decoration: none;"> Print </a> </button>
+              </div>
+                        
             </div>
           </div>
         <div class="col-md-4"></div>
@@ -285,11 +294,11 @@ else{
           }
           echo"
             <div class = products-row id = totals>
-              <table id = 'myDataTable'> 
-                <div class= product-cell sales ><span class= cell-label ></span>PATIENTS:  $totalpaitent</div>
-                <div class= product-cell stock ><span class= cell-label ></span>TOTAL :  $totalcash </div>
-                <div class= product-cell stock ><span class= cell-label ></span>CASH RECIVED:  $CashPaid </div>
-                <div class= product-cell stock ><span class= cell-label ></span>REMAINING:  $totalRemaining</div>
+              <table id = 'myDataTable' > 
+                <div class= product-cell sales style='font-size:18px !important;'><span class= cell-label ></span>PATIENTS:  $totalpaitent</div>
+                <div class= product-cell stock style='font-size:18px !important;'><span class= cell-label ></span>TOTAL :  $totalcash </div>
+                <div class= product-cell stock style='font-size:18px !important;'><span class= cell-label ></span>CASH RECIVED:  $CashPaid </div>
+                <div class= product-cell stock style='font-size:18px !important;'><span class= cell-label ></span>REMAINING:  $totalRemaining</div>
               </table> 
             </div>
           ";

@@ -33,7 +33,6 @@
     
       global $id;
       $_SESSION["IDDELETE"] = $id;  
-      echo "ID PASSED".$id;
       
           // Show Expances Data 
           $sql = "SELECT * FROM `tbl_expances` WHERE `Ex_ID` = '$id' ";

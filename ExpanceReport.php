@@ -157,8 +157,7 @@ else{
               </div>  
               <div class="col-md-2">
                   <button class='app-content-headerButton' type="submit" role="button">
-                <a href='ExReportPrint.php'> Print </a> </button>
-
+                <a href='ExReportPrint.php' style="color:#fff; text-decoration: none;"> Print </a> </button>
               </div>
               
             </div>

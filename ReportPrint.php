@@ -13,6 +13,12 @@
     $USERID = $_SESSION['userid'];
     $TYPE = $_SESSION['type'];
 
+
+    $totalpaitent ="0";
+    $totalcash = "0";
+    $CashPaid ="0";
+    $totalRemaining = "0";
+
 	$currentdate = date('Y-m-d');
 
     if(empty($USERID) OR empty($USERNAME) OR empty($TYPE)){
@@ -112,39 +118,72 @@
 			<thead>
 				<tr>
 					<th>No</th>
-					<th>TYPE</th>
-					<th>Description</th>
-					<th>AMOUNT</th>
+					<th>Patient ID</th>
+					<th>Name</th>
+					<th>F/Name</th>
+					<th>Note</th>
+					<th>Treatment</th>
 					<th>Date</th>
-					<th>ADD BY</th>
+					<th>Total</th>
+					<th>Cash Recevid</th>
+					<th>Remaining</th>
+					<th>Added By</th>
 				</tr>
 			</thead>
 			<tbody>
 			<?php
-			$sql = "SELECT * FROM tbl_expances WHERE ex_date >= '$FROM' AND ex_date <= '$TO' ORDER BY Ex_ID DESC;";
+			$sql = "SELECT * FROM view_report WHERE P_RegDate >= '$FROM' AND P_RegDate <= '$TO' ORDER BY P_ID DESC;";
 			$resutl = $con->query($sql);
 
 			if(!$resutl){
 				die("Invalid Query: " . $con->error);
 			  }  
   
-			$Tsql ="SELECT SUM(Ex_amount) AS Total FROM tbl_expances WHERE ex_date BETWEEN '$FROM' AND '$TO';";
-			$Trun = mysqli_query($con,$Tsql);
-			if (mysqli_num_rows($Trun) > 0) {
-			  $Trow = mysqli_fetch_assoc($Trun);
-			  $totalExpances = $Trow["Total"];
-			}
+			   // Total Reports 
+          // patients
+          $DPsql ="SELECT COUNT(P_ID) AS Patient FROM view_report WHERE P_RegDate BETWEEN '$from' AND '$to';";
+          $DPrun = mysqli_query($con,$DPsql);
+          if (mysqli_num_rows($DPrun) > 0) {
+            $DProw = mysqli_fetch_assoc($DPrun);
+            $totalpaitent = $DProw["Patient"];
+          }
+          
+          // Total
+          $Tsql ="SELECT SUM(PB_Total) AS Total FROM view_report WHERE P_RegDate BETWEEN '$from' AND '$to';";
+          $Trun = mysqli_query($con,$Tsql);
+          if (mysqli_num_rows($Trun) > 0) {
+            $Trow = mysqli_fetch_assoc($Trun);
+            $totalcash = $Trow["Total"];
+          }
+
+          // Receive
+          $Rsql ="SELECT SUM(PB_Receive) AS Remm FROM view_report WHERE P_RegDate BETWEEN '$from' AND '$to';";
+          $Rrun = mysqli_query($con,$Rsql);
+          if (mysqli_num_rows($Rrun) > 0) {
+            $Rrow = mysqli_fetch_assoc($Rrun);
+            $CashPaid = $Rrow["Remm"];
+          }
+
+          //Remaining 
+          $totalRemaining = $totalcash -$CashPaid;
+
+
 			$x=0;
   			while($row = $resutl->fetch_assoc()){
 				$x = $x+1;
 			echo"
 				<tr>
 				<td>$x</td>
-				<td>$row[Ex_Type]</td>
-				<td>$row[Ex_Name]</td>
-				<td>$row[Ex_amount]</td>
-				<td>$row[ex_date]</td>
-				<td>$row[User_ID]</td>
+				<td>$row[P_ID]</td>
+				<td>$row[P_Name]</td>
+				<td>$row[P_SName]</td>
+				<td>$row[P_Note]</td>
+				<td>$row[PT_Name]</td>
+				<td>$row[P_RegDate]</td>
+				<td>$row[PB_Total]</td>
+				<td>$row[PB_Receive]</td>
+				<td>$remaining</td>
+				<td>$row[Name]</td>
 				</tr>
 				";
 			}		
