@@ -13,6 +13,8 @@
     $USERID = $_SESSION['userid'];
     $TYPE = $_SESSION['type'];
 
+	$from="";
+	$to="";
 
     $totalpaitent ="0";
     $totalcash = "0";
@@ -27,8 +29,8 @@
       exit;
     }
     else{
-		$FROM = $_SESSION['from'];
-		$TO = $_SESSION['to'];
+		$from = $_SESSION['from'];
+		$to = $_SESSION['to'];
     }
 ?>
 
@@ -89,6 +91,16 @@
 			background-color: #f2f2f2;
 			font-weight: bold;
 		}
+		.total{
+			box-sizing: border-box;
+			display:inline-block;
+			background-color: #cdcdcd;
+			border: solid black 1px;
+			font-size: 20px;
+			padding: 5px;
+			margin-left: 5px;
+		}
+
 		@media print {
 			.container {
 				margin: 0;
@@ -131,8 +143,8 @@
 				</tr>
 			</thead>
 			<tbody>
-			<?php
-			$sql = "SELECT * FROM view_report WHERE P_RegDate >= '$FROM' AND P_RegDate <= '$TO' ORDER BY P_ID DESC;";
+ <?php
+			$sql = "SELECT * FROM view_report WHERE P_RegDate >= '$from' AND P_RegDate <= '$to' ORDER BY P_ID DESC;";
 			$resutl = $con->query($sql);
 
 			if(!$resutl){
@@ -167,39 +179,50 @@
           //Remaining 
           $totalRemaining = $totalcash -$CashPaid;
 
-
 			$x=0;
   			while($row = $resutl->fetch_assoc()){
 				$x = $x+1;
+				$remaining = $row['PB_Total'] - $row['PB_Receive'];
+				echo"
+					<tr>
+					<td>$x</td>
+					<td>$row[P_ID]</td>
+					<td>$row[P_Name]</td>
+					<td>$row[P_SName]</td>
+					<td>$row[P_Note]</td>
+					<td>$row[PT_Name]</td>
+					<td>$row[P_RegDate]</td>
+					<td>$row[PB_Total]</td>
+					<td>$row[PB_Receive]</td>
+					<td>$remaining</td>
+					<td>$row[Name]</td>
+					</tr>
+					";
+			}	 
 			echo"
-				<tr>
-				<td>$x</td>
-				<td>$row[P_ID]</td>
-				<td>$row[P_Name]</td>
-				<td>$row[P_SName]</td>
-				<td>$row[P_Note]</td>
-				<td>$row[PT_Name]</td>
-				<td>$row[P_RegDate]</td>
-				<td>$row[PB_Total]</td>
-				<td>$row[PB_Receive]</td>
-				<td>$remaining</td>
-				<td>$row[Name]</td>
-				</tr>
-				";
-			}		
-			echo"
-			<div class = products-row id = totals>
-			  <table id = 'myDataTable'> 
-				<div style=' display:flex; justify-content: flex-end; padding-right: 100px; background-color: #cdcdcd; border: solid black 2px; font-size: 22px;' class= product-cell stock ><span class= cell-label ></span>TOTAL :  $totalExpances </div>
-			  </table> 
-			</div>
-		  ";
+				<div class = 'products-row' id = totals>
+					<table id = 'myDataTable'> 
+						<div class='total' ><span class= cell-label ></span>
+							PATIENTS :  $totalpaitent 
+						</div>
+						<div class='total' ><span class= cell-label ></span>
+							TOTAL :  $totalcash 
+						</div>
+						<div class='total' ><span class= cell-label ></span>
+							CASH RECIVED :  $CashPaid 
+						</div>
+						<div class='total' ><span class= cell-label ></span>
+							REMAINING :  $totalRemaining 
+						</div>
+					</table> 
+				</div>
+		  	";
 				?>
 			</tbody>
 		</table>
 	</div>
 </body>
 	<script>
-		window.print();	
+		 window.print();	
 	</script>
 </html>
