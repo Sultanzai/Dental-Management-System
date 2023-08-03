@@ -256,14 +256,18 @@
               <div class="col-md-3">
                 <button class="app-content-headerButton" type="submit" id="btn2" role="button">Update</button>
               </div>
-              <div class="col-md-3">
-                <a href="ExpancesDelete.php">
-                  <button class="app-content-headerButton" type="button" id="btn2" role="button"> Delete</button>
-                </a>
-                </div>
+          <?php 
+          if($TYPE=="Admin"){
+            echo"
+              <div class=col-md-3>
+              <a href=ExpancesDelete.php>
+              <button class=app-content-headerButton type=button id=btn2 role=button> Delete</button>
+              </a>
+              </div>
+            ";
+          }
+            ?>    
             </div>
-
-
         </div>
       </div>
       </form>

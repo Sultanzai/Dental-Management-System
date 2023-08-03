@@ -423,20 +423,27 @@
             </div>
           </div>
 
-            <div class="row">
-              <div class="col-md">
-                <h4> Total:</h4>
-                <input style ="margin-left:215px; margin-top: -140px;" type="text" name="total" value="<?php echo"$total"; ?>"> 
-              </div>
-            </div>  
+          <?php 
+          if($TYPE=="Admin"){
+            echo"
 
-            <div class="row">
-              <div class="col-md">  
-                <h4> Recived:</h4> 
-                <input style ="margin-left:215px; margin-top: -140px;"  type="text" name="recevid" value="<?php echo"$recevid"; ?>">
+              <div class=row>
+                <div class=col-md>
+                  <h4> Total:</h4>
+                  <input style = margin-left:215px; margin-top: -140px; type=text name=total value='$total';> 
+                </div>
+              </div>  
+  
+              <div class=row>
+                <div class=col-md>  
+                  <h4> Recived:</h4> 
+                  <input style =margin-left:215px; margin-top: -140px;  type=text name=recevid value='$recevid'; >
+                </div>
               </div>
-            </div>
-              
+            
+            ";
+          }
+          ?>              
           <div class="row">
 
           <div class="col-md-4"></div>

@@ -325,13 +325,19 @@
                 <a href="printInv.php">
                   <button class="app-content-headerButton" type="button" id="btn5" role="button">Print</button>
                 </a>
-              </div>              
-              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-              <div class="col-md-2">
-                <a href="Delete.php">
-                  <button class="app-content-headerButton" type="button" id="btn5" role="button"> Delete</button>
-                </a>
-              </div>
+              </div>    
+              <?php
+                if($TYPE=="Admin"){
+                  echo"
+                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  <div class=col-md-2>
+                  <a href=Delete.php>
+                  <button class=app-content-headerButton type=button id=btn5 role=button> Delete</button>
+                  </a>
+                  </div>
+                  ";
+                  }        
+              ?>
               <div class="col-md-3"></div>
             </div>  
           </div>
