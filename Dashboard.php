@@ -16,17 +16,18 @@
     $dailypaitent ="";
     $dailytotal ="";
     $dailyrecevid ="";
-    $dailyremaining = "";
+    $dailyexpances = "";
 
     $weeklypaitent ="";
     $weeklytotal ="";
     $weeklyrecevid ="";
-    $weeklyremaining = "";
+    $weeklyexpances = "";
+
 
     $montlypaitent ="";
     $montlytotal ="";
     $montlyrecevid ="";
-    $montlyremaining = "";
+    $montlyexpances = "";
 
     if(empty($USERID) OR empty($USERNAME) OR empty($TYPE)){
       
@@ -61,9 +62,13 @@
       $dailyrecevid = $DRrow["Recevid"];
     }
 
-    #Daily Remaining 
-    $dailyremaining = $dailytotal - $dailyrecevid;
-
+    #Daily Expances 
+    $EXsql ="SELECT SUM(Ex_amount) AS Expances FROM tbl_expances WHERE ex_date = DATE(NOW());";
+    $EXrun = mysqli_query($con,$EXsql);
+    if (mysqli_num_rows($EXrun) > 0) {
+      $EXrow = mysqli_fetch_assoc($EXrun);
+      $dailyexpances = $EXrow["Expances"];
+    }
 
 
 
@@ -79,8 +84,7 @@
     }
     
      #Weekly Total 
-     $WTsql ="SELECT SUM(PB_Total) AS total from tbl_patient_balance where week(PB_ReceiveDate)=week(now());
-     ";
+     $WTsql ="SELECT SUM(PB_Total) AS total from tbl_patient_balance where week(PB_ReceiveDate)=week(now());";
      $WTrun = mysqli_query($con,$WTsql);
      if (mysqli_num_rows($WTrun) > 0) {
        $row = mysqli_fetch_assoc($WTrun);
@@ -94,8 +98,13 @@
         $WRrow = mysqli_fetch_assoc($WRrun);
         $weeklyrecevid = $WRrow["Recevid"];
       }
-      #Weekly Remaining
-      $weeklyremaining = $weeklytotal - $weeklyrecevid;
+       #Weekly Expances 
+      $WEXsql ="SELECT SUM(Ex_amount) AS Expances FROM tbl_expances WHERE week(ex_date)=week(now());";
+      $WEXrun = mysqli_query($con,$WEXsql);
+      if (mysqli_num_rows($WEXrun) > 0) {
+        $WEXrow = mysqli_fetch_assoc($WEXrun);
+        $weeklyexpances = $WEXrow["Expances"];
+      }
 
           #################### Month #############################    
     #Monthly patient 
@@ -124,9 +133,13 @@
         $MRrow = mysqli_fetch_assoc($MRrun);
         $montlyrecevid = $MRrow["Recevid"];
       }
-      
-      #monthly Remaining
-      $montlyremaining = $montlytotal - $montlyrecevid;
+       #Monthly Expances 
+       $MEXsql ="SELECT SUM(Ex_amount) AS Expances FROM tbl_expances WHERE month(ex_date)=month(now());";
+       $MEXrun = mysqli_query($con,$MEXsql);
+       if (mysqli_num_rows($MEXrun) > 0) {
+         $MEXrow = mysqli_fetch_assoc($MEXrun);
+         $montlyexpances = $MEXrow["Expances"];
+       }
 
       
   }
@@ -163,11 +176,6 @@
 
 
 
-
-<?php 
-
-    if($TYPE =="Admin"){
-      echo"
   <!-- Left Links -->
   <ul class='sidebar-list'>
     <li class=sidebar-list-item active id ='Dashboard' >
@@ -196,37 +204,6 @@
     </li>
 
   </ul>
-  ";  
-}
-else{
-  echo"
-  <!-- Left Links -->
-  <ul class='sidebar-list'>
-    <li class= sidebar-list-item >
-      <a href= index.php >
-        <svg xmlns= http://www.w3.org/2000/svg  width= '18'  height= '18'  viewBox= '0 0 24 24'  fill= none  stroke= currentColor  stroke-width= 2  stroke-linecap= round  stroke-linejoin= round  class= feather feather-shopping-bag ><path d= M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z /><line x1= 3  y1= 6  x2= 21  y2= 6 /><path d= M16 10a4 4 0 0 1-8 0 /></svg>
-        <span>Patients </span>
-      </a>
-    </li>
-    <li class= sidebar-list-item >
-      <a href= # >
-        <svg xmlns= http://www.w3.org/2000/svg  width= '18'  height= '18'  viewBox= '0 0 24 24'  fill= none  stroke= currentColor  stroke-width= 2  stroke-linecap= round  stroke-linejoin= round  class= feather feather-inbox ><polyline points= 22 12 16 12 14 15 10 15 8 12 2 12 /><path d= M5.45 5.11L2 12v6a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-6l-3.45-6.89A2 2 0 0 0 16.76 4H7.24a2 2 0 0 0-1.79 1.11z /></svg>
-        <span>Print Receipt</span>
-      </a>
-    </li>
-
-  </ul>
-  "; 
-}
-  
-  ?>
-
-
-
-
-
-
-
 
 
 
@@ -235,7 +212,7 @@ else{
 
       <div class="account-info-name"><?php echo"Welcome  <span>". $USERNAME; ?></div>
       <button class="account-info-more">
-        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-more-horizontal"><circle cx="12" cy="12" r="1"/><circle cx="19" cy="12" r="1"/><circle cx="5" cy="12" r="1"/></svg>
+      <a href="logout.php"> <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-more-horizontal"><circle cx="12" cy="12" r="1"/><circle cx="19" cy="12" r="1"/><circle cx="5" cy="12" r="1"/></svg> </a>
       </button>
     </div>
 
@@ -280,8 +257,8 @@ else{
           
             <div class="col-md">
               <div class="boxs">
-                <div class="row"><h3> Remaining </h3></div><br>
-                <div class="row"><h2> <?php echo $dailyremaining?> </h2></div>
+                <div class="row"><h3> Expances </h3></div><br>
+                <div class="row"><h2> <?php echo $dailyexpances?> </h2></div>
               </div>
             </div>
          
@@ -314,8 +291,8 @@ else{
           
             <div class="col-md">
               <div class="boxs">
-                <div class="row"><h3> Remaining </h3></div><br>
-                <div class="row"><h2> <?php echo $weeklyremaining?> </h2></div>
+                <div class="row"><h3> Expances </h3></div><br>
+                <div class="row"><h2> <?php echo $weeklyexpances?> </h2></div>
               </div>
             </div>
          
@@ -348,8 +325,8 @@ else{
           
             <div class="col-md">
               <div class="boxs">
-                <div class="row"><h3> Remaining </h3></div><br>
-                <div class="row"><h2> <?php echo $montlyremaining?> </h2></div>
+                <div class="row"><h3> Expances </h3></div><br>
+                <div class="row"><h2> <?php echo $montlyexpances?> </h2></div>
               </div>
             </div>
          

@@ -160,10 +160,6 @@
     <!-- Left Links -->
 
 
-    <?php 
-
-if($TYPE =="Admin"){
-  echo"
   <!-- Left Links -->
   <ul class='sidebar-list'>
     <li class=sidebar-list-item active id ='Dashboard' >
@@ -192,31 +188,6 @@ if($TYPE =="Admin"){
     </li>
 
   </ul>
-  ";  
-}
-else{
-  echo"
-  <!-- Left Links -->
-  <ul class='sidebar-list'>
-    <li class= sidebar-list-item >
-      <a href= index.php >
-        <svg xmlns= http://www.w3.org/2000/svg  width= '18'  height= '18'  viewBox= '0 0 24 24'  fill= none  stroke= currentColor  stroke-width= 2  stroke-linecap= round  stroke-linejoin= round  class= feather feather-shopping-bag ><path d= M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z /><line x1= 3  y1= 6  x2= 21  y2= 6 /><path d= M16 10a4 4 0 0 1-8 0 /></svg>
-        <span>Patients </span>
-      </a>
-    </li>
-    <li class= sidebar-list-item >
-      <a href= # >
-        <svg xmlns= http://www.w3.org/2000/svg  width= '18'  height= '18'  viewBox= '0 0 24 24'  fill= none  stroke= currentColor  stroke-width= 2  stroke-linecap= round  stroke-linejoin= round  class= feather feather-inbox ><polyline points= 22 12 16 12 14 15 10 15 8 12 2 12 /><path d= M5.45 5.11L2 12v6a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-6l-3.45-6.89A2 2 0 0 0 16.76 4H7.24a2 2 0 0 0-1.79 1.11z /></svg>
-        <span>Print Receipt</span>
-      </a>
-    </li>
-
-  </ul>
-  "; 
-}
-
-?>
-
 
 
     <!--User Profile -->
