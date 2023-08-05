@@ -80,12 +80,15 @@
         $clicked_value = 3;
       }
       if($treatmentName == 'Impacted surgery'){
-        $clicked_value = 5;
+        $clicked_value = 4;
       }
       if($treatmentName == 'Wisdome extraction'){
-        $clicked_value = 6;
+        $clicked_value = 5;
       }
       if($treatmentName == 'sample extraction'){
+        $clicked_value = 6;
+      }
+      if($treatmentName == 'Sample filling'){
         $clicked_value = 7;
       }
       if($treatmentName == 'Crown'){
@@ -111,7 +114,7 @@
       }
       if($treatmentName == 'TMJ disorder'){
         $clicked_value = 15;
-      }
+      } 
       if($treatmentName == 'Space maintainer'){
         $clicked_value = 16;
       }
@@ -322,10 +325,7 @@
                 <option value ="Impacted surgery"> Impacted surgery</option>
                 <option value ="Wisdome extraction"> Wisdome extraction</option>
                 <option value ="sample extraction"> sample extraction</option>
-                <option value ="Crown"> Crown</option>
-                <option value ="Bridg"> Bridg</option>
-                <option value ="complete denture"> complete denture</option>
-                <option value ="bleeching"> bleeching</option>
+                <option value ="Sample filling"> Sample filling</option>
                 <option value ="Crown"> Crown</option>
                 <option value ="Bridg"> Bridg</option>
                 <option value ="complete denture"> complete denture</option>
