@@ -25,7 +25,7 @@
   $age = "";
   $phone = "";
   $address = "";
-  $note = "";
+  $note = "N/A";
   $treatmentName ="Implant";
   $total ="0";
   $recevid = "0";
@@ -383,14 +383,14 @@
           <div class="row">
           <div class="col-md">  
           <h5> Total:</h5> 
-          <input type="text" name="total"> 
+          <input type="text" name="total" value="0"> 
           </div>
           </div>
           <br>  
           <div class="row">
           <div class="col-md">  
           <h5>Cash Recived:</h5> 
-          <input type="text" name="recevid"> 
+          <input type="text" name="recevid" value ="0"> 
           </div>
           </div>
 

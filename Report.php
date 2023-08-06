@@ -27,8 +27,8 @@
       exit;
     }
     else{
-      $from = "";
-      $to = "";
+      $from = "2023-01-01";
+      $to = "2050-12-31";
 
       if($_SERVER['REQUEST_METHOD']=="POST"){
         $from = $_POST["from"];
@@ -143,7 +143,8 @@
               </div>  
               <div class="col-md-2">
                   <button class='app-content-headerButton' type="submit" role="button">
-                <a href='ReportPrint.php' style="color:#fff; text-decoration: none;"> Print </a> </button>
+                <a href='ReportPrint.php' style="color:#fff; text-decoration: none;"> Print </a>
+               </button>
               </div>
                         
             </div>

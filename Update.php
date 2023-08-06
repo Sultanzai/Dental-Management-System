@@ -372,10 +372,6 @@
                 <option value ="Bridg"> Bridg</option>
                 <option value ="complete denture"> complete denture</option>
                 <option value ="bleeching"> bleeching</option>
-                <option value ="Crown"> Crown</option>
-                <option value ="Bridg"> Bridg</option>
-                <option value ="complete denture"> complete denture</option>
-                <option value ="bleeching"> bleeching</option>
                 <option value ="oral higien"> oral higien</option>
                 <option value ="maxillofacial surgery"> maxillofacial surgery</option>
                 <option value ="laminate veneer"> laminate veneer</option>
@@ -441,6 +437,32 @@
                 </div>
               </div>
             
+            ";
+          }
+          else{
+            echo"
+              <div class=row>
+                <div class=col-md>
+                  <h4> Total:</h4>
+                  <input id=total style = margin-left:215px; margin-top: -140px; type=text name=total value='$total';> 
+                </div>
+              </div>  
+  
+              <div class=row>
+                <div class=col-md>  
+                  <h4> Recived:</h4> 
+                  <input id=recevid style =margin-left:215px; margin-top: -140px;  type=text name=recevid value='$recevid'; >
+                </div>
+              </div>
+
+              <script>
+              var inputField = document.getElementById('total');
+              inputField.readOnly = true;
+              
+              var inputField2 = document.getElementById('recevid');
+              inputField2.readOnly = true;
+            </script>
+
             ";
           }
           ?>              
