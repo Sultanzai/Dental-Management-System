@@ -23,6 +23,8 @@
   $recevid = "";
   $total ="";
   $remming = "";
+  $appoinment ="";
+  $time="";
 
   $payment = "";
   $totalpay = "";
@@ -59,7 +61,7 @@
             $remming = $row['PB_Total'] - $row['PB_Receive'];
 
 
-        // SESSIONS Data and initilizaions 
+        // SESSIONS Data and initilizaions in Array
         $userdata = array(
           "newid"=> $id, 
           "name"=> $row['P_Name'], 
@@ -74,7 +76,9 @@
 
       $_SESSION["userdata"] = $userdata;
 
-
+      $_SESSION["Appoinment"] = $appoinment;
+      $_SESSION["Time"] = $time;
+      
 
         if(!$res){
           die("Invalid Query: " . $con->error);
@@ -91,8 +95,9 @@
             $recevid = $_POST["recevid"];
             $payment = $_POST["payment"];
             $total = $_POST["total"];
-            
-            $remming = intval($total) - intval($recevid);
+            $appoinment = $_POST["appoinment"];
+            $time = $_POST["time"];
+            $remming = intval ($total) - intval($recevid);
 
             if(empty($payment)){
             $errormessage= "Payment field is empty";
@@ -119,7 +124,7 @@
               break;
             }
             else{
-              header("location: /DMS/dist/index.php");
+              header("location: /DMS/dist/PrintInvA5.php");
               exit;
             }
 
@@ -281,16 +286,21 @@
         <form method="POST">
 
             <div class="row">
-              <div class="col-md-3">
+              <div class="col-md-2">
                 <h2> Pay: </h2>
               </div>
-              <div class="col-md-9">
+              <div class="col-md-6">
               <input type="hidden" name="id" value="<?php echo $id; ?>"> 
               <input type="hidden" name="total" value="<?php echo $total; ?>"> 
               <input type="hidden" name="recevid" value="<?php echo $recevid; ?>"> 
 
-
                 <input type="text" name="payment" value="<?php echo $payment; ?>"> 
+              </div>
+              <div class="col-md-2">
+                <input  style ="margin-left:-20px; width: 100px; font-size: 15px" type="date" name="appoinment" value ="<?php echo $appoinment; ?>">
+              </div>
+              <div class="col-md-2">
+              <input  style ="margin-left:-20px; width: 100px; font-size: 15px" type="time" name="time" value ="<?php echo $time; ?>">
               </div>
             </div>
             <br> 
@@ -298,9 +308,9 @@
             <div class="col-md-3"></div>
 
               <div class="col-md">
-              <a href="index.php">
-                <button class="app-content-headerButton" type="button" id="btn5" role="button">Cancel</button>
-              </a>
+                <a href="index.php">
+                  <button class="app-content-headerButton" type="button" id="btn5" role="button">Cancel</button>
+                </a>
               </div>
               <div class="col-md">
                 <a href="index.php">
@@ -308,10 +318,10 @@
                 </a>
               </div>
               <div class="col-md">
-              <a href ="update.php">
-                <button class="app-content-headerButton" type="button" id="btn5" role="button">Update</button>
-              </a>
-            </div>
+                <a href ="update.php">
+                  <button class="app-content-headerButton" type="button" id="btn5" role="button">Update</button>
+                </a>
+              </div>
             <div class="col-md">
             
               </div>
@@ -322,7 +332,7 @@
               <div class="col-md-4"></div>
               <div class="col-md-2">
                 &nbsp;&nbsp;  
-                <a href="printInv.php">
+                <a href="printInvA5.php">
                   <button class="app-content-headerButton" type="button" id="btn5" role="button">Print</button>
                 </a>
               </div>    
@@ -336,7 +346,7 @@
                   </a>
                   </div>
                   ";
-                  }        
+                  }
               ?>
               <div class="col-md-3"></div>
             </div>  
