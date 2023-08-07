@@ -23,8 +23,8 @@
   $recevid = "";
   $total ="";
   $remming = "";
-  $appoinment ="";
-  $time="";
+  $appoinment = "10/10/2023";
+  $time= "08:50";
 
   $payment = "";
   $totalpay = "";
@@ -38,6 +38,8 @@
     exit;
   }
   else{
+
+
     if($_SERVER['REQUEST_METHOD'] == 'GET'){
         
       if(!isset($_GET["id"])){
@@ -76,9 +78,6 @@
 
       $_SESSION["userdata"] = $userdata;
 
-      $_SESSION["Appoinment"] = $appoinment;
-      $_SESSION["Time"] = $time;
-      
 
         if(!$res){
           die("Invalid Query: " . $con->error);
@@ -90,15 +89,20 @@
         }
     else{
           do{
-            
+
             $id = $_POST["id"];
             $recevid = $_POST["recevid"];
             $payment = $_POST["payment"];
             $total = $_POST["total"];
-            $appoinment = $_POST["appoinment"];
-            $time = $_POST["time"];
             $remming = intval ($total) - intval($recevid);
+            
+            $appoinment = $_POST["appo"];
+            $time = $_POST["tim"];
+            $_SESSION["Appoinment"] = $appoinment;
+            $_SESSION["Time"] = $time;
 
+         
+            
             if(empty($payment)){
             $errormessage= "Payment field is empty";
             break;
@@ -124,10 +128,33 @@
               break;
             }
             else{
-              header("location: /DMS/dist/PrintInvA5.php");
-              exit;
-            }
+              if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+                // Check which button was clicked
+                if (isset($_POST['submit']) && $_POST['submit'] === 'BSUBMIT') {
+                  echo "
+                  <script>
+                      function SUBMIT() {
+                          header('location: /DMS/dist/index.php');
+                          exit;               
+                      }
+                  </script>
+                   
+                   ";
+                  }
+                  elseif(isset($_POST['print']) && $_POST['print'] === 'PRINT'){
+                    echo "
+                    <script>
+                        function PRINT() {
+                            header(location: /DMS/dist/PrintInvA5.php);
+                            exit;               
+                        }
+                    </script>
+                     ";
+                  }
+                }
 
+
+            }
           }
            while(false);
             
@@ -297,10 +324,10 @@
                 <input type="text" name="payment" value="<?php echo $payment; ?>"> 
               </div>
               <div class="col-md-2">
-                <input  style ="margin-left:-20px; width: 100px; font-size: 15px" type="date" name="appoinment" value ="<?php echo $appoinment; ?>">
+                <input  style ="margin-left:-20px; width: 100px; font-size: 15px" type="date" name="appo" value ="<?php echo $appoinment; ?>">
               </div>
               <div class="col-md-2">
-              <input  style ="margin-left:-20px; width: 100px; font-size: 15px" type="time" name="time" value ="<?php echo $time; ?>">
+              <input  style ="margin-left:-20px; width: 100px; font-size: 15px" type="time" name="tim" value ="<?php echo $time; ?>">
               </div>
             </div>
             <br> 
@@ -314,7 +341,7 @@
               </div>
               <div class="col-md">
                 <a href="index.php">
-                  <button class="app-content-headerButton" type="submit" id="btn4" role="button">Submit</button>
+                  <button class="app-content-headerButton" type="submit" name="submit" id="btn4" onclick="SUBMIT()">SUBMIT</button>
                 </a>
               </div>
               <div class="col-md">
@@ -333,7 +360,7 @@
               <div class="col-md-2">
                 &nbsp;&nbsp;  
                 <a href="printInvA5.php">
-                  <button class="app-content-headerButton" type="button" id="btn5" role="button">Print</button>
+                  <button class="app-content-headerButton" type="submit" name="print" id="btn5" onclick="PRINT()">PRINT</button>
                 </a>
               </div>    
               <?php
@@ -361,5 +388,6 @@
 </div>
 <!-- partial -->
   <script  src="./script.js"></script>
+  
 </body>
 </html>

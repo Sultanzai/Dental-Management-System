@@ -171,31 +171,27 @@
               <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 512 512"><path fill="currentColor" d="M496.1 138.3L375.7 17.9c-7.9-7.9-20.6-7.9-28.5 0L226.9 138.3c-7.9 7.9-7.9 20.6 0 28.5 7.9 7.9 20.6 7.9 28.5 0l85.7-85.7v352.8c0 11.3 9.1 20.4 20.4 20.4 11.3 0 20.4-9.1 20.4-20.4V81.1l85.7 85.7c7.9 7.9 20.6 7.9 28.5 0 7.9-7.8 7.9-20.6 0-28.5zM287.1 347.2c-7.9-7.9-20.6-7.9-28.5 0l-85.7 85.7V80.1c0-11.3-9.1-20.4-20.4-20.4-11.3 0-20.4 9.1-20.4 20.4v352.8l-85.7-85.7c-7.9-7.9-20.6-7.9-28.5 0-7.9 7.9-7.9 20.6 0 28.5l120.4 120.4c7.9 7.9 20.6 7.9 28.5 0l120.4-120.4c7.8-7.9 7.8-20.7-.1-28.5z"/></svg>
             </button>
           </div>
-          <div class="product-cell category">Note<button class="sort-button">
+          <div class="product-cell category">Total<button class="sort-button">
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 512 512"><path fill="currentColor" d="M496.1 138.3L375.7 17.9c-7.9-7.9-20.6-7.9-28.5 0L226.9 138.3c-7.9 7.9-7.9 20.6 0 28.5 7.9 7.9 20.6 7.9 28.5 0l85.7-85.7v352.8c0 11.3 9.1 20.4 20.4 20.4 11.3 0 20.4-9.1 20.4-20.4V81.1l85.7 85.7c7.9 7.9 20.6 7.9 28.5 0 7.9-7.8 7.9-20.6 0-28.5zM287.1 347.2c-7.9-7.9-20.6-7.9-28.5 0l-85.7 85.7V80.1c0-11.3-9.1-20.4-20.4-20.4-11.3 0-20.4 9.1-20.4 20.4v352.8l-85.7-85.7c-7.9-7.9-20.6-7.9-28.5 0-7.9 7.9-7.9 20.6 0 28.5l120.4 120.4c7.9 7.9 20.6 7.9 28.5 0l120.4-120.4c7.8-7.9 7.8-20.7-.1-28.5z"/></svg>
           </button>
         </div>
-        <div class="product-cell category">Register Date<button class="sort-button">
+        <div class="product-cell category">Recived<button class="sort-button">
           <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 512 512"><path fill="currentColor" d="M496.1 138.3L375.7 17.9c-7.9-7.9-20.6-7.9-28.5 0L226.9 138.3c-7.9 7.9-7.9 20.6 0 28.5 7.9 7.9 20.6 7.9 28.5 0l85.7-85.7v352.8c0 11.3 9.1 20.4 20.4 20.4 11.3 0 20.4-9.1 20.4-20.4V81.1l85.7 85.7c7.9 7.9 20.6 7.9 28.5 0 7.9-7.8 7.9-20.6 0-28.5zM287.1 347.2c-7.9-7.9-20.6-7.9-28.5 0l-85.7 85.7V80.1c0-11.3-9.1-20.4-20.4-20.4-11.3 0-20.4 9.1-20.4 20.4v352.8l-85.7-85.7c-7.9-7.9-20.6-7.9-28.5 0-7.9 7.9-7.9 20.6 0 28.5l120.4 120.4c7.9 7.9 20.6 7.9 28.5 0l120.4-120.4c7.8-7.9 7.8-20.7-.1-28.5z"/></svg>
         </button>
       </div>
       
-          <div class="product-cell status-cell">Treatment<button class="sort-button">
+          <div class="product-cell status-cell">Remaining<button class="sort-button">
               <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 512 512"><path fill="currentColor" d="M496.1 138.3L375.7 17.9c-7.9-7.9-20.6-7.9-28.5 0L226.9 138.3c-7.9 7.9-7.9 20.6 0 28.5 7.9 7.9 20.6 7.9 28.5 0l85.7-85.7v352.8c0 11.3 9.1 20.4 20.4 20.4 11.3 0 20.4-9.1 20.4-20.4V81.1l85.7 85.7c7.9 7.9 20.6 7.9 28.5 0 7.9-7.8 7.9-20.6 0-28.5zM287.1 347.2c-7.9-7.9-20.6-7.9-28.5 0l-85.7 85.7V80.1c0-11.3-9.1-20.4-20.4-20.4-11.3 0-20.4 9.1-20.4 20.4v352.8l-85.7-85.7c-7.9-7.9-20.6-7.9-28.5 0-7.9 7.9-7.9 20.6 0 28.5l120.4 120.4c7.9 7.9 20.6 7.9 28.5 0l120.4-120.4c7.8-7.9 7.8-20.7-.1-28.5z"/></svg>
             </button></div>
-          <div class="product-cell sales">Total<button class="sort-button">
+          <div class="product-cell sales">Expance Name<button class="sort-button">
               <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 512 512"><path fill="currentColor" d="M496.1 138.3L375.7 17.9c-7.9-7.9-20.6-7.9-28.5 0L226.9 138.3c-7.9 7.9-7.9 20.6 0 28.5 7.9 7.9 20.6 7.9 28.5 0l85.7-85.7v352.8c0 11.3 9.1 20.4 20.4 20.4 11.3 0 20.4-9.1 20.4-20.4V81.1l85.7 85.7c7.9 7.9 20.6 7.9 28.5 0 7.9-7.8 7.9-20.6 0-28.5zM287.1 347.2c-7.9-7.9-20.6-7.9-28.5 0l-85.7 85.7V80.1c0-11.3-9.1-20.4-20.4-20.4-11.3 0-20.4 9.1-20.4 20.4v352.8l-85.7-85.7c-7.9-7.9-20.6-7.9-28.5 0-7.9 7.9-7.9 20.6 0 28.5l120.4 120.4c7.9 7.9 20.6 7.9 28.5 0l120.4-120.4c7.8-7.9 7.8-20.7-.1-28.5z"/></svg>
             </button>
           </div>
-          <div class="product-cell stock">Cash Recived<button class="sort-button">
+          <div class="product-cell stock"> Amount<button class="sort-button">
               <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 512 512"><path fill="currentColor" d="M496.1 138.3L375.7 17.9c-7.9-7.9-20.6-7.9-28.5 0L226.9 138.3c-7.9 7.9-7.9 20.6 0 28.5 7.9 7.9 20.6 7.9 28.5 0l85.7-85.7v352.8c0 11.3 9.1 20.4 20.4 20.4 11.3 0 20.4-9.1 20.4-20.4V81.1l85.7 85.7c7.9 7.9 20.6 7.9 28.5 0 7.9-7.8 7.9-20.6 0-28.5zM287.1 347.2c-7.9-7.9-20.6-7.9-28.5 0l-85.7 85.7V80.1c0-11.3-9.1-20.4-20.4-20.4-11.3 0-20.4 9.1-20.4 20.4v352.8l-85.7-85.7c-7.9-7.9-20.6-7.9-28.5 0-7.9 7.9-7.9 20.6 0 28.5l120.4 120.4c7.9 7.9 20.6 7.9 28.5 0l120.4-120.4c7.8-7.9 7.8-20.7-.1-28.5z"/></svg>
             </button>
           </div>
-          <div class="product-cell stock">Remaining<button class="sort-button">
-              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 512 512"><path fill="currentColor" d="M496.1 138.3L375.7 17.9c-7.9-7.9-20.6-7.9-28.5 0L226.9 138.3c-7.9 7.9-7.9 20.6 0 28.5 7.9 7.9 20.6 7.9 28.5 0l85.7-85.7v352.8c0 11.3 9.1 20.4 20.4 20.4 11.3 0 20.4-9.1 20.4-20.4V81.1l85.7 85.7c7.9 7.9 20.6 7.9 28.5 0 7.9-7.8 7.9-20.6 0-28.5zM287.1 347.2c-7.9-7.9-20.6-7.9-28.5 0l-85.7 85.7V80.1c0-11.3-9.1-20.4-20.4-20.4-11.3 0-20.4 9.1-20.4 20.4v352.8l-85.7-85.7c-7.9-7.9-20.6-7.9-28.5 0-7.9 7.9-7.9 20.6 0 28.5l120.4 120.4c7.9 7.9 20.6 7.9 28.5 0l120.4-120.4c7.8-7.9 7.8-20.7-.1-28.5z"/></svg>
-            </button>
-          </div>
-          <div class="product-cell stock">Register By <button class="sort-button">
+          <div class="product-cell stock">Date<button class="sort-button">
               <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 512 512"><path fill="currentColor" d="M496.1 138.3L375.7 17.9c-7.9-7.9-20.6-7.9-28.5 0L226.9 138.3c-7.9 7.9-7.9 20.6 0 28.5 7.9 7.9 20.6 7.9 28.5 0l85.7-85.7v352.8c0 11.3 9.1 20.4 20.4 20.4 11.3 0 20.4-9.1 20.4-20.4V81.1l85.7 85.7c7.9 7.9 20.6 7.9 28.5 0 7.9-7.8 7.9-20.6 0-28.5zM287.1 347.2c-7.9-7.9-20.6-7.9-28.5 0l-85.7 85.7V80.1c0-11.3-9.1-20.4-20.4-20.4-11.3 0-20.4 9.1-20.4 20.4v352.8l-85.7-85.7c-7.9-7.9-20.6-7.9-28.5 0-7.9 7.9-7.9 20.6 0 28.5l120.4 120.4c7.9 7.9 20.6 7.9 28.5 0l120.4-120.4c7.8-7.9 7.8-20.7-.1-28.5z"/></svg>
             </button>
           </div>
@@ -210,7 +206,7 @@
     <?php
           // Total Reports 
           // patients
-          $DPsql ="SELECT COUNT(P_ID) AS Patient FROM view_report WHERE P_RegDate BETWEEN '$from' AND '$to';";
+          $DPsql ="SELECT COUNT(P_ID) AS Patient FROM view_total WHERE P_RegDate BETWEEN '$from' AND '$to';";
           $DPrun = mysqli_query($con,$DPsql);
           if (mysqli_num_rows($DPrun) > 0) {
             $DProw = mysqli_fetch_assoc($DPrun);
@@ -218,7 +214,7 @@
           }
           
           // Total
-          $Tsql ="SELECT SUM(PB_Total) AS Total FROM view_report WHERE P_RegDate BETWEEN '$from' AND '$to';";
+          $Tsql ="SELECT SUM(PB_Total) AS Total FROM view_total WHERE P_RegDate BETWEEN '$from' AND '$to';";
           $Trun = mysqli_query($con,$Tsql);
           if (mysqli_num_rows($Trun) > 0) {
             $Trow = mysqli_fetch_assoc($Trun);
@@ -226,17 +222,25 @@
           }
 
           // Receive
-          $Rsql ="SELECT SUM(PB_Receive) AS Remm FROM view_report WHERE P_RegDate BETWEEN '$from' AND '$to';";
+          $Rsql ="SELECT SUM(PB_Receive) AS Remm FROM view_total WHERE P_RegDate BETWEEN '$from' AND '$to';";
           $Rrun = mysqli_query($con,$Rsql);
           if (mysqli_num_rows($Rrun) > 0) {
             $Rrow = mysqli_fetch_assoc($Rrun);
             $CashPaid = $Rrow["Remm"];
           }
 
+            // Expance total
+            $Rsql ="SELECT SUM(Ex_amount) AS amount FROM view_total WHERE P_RegDate BETWEEN '$from' AND '$to';";
+            $Rrun = mysqli_query($con,$Rsql);
+            if (mysqli_num_rows($Rrun) > 0) {
+              $Rrow = mysqli_fetch_assoc($Rrun);
+              $CashPaid = $Rrow["amount"];
+            }
+
           //Remaining 
           $totalRemaining = $totalcash -$CashPaid;
                 
-          $sql = "SELECT * FROM view_report WHERE P_RegDate >= '$from' AND P_RegDate <= '$to';";
+          $sql = "SELECT * FROM view_total WHERE P_RegDate >= '$from' AND P_RegDate <= '$to';";
           $resutl = $con->query($sql);
                 
             if(!$resutl){
@@ -252,13 +256,13 @@
               <div class=product-cell> <span>$row[P_ID]</span> </div>
               <div class= product-cell category ><span class= cell-label >Category:</span>$row[P_Name]</div>
               <div class= product-cell category ><span class= cell-label >Category:</span>$row[P_SName]</div>
-              <div class= product-cell sales ><span class= cell-label ></span>$row[P_RegDate]</div>
-              <div class= product-cell sales ><span class= cell-label ></span>$row[P_Note]</div>
-              <div class= product-cell sales ><span class= cell-label ></span>$row[PT_Name]</div>
               <div class= product-cell sales ><span class= cell-label ></span>$row[PB_Total]</div>
               <div class= product-cell stock ><span class= cell-label ></span>$row[PB_Receive]</div>
               <div class= product-cell stock ><span class= cell-label ></span>$remaining</div>
-              <div class= product-cell stock ><span class= cell-label ></span>$row[Name]</div>
+              <div class= product-cell stock ><span class= cell-label ></span>$row[Ex_Name]</div>
+              <div class= product-cell stock ><span class= cell-label ></span>$row[Ex_amount]</div>
+              <div class= product-cell stock ><span class= cell-label ></span>$row[P_RegDate]</div>
+
               </table> 
             </div>
             <br>
@@ -272,6 +276,7 @@
                 <div class= product-cell stock style='font-size:18px !important;'><span class= cell-label ></span>TOTAL :  $totalcash </div>
                 <div class= product-cell stock style='font-size:18px !important;'><span class= cell-label ></span>CASH RECIVED:  $CashPaid </div>
                 <div class= product-cell stock style='font-size:18px !important;'><span class= cell-label ></span>REMAINING:  $totalRemaining</div>
+                <div class= product-cell stock style='font-size:18px !important;'><span class= cell-label ></span>Expance :  $totalRemaining</div>
               </table> 
             </div>
           ";
