@@ -19,6 +19,8 @@
     $totalcash = "0";
     $CashPaid ="0";
     $totalRemaining = "0";
+    $Expances ="";
+    $AvCash ="";
 
 
     if(empty($USERID) OR empty($USERNAME) OR empty($TYPE)){
@@ -233,6 +235,15 @@
             $CashPaid = $Rrow["Remm"];
           }
 
+          // Avaliable Cash
+          $Exsql ="SELECT SUM(Ex_amount) AS Total FROM tbl_expances WHERE ex_date BETWEEN '$from' AND '$to';";
+          $Exrun = mysqli_query($con,$Exsql);
+          if (mysqli_num_rows($Exrun) > 0) {
+            $Exrow = mysqli_fetch_assoc($Exrun);
+            $Expances = $Exrow["Total"];
+          }
+          $AvCash = $CashPaid - $Expances;
+
           //Remaining 
           $totalRemaining = $totalcash -$CashPaid;
                 
@@ -268,11 +279,13 @@
           echo"
             <div class = products-row id = totals>
               <table id = 'myDataTable' > 
-                <div class= product-cell sales style='font-size:18px !important;'><span class= cell-label ></span>PATIENTS:  $totalpaitent</div>
-                <div class= product-cell stock style='font-size:18px !important;'><span class= cell-label ></span>TOTAL :  $totalcash </div>
-                <div class= product-cell stock style='font-size:18px !important;'><span class= cell-label ></span>CASH RECIVED:  $CashPaid </div>
-                <div class= product-cell stock style='font-size:18px !important;'><span class= cell-label ></span>REMAINING:  $totalRemaining</div>
-              </table> 
+                <div class= product-cell sales style='font-size:16px !important;'><span class= cell-label ></span>PATIENTS:  $totalpaitent</div>
+                <div class= product-cell stock style='font-size:16px !important;'><span class= cell-label ></span>TOTAL :  $totalcash </div>
+                <div class= product-cell stock style='font-size:16px !important;'><span class= cell-label ></span>RECIVED:  $CashPaid </div>
+                <div class= product-cell stock style='font-size:16px !important;'><span class= cell-label ></span>REMAINING:  $totalRemaining</div>
+                <div class= product-cell stock style='font-size:16px !important;'><span class= cell-label ></span>EXPANCES:  $Expances</div>
+                <div class= product-cell stock style='font-size:16px !important;'><span class= cell-label ></span>AVAILIABLE CASH:  $AvCash</div>
+                </table> 
             </div>
           ";
       ?>

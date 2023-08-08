@@ -15,7 +15,8 @@
 
 	$from="";
 	$to="";
-
+	$Expances ="";
+	$AvCash ="";
     $totalpaitent ="0";
     $totalcash = "0";
     $CashPaid ="0";
@@ -96,7 +97,7 @@
 			display:inline-block;
 			background-color: #cdcdcd;
 			border: solid black 1px;
-			font-size: 20px;
+			font-size: 16px;
 			padding: 5px;
 			margin-left: 5px;
 		}
@@ -176,6 +177,15 @@
             $CashPaid = $Rrow["Remm"];
           }
 
+          // Avaliable Cash
+          $Exsql ="SELECT SUM(Ex_amount) AS Total FROM tbl_expances WHERE ex_date BETWEEN '$from' AND '$to';";
+          $Exrun = mysqli_query($con,$Exsql);
+          if (mysqli_num_rows($Exrun) > 0) {
+            $Exrow = mysqli_fetch_assoc($Exrun);
+            $Expances = $Exrow["Total"];
+          }
+          $AvCash = $CashPaid - $Expances;
+
           //Remaining 
           $totalRemaining = $totalcash -$CashPaid;
 
@@ -213,6 +223,12 @@
 						</div>
 						<div class='total' ><span class= cell-label ></span>
 							REMAINING :  $totalRemaining 
+						</div>
+						<div class='total' ><span class= cell-label ></span>
+							EXPANCES :  $Expances 
+						</div>
+						<div class='total' ><span class= cell-label ></span>
+							AVAILABLE CASH :  $AvCash 
 						</div>
 					</table> 
 				</div>

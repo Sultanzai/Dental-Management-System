@@ -89,6 +89,48 @@
         }
     else{
           do{
+            if(isset($_POST['submit'])) {
+              if ($_POST['submit'] === 'SUBMIT') {
+
+                $id = $_POST["id"];
+                $recevid = $_POST["recevid"];
+                $payment = $_POST["payment"];
+                $total = $_POST["total"];
+                $remming = intval ($total) - intval($recevid);
+
+                if(empty($payment)){
+                $errormessage= "Payment field is empty";
+                break;
+                }
+    
+                //String conversion and sum of the recive payment 
+                $totalpay = intval($payment) + intval($recevid);
+    
+                if( $totalpay > $total || 0 > $totalpay ){
+                  echo "<script>
+                  alert('Invalid Input please enter the valid amount!');
+                </script>";
+                  break;
+                }
+                else{
+                $newsql = "UPDATE tbl_patient_balance SET PB_Receive = $totalpay WHERE P_ID = $id";
+                 $newres = $con->query($newsql);
+                }       
+                    
+                if(!$newres){
+                  $errormessage = "invalid Query: ". $con->error;
+                  echo "Invalid Update Questy inolve";
+                  break;
+                }
+                else{
+                header("location: /DMS/dist/index.php");
+                exit();
+                }
+              }
+            } 
+    
+            if(isset($_POST['print'])) {
+              if ($_POST['print'] === 'PRINT') {
 
             $id = $_POST["id"];
             $recevid = $_POST["recevid"];
@@ -96,64 +138,40 @@
             $total = $_POST["total"];
             $remming = intval ($total) - intval($recevid);
             
+
             $appoinment = $_POST["appo"];
             $time = $_POST["tim"];
             $_SESSION["Appoinment"] = $appoinment;
             $_SESSION["Time"] = $time;
 
-         
             
             if(empty($payment)){
             $errormessage= "Payment field is empty";
-            break;
-            }
-
-            //String conversion and sum of the recive payment 
-            $totalpay = intval($payment) + intval($recevid);
-
-            if( $totalpay > $total || 0 > $totalpay ){
-              echo "<script>
-              alert('Invalid Input please enter the valid amount!');
-            </script>";
-              break;
+            header("location: /DMS/dist/PrintInvA5.php");
+            exit();
             }
             else{
-            $newsql = "UPDATE tbl_patient_balance SET PB_Receive = $totalpay WHERE P_ID = $id";
-             $newres = $con->query($newsql);
-            }       
-                
-            if(!$newres){
-              $errormessage = "invalid Query: ". $con->error;
-              echo "Invalid Update Questy inolve";
-              break;
-            }
-            else{
-              if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-                // Check which button was clicked
-                if (isset($_POST['submit']) && $_POST['submit'] === 'BSUBMIT') {
-                  echo "
-                  <script>
-                      function SUBMIT() {
-                          header('location: /DMS/dist/index.php');
-                          exit;               
-                      }
-                  </script>
-                   
-                   ";
+                  //String conversion and sum of the recive payment 
+                  $totalpay = intval($payment) + intval($recevid);
+
+                  if( $totalpay > $total || 0 > $totalpay ){
+                    echo "<script>
+                    alert('Invalid Input please enter the valid amount!');
+                  </script>";
+                    break;
                   }
-                  elseif(isset($_POST['print']) && $_POST['print'] === 'PRINT'){
-                    echo "
-                    <script>
-                        function PRINT() {
-                            header(location: /DMS/dist/PrintInvA5.php);
-                            exit;               
-                        }
-                    </script>
-                     ";
-                  }
+                  else{
+                  $newsql = "UPDATE tbl_patient_balance SET PB_Receive = $totalpay WHERE P_ID = $id";
+                  $newres = $con->query($newsql);
+                  }       
+                      
+                  if(!$newres){
+                    $errormessage = "invalid Query: ". $con->error;
+                    echo "Invalid Update Questy inolve";
+                    break;
+                  } 
                 }
-
-
+              }
             }
           }
            while(false);
@@ -310,7 +328,7 @@
               ?>
               </div>
             </div>
-        <form method="POST">
+        <form method="POST" action="Invoice.php">
 
             <div class="row">
               <div class="col-md-2">
@@ -336,17 +354,17 @@
 
               <div class="col-md">
                 <a href="index.php">
-                  <button class="app-content-headerButton" type="button" id="btn5" role="button">Cancel</button>
+                  <button class="app-content-headerButton" type="button" id="" role="button">Cancel</button>
                 </a>
               </div>
               <div class="col-md">
                 <a href="index.php">
-                  <button class="app-content-headerButton" type="submit" name="submit" id="btn4" onclick="SUBMIT()">SUBMIT</button>
+                  <button class="app-content-headerButton" type="submit" name="submit" id="SUBMIT" value="SUBMIT" >SUBMIT</button>
                 </a>
               </div>
               <div class="col-md">
                 <a href ="update.php">
-                  <button class="app-content-headerButton" type="button" id="btn5" role="button">Update</button>
+                  <button class="app-content-headerButton" type="button" id="" role="button">Update</button>
                 </a>
               </div>
             <div class="col-md">
@@ -360,7 +378,7 @@
               <div class="col-md-2">
                 &nbsp;&nbsp;  
                 <a href="printInvA5.php">
-                  <button class="app-content-headerButton" type="submit" name="print" id="btn5" onclick="PRINT()">PRINT</button>
+                  <button class="app-content-headerButton" type="submit" name="print" id="PRINT" value="PRINT" >PRINT</button>
                 </a>
               </div>    
               <?php
@@ -387,7 +405,6 @@
   </div>
 </div>
 <!-- partial -->
-  <script  src="./script.js"></script>
-  
+  <script  src="./script.js"></script>  
 </body>
 </html>
