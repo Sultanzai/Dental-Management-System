@@ -232,7 +232,7 @@
       </a>
       
       <a href="backup.php" style="padding-left:20px;">
-        <button class="app-content-headerButton">Back Up</button>
+        <button class="app-content-headerButton">BackUp</button>
       </a>
     </div>
 
