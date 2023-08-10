@@ -23,8 +23,8 @@
   $recevid = "";
   $total ="";
   $remming = "";
-  $appoinment = "10/10/2023";
-  $time= "08:50";
+  $appoinment = "";
+  $time= "";
 
   $payment = "";
   $totalpay = "";

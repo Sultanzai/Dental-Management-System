@@ -127,7 +127,7 @@
             <div class="row">
               
               <input type="text" name="search" style ="max-width: 280px; padding-left: 30px" class="search-bar" ><span> . </span> 
-              <a href='Search.php'>
+              <a>
                 <button class='app-content-headerButton' type="submit" role="button"> Search </button>
               </a>
 

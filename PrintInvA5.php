@@ -31,7 +31,6 @@
   $appoinmnet = $_SESSION['Appoinment'];
   $time = $_SESSION['Time'];
 
-  echo "APPP".$appoinmnet, $time;
 
   $rem = $total - $recevid;
 
