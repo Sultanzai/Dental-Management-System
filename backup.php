@@ -4,81 +4,50 @@ $host = 'localhost';
 $username= "root";
 $password = "";
 $database = "dms";
-// Backup file path and name
-$backupFilePath = 'C:/Database';
+// Backup filename and path
+$backupFileName = '_DMS_Backup_' . date('Y-m-d') . '.sql';
+$backupPath = 'D:/DB/' . $backupFileName;
 
-// Execute the mysql command to export the database
-// $command = "mysql --host={$host} --user={$username} --password={$password} --database={$database} < {$backupFilePath}";
-// exec($command, $output, $returnVar);
+// Create a new MySQLi instance
+$mysqli = new mysqli($host, $username, $password, $database);
 
-// // Check if the backup was successful
-// if ($returnVar === 0) {
-//     echo "Database backup created successfully.";
-// } else {
-//     echo "Database backup failed.";
-// }
-
-$tables = array();
-$sql = "SHOW TABLES";
-$result = mysqli_query($conn, $sql);
-
-while ($row = mysqli_fetch_row($result)) {
-$tables[] = $row[0];
+// Check for connection errors
+if ($mysqli->connect_errno) {
+    echo 'Failed to connect to MySQL: ' . $mysqli->connect_error;
+    exit;
 }
 
-$sqlScript = "";
-foreach ($tables as $table) { 
-// Prepare SQLscript for creating table structure
-$query = "SHOW CREATE TABLE $table";
-$result = mysqli_query($conn, $query);
-$row = mysqli_fetch_row($result);
+// Retrieve a list of tables in the database
+$tables = [];
+$result = $mysqli->query("SHOW TABLES");
+while ($row = $result->fetch_row()) {
+    $tables[] = $row[0];
+}
 
-$sqlScript .= "\n\n" . $row[1] . ";\n\n";
+// Generate the SQL file content
+$content = '';
+foreach ($tables as $table) {
+    $result = $mysqli->query("SELECT * FROM {$table}");
+    $content .= "DROP TABLE IF EXISTS {$table};\n";
+    $row2 = $mysqli->query("SHOW CREATE TABLE {$table}")->fetch_row();
+    $content .= "{$row2[1]};\n";
+    while ($row = $result->fetch_row()) {
+        $content .= "INSERT INTO {$table} VALUES (";
+        foreach ($row as $value) {
+            $content .= "'{$mysqli->real_escape_string($value)}', ";
+        }
+        $content = rtrim($content, ', ') . ");\n";
+    }
+    $content .= "\n";
+}
 
-$query = "SELECT * FROM $table";
-$result = mysqli_query($conn, $query);
-
-$columnCount = mysqli_num_fields($result); 
-// Prepare SQLscript for dumping data for each table
-for ($i = 0; $i < $columnCount; $i ++) {
-while ($row = mysqli_fetch_row($result)) {
-$sqlScript .= "INSERT INTO $table VALUES(";
-for ($j = 0; $j < $columnCount; $j ++) {
-$row[$j] = $row[$j];
-
-if (isset($row[$j])) {
-$sqlScript .= '"' . $row[$j] . '"';
+// Save the content to the backup file
+if (file_put_contents($backupPath, $content)) {
+    echo 'Database backup has been created successfully.';
 } else {
-$sqlScript .= '""';
+    echo 'Error creating database backup.';
 }
-if ($j < ($columnCount - 1)) {
-$sqlScript .= ',';
-}
-}
-$sqlScript .= ");\n";
-}
-}
-$sqlScript .= "\n"; 
-}
-if(!empty($sqlScript))
-{
-// Save the SQL script to a backup file
-$backup_file_name = $database_name . '_backup_' . time() . '.sql';
-$fileHandler = fopen($backup_file_name, 'w+');
-$number_of_lines = fwrite($fileHandler, $sqlScript);
-fclose($fileHandler);
 
-// Download the SQL backup file to the browser
-header('Content-Description: File Transfer');
-header('Content-Type: application/octet-stream');
-header('Content-Disposition: attachment; filename=' . basename($backup_file_name));
-header('Content-Transfer-Encoding: binary');
-header('Expires: 0');
-header('Cache-Control: must-revalidate');
-header('Pragma: public');
-header('Content-Length: ' . filesize($backup_file_name));
-ob_clean();
-flush();
-readfile($backup_file_name);
-exec('rm ' . $backup_file_name); 
-}
+// Close the MySQLi connection
+$mysqli->close();
+?>
