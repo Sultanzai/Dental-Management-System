@@ -4,24 +4,26 @@ $host = 'localhost';
 $username= "root";
 $password = "";
 $database = "dms";
-// Backup filename and path
-$backupFileName = '_DMS_Backup_' . date('Y-m-d') . '.sql';
-$backupPath = 'D:/DB/' . $backupFileName;
+// Backup file path and name
+$backupFilePath = 'C:/Database';
 
-// Create a new MySQLi instance
-$mysqli = new mysqli($host, $username, $password, $database);
+// Execute the mysql command to export the database
+// $command = "mysql --host={$host} --user={$username} --password={$password} --database={$database} < {$backupFilePath}";
+// exec($command, $output, $returnVar);
 
-// Check for connection errors
-if ($mysqli->connect_errno) {
-    echo 'Failed to connect to MySQL: ' . $mysqli->connect_error;
-    exit;
-}
+// // Check if the backup was successful
+// if ($returnVar === 0) {
+//     echo "Database backup created successfully.";
+// } else {
+//     echo "Database backup failed.";
+// }
 
-// Retrieve a list of tables in the database
-$tables = [];
-$result = $mysqli->query("SHOW TABLES");
-while ($row = $result->fetch_row()) {
-    $tables[] = $row[0];
+$tables = array();
+$sql = "SHOW TABLES";
+$result = mysqli_query($conn, $sql);
+
+while ($row = mysqli_fetch_row($result)) {
+$tables[] = $row[0];
 }
 
 // Generate the SQL file content
