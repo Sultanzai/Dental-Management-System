@@ -22,11 +22,6 @@
     exit;
   }
 
-
-
-
-
-
     $id = "";
     
     $Name ="";
@@ -46,54 +41,19 @@
       global $id;
       $_SESSION["IDDELETE"] = $id;  
       
-          // Show Expances Data 
-          $sql = "SELECT * FROM `tbl_expances` WHERE `Ex_ID` = '$id' ";
-          $res = $con->query($sql);
-          $row = $res->fetch_assoc();
+      // Show Expances Data 
+      $sql = "SELECT * FROM `tbl_expances` WHERE `Ex_ID` = '$id' ";
+      $res = $con->query($sql);
+      $row = $res->fetch_assoc();
 
-          $Name = $row['Ex_Name'];
-          $ExType = $row['Ex_Type'];
-          $Amount = $row['Ex_amount'];
+      $Name = $row['Ex_Name'];
+      $ExType = $row['Ex_Type'];
+      $Amount = $row['Ex_amount'];
 
-  $errormessage ="";
-  $success="";
+    $errormessage ="";
+    $success="";
 
     // Using POST server request method 
-    if($_SERVER['REQUEST_METHOD'] == 'POST'){
-      $Name = $_POST["name"];
-      $ExType = $_POST["type"];
-      $Amount = $_POST["amount"];
-
-        do {
-          if(empty($Name) || empty($ExType) || empty($Amount) ){
-            echo"All the field are Required";
-            break;
-          }
-
-          echo "ID PASSED".$id;
-          $sqltwo = "UPDATE `tbl_expances` SET `Ex_Name`= '$Name',`Ex_Type`= '$ExType',`Ex_amount`= '$Amount' WHERE `EX_ID` = '$id' ";
-          $res2 = $con->query($sqltwo);
- 
-          if(!$res2){
-            $errormessage = "invalid Query: ". $con->error;
-            break;
-          }
-            $Name ="";
-            $ExType ="";
-            $Amount ="";
-
-            echo "<script>
-            alert('Data Updated Successfully!');
-            </script>";
-          
-            // header("location: /DMS/dist/ExpanceReport.php");
-
-            $success = "patient Registed";
-
-
-        } while (false);
-
-      }
 ?>
 
 
@@ -206,8 +166,8 @@
               if($ExType =="Stuffs"){
                 echo"<option value ='Stuffs' selected> Stuffs</option>";
               } 
-              if($ExType =="Cleaner"){
-                echo"<option value ='Cleaner' selected> Cleaner</option>";
+              if($ExType =="Other"){
+                echo"<option value ='Other' selected> Other</option>";
               }
               if($ExType =="Clinic"){
                 echo"<option value ='Clinic' selected> Clinic</option>";
@@ -220,9 +180,9 @@
               
               <option value ="Kitchen"> Kitchen</option>
                 <option value ="Stuffs"> Stuffs</option>
-                <option value ="Cleaner"> Cleaner</option>
                 <option value ="Employes Salary"> Employes Salary</option>
                 <option value ="Clinic"> Clinic</option>
+                <option value ="Other"> Other</option>
               </select>
 
             </div>
@@ -253,24 +213,17 @@
         </div>
      
         <div class="row">
-          <div class="col-md-2"></div>
+          <div class="col-md-3"></div>
               <div class="col-md-3">
                 <a href="ExpanceReport.php"><button class="app-content-headerButton" type="button" id="btn3" role="button">Back</button></a>
               </div>
-              <div class="col-md-3">
-                <button class="app-content-headerButton" type="submit" id="btn2" role="button">Update</button>
-              </div>
-          <?php 
-          if($TYPE=="Admin"){
-            echo"
               <div class=col-md-3>
               <a href=ExpancesDelete.php>
               <button class=app-content-headerButton type=button id=btn2 role=button> Delete</button>
               </a>
               </div>
-            ";
-          }
-            ?>    
+              <div class="col-md-3"></div>
+  
             </div>
         </div>
       </div>

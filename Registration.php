@@ -318,6 +318,11 @@
               
             <div class="col-md-8">
         
+
+            <!-- <input type="checkbox" name="fruits[]" value="apple"> Implant<br>
+            <input type="checkbox" name="fruits[]" value="banana"> Orthodontic<br>
+            <input type="checkbox" name="fruits[]" value="orange"> RCT<br> -->
+            
               <select name ="tre">
                 <option value ="Implant"> Implant</option>
                 <option value ="Orthodontic"> Orthodontic</option>

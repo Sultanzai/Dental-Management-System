@@ -14,8 +14,8 @@
     $TYPE = $_SESSION['type'];
 
     
-    $from = "";
-    $to = "";
+    $from = "2023-1-1";
+    $to = "2030-1-1";
     $totalExpances = "";
 
     if(empty($USERID) OR empty($USERNAME) OR empty($TYPE)){

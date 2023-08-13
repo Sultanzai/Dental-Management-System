@@ -171,9 +171,9 @@
               <select name ="type">
                 <option value ="Kitchen"> Kitchen</option>
                 <option value ="Stuffs"> Stuffs</option>
-                <option value ="Cleaner"> Cleaner</option>
                 <option value ="Employes Salary"> Employes Salary</option>
                 <option value ="Clinic"> Clinic</option>
+                <option value ="Other"> Other</option>
               </select>
 
             </div>

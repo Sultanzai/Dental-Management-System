@@ -12,43 +12,50 @@
     $pas = "";
     $userID = "";
     $type = "";
-
+    
     $error = "";
     
     if($_SERVER['REQUEST_METHOD'] == 'POST'){
       $Name = $_POST["username"];
       $pas = $_POST["password"];
     }
+  
+    #USER DATA 
+    $sql ="SELECT * FROM `tbl_user` WHERE name ='$Name';";
+    $run = mysqli_query($con,$sql);
+    
+    $stmt = $con->prepare("SELECT Password FROM tbl_user WHERE Name = ?");
+    $stmt->bind_param('s', $Name);
+    $stmt->execute();
+    $stmt->bind_result($hashedPassword);
+    $stmt->fetch();
+    
+    if (password_verify($pas, $hashedPassword)) {
 
-
-        #Daily patient 
-        $sql ="SELECT * FROM `tbl_user` WHERE name ='$Name' AND Password = '$pas';";
-        $run = mysqli_query($con,$sql);
-        
-        if(!$run){
-          $error = "Fail to login";
-          echo "<script>
-          alert('Login Faild');
+      if(!$run){
+        $error = "Fail to login";
+        echo "<script>
+        alert('Login Faild');
         </script>";
-
-          die("Invalid Query: " . $con->error);
-        }
-        else{
-          
+        
+        die("Invalid Query: " . $con->error);
+      }
+      else{
+        
         if (mysqli_num_rows($run) > 0) {
           $row = mysqli_fetch_assoc($run);
-
+          
           $Name = $row["Name"];
           $pas = $row["Password"];
           $userID = $row["UserId"];
           $type = $row["Type"];
           if($type =="Admin" OR $type =="User"){
-                    
+            
             #SESSION TO GFT USER RECORD
             $_SESSION["Username"] = $Name;
             $_SESSION["type"] = $type; 
             $_SESSION["userid"] = $userID;
-
+            
             header("location: /DMS/dist/index.php");
             exit;  
           }
@@ -57,9 +64,10 @@
         
       }
 
-
-        
-?>
+    } 
+      
+      
+      ?>
 
 <!DOCTYPE html>
 <html lang="en">
