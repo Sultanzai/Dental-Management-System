@@ -16,7 +16,7 @@ session_start();
 $con = new mysqli($servername, $userName, $password, $database);
 
 
-    $sql2 = "DELETE FROM `tbl_patient_balance` WHERE P_ID = $id";
+    $sql2 = "DELETE FROM `tbl_patient_balance` WHERE PB_ID = $id";
     $con->query($sql2);
 
     $sql = "DELETE FROM tbl_patient WHERE P_ID = $id";

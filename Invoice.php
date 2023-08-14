@@ -14,7 +14,7 @@
     $USERID = $_SESSION['userid'];
     $TYPE = $_SESSION['type'];
 
-
+  $pid="";
   $id ="";
   $name ="";
   $sname ="";
@@ -49,14 +49,15 @@
         $id = $_GET["id"];
 
             // SQL query to get Patient By ID 
-            $sql = "SELECT * FROM `view_patient` WHERE `P_ID` = $id";
+            $sql = "SELECT * FROM `view_patient` WHERE `PB_ID` = $id";
             $res = $con->query($sql);
             $row = $res->fetch_assoc();
 
+            $pid = $row['P_ID'];
             $name = $row['P_Name'];
             $sname = $row['P_SName'];
             $note = $row['P_Note'];
-            $treatment = $row['PT_Name'];
+            $treatment = $row['PB_Treatment'];
             $recevid = $row['PB_Receive'];
             $total = $row['PB_Total'];
             // Remming of the total treatment 
@@ -65,15 +66,18 @@
 
         // SESSIONS Data and initilizaions in Array
         $userdata = array(
+          "mainid"=> $pid,
           "newid"=> $id, 
           "name"=> $row['P_Name'], 
           "sname"=> $row['P_SName'], 
           "phone"=> $row['P_Phone'],
           "address"=> $row['P_Address'],
-          "treatment"=> $row['PT_Name'], 
+          "treatment"=> $row['PB_Treatment'], 
           "note"=> $row['P_Note'], 
           "total"=> $row['PB_Total'], 
-          "recived"=> $row['PB_Receive']
+          "recived"=> $row['PB_Receive'],
+          "gender"=>$row['P_Gender'],
+          "age"=>$row['P_Age']
         );
 
       $_SESSION["userdata"] = $userdata;
@@ -261,7 +265,7 @@
           <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
         </svg>
       </button>
-      <a href="Dashboard.php"><button class="app-content-headerButton">Back</button></a>
+      <a href="New_Treatment.php"><button class="app-content-headerButton">Register New Treatment</button></a>
     </div>
     <section class="invoice" style=" margin-left: 30vh;
     max-width: 50%;

@@ -37,7 +37,7 @@
     else{
     #################### Daily #############################    
     #Daily patient 
-    $DPsql ="SELECT COUNT(P_ID) AS Patient FROM tbl_patient WHERE P_RegDate = DATE(NOW());";
+    $DPsql ="SELECT COUNT(PB_ID) AS Patient FROM tbl_patient_balance WHERE PB_ReceiveDate = DATE(NOW());";
     $DPrun = mysqli_query($con,$DPsql);
     if (mysqli_num_rows($DPrun) > 0) {
       // Fetch the result as an associative array
