@@ -200,7 +200,7 @@
 					<td>$row[P_Name]</td>
 					<td>$row[P_SName]</td>
 					<td>$row[P_Note]</td>
-					<td>$row[PT_Name]</td>
+					<td>$row[PB_Treatment]</td>
 					<td>$row[P_RegDate]</td>
 					<td>$row[PB_Total]</td>
 					<td>$row[PB_Receive]</td>

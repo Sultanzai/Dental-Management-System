@@ -23,7 +23,7 @@
     $userdata = $_SESSION['userdata'];
   $maxres ="";
 
-  $id = $userdata['newid'];
+  $id = $userdata['mainid'];
   $name =$userdata['name'];
   $sname = $userdata['sname'];
   $phone = $userdata['phone'];
@@ -46,11 +46,13 @@
 
   // Using POST server request method 
   if($_SERVER['REQUEST_METHOD'] == 'POST'){
-    $name = $_POST["name"];
-    $sname = $_POST["sname"];
-    $phone = $_POST["phone"];
-    $address = $_POST["address"];
-    $note = $_POST["note"];
+    $name = $_POST["Name"];
+    $sname = $_POST["Sname"];
+    $phone = $_POST["Phone"];
+    $address = $_POST["Address"];
+    $note = $_POST["Note"];
+    $gender = $_POST["Gender"];    
+    $age = $_POST["Age"];
     $recevid = $_POST["recevid"];    
     $total = $_POST["total"];
 
@@ -74,13 +76,9 @@
         $newsql = "UPDATE `tbl_patient_balance` SET `PB_Treatment`='$treatmentName',`PB_Total`='$total',`PB_Receive`='$recevid',`U_ID`='$USERID' WHERE `PB_ID`='$id'";
         $res2 = $con->query($newsql);
 
-        if(!$res OR !$res2){
-          echo "
-          <script> 
-            alert(Unable to update the Patient);
-          </script>
-            ";          
-            break;
+        if(!$res){
+          $errormessage = "invalid Query: ". $con->error;      
+          break;
         }
           $name ="";
           $sname ="";
@@ -94,11 +92,6 @@
           $recevid = "";
 
           $success = "patient Registed";
-          echo "
-          <script> 
-            alert(Data Update Successfuly);
-          </script>
-            ";
           header("location: /DMS/dist/index.php");
 
       } while (false);
@@ -224,7 +217,7 @@
                 <h4>Name </h4>
               </div>
               <div class="col-md-8">
-                <input type="text" name="name" value="<?php echo $name ?>">
+                <input type="text" name="Name" value="<?php echo $name ?>">
               </div>
             </div>
 
@@ -233,7 +226,7 @@
                 <h4>F/Name </h4>
               </div>
               <div class="col-md-8">
-                <input type="text" name="sname" value="<?php echo $sname ?>">
+                <input type="text" name="Sname" value="<?php echo $sname ?>">
               </div>
             </div>
 
@@ -242,7 +235,7 @@
                 <h4>Gender </h4>
               </div>
               <div class="col-md-8">
-                <input type="text" name = "gender" value="<?php echo $gender ?>">
+                <input type="text" name = "Gender" value="<?php echo $gender ?>">
               </div>
             </div>
 
@@ -251,7 +244,7 @@
                 <h4>Age </h4>
               </div>
               <div class="col-md-8">
-                <input type="text" name ="age" value="<?php echo $age ?>">
+                <input type="text" name ="Age" value="<?php echo $age ?>">
               </div>
             </div>
 
@@ -260,7 +253,7 @@
                 <h4>Phone </h4>
               </div>
               <div class="col-md-8">
-                <input type="text" name="phone" value="<?php echo $phone ?>">
+                <input type="text" name="Phone" value="<?php echo $phone ?>">
               </div>
             </div>
 
@@ -269,7 +262,7 @@
                 <h4>Address </h4>
               </div>
               <div class="col-md-8">
-                <input type="text" name="address" value="<?php echo $address ?>">
+                <input type="text" name="Address" value="<?php echo $address ?>">
               </div>
             </div>
 
@@ -278,7 +271,7 @@
                 <h4>Note</h4>
               </div>
               <div class="col-md-8">
-                <input type="text" name = "note" value="<?php echo $note ?>">
+                <input type="text" name = "Note" value="<?php echo $note ?>">
               </div>
             </div>
 
@@ -312,31 +305,71 @@
 
         </div>
      
-        <div class="row" style="margin-left: 130px;">
-          <div class="col-md-6">
-            <div class="row">
-              <div class="col-md">
-                <h5> Total:</h5><input type="text" name="total" value="<?php echo $total ?>"> 
+        <?php 
+        if($TYPE =="Admin"){
+          echo "
+          <div class=row style= 'margin-left: 130px;'>
+          <div class=col-md-6>
+            <div class=row>
+              <div class=col-md>
+              <h5> Total:</h5><input type=text name=total value= $total> 
               </div>
-          </div>
-          <br>  
-          <div class="row">
-            <div class="col-md">
-              <h5>Cash Recived:</h5><input type="text" name="recevid" value ="<?php echo $recevid ?>"> 
+              </div>
+              <br>  
+          <div class=row>
+            <div class=col-md>
+            <h5>Cash Recived:</h5><input type=text name=recevid value =$recevid> 
             </div>
-          </div>
-
-            <div class="row">
-              <div class="col-md-3">
-                <a href="index.php"><button class="app-content-headerButton" type="button" id="btn3" role="button">Cancel</button></a>
-              </div>
-              <div class="col-md-3" style="margin-left:65px;">
-                <button class="app-content-headerButton" type="submit" id="btn2">Submit</button>
-              </div>
             </div>
-        </div>
+            
+            <div class=row>
+            <div class= col-md-3 >
+            <a href= index.php ><button class= app-content-headerButton  type= button  id= btn3  role= button >Cancel</button></a>
+            </div>
+            <div class= col-md-3  style=' margin-left:65px'; >
+            <button class= app-content-headerButton  type= submit  id= btn2 >Submit</button>
+            </div>
+            </div>
+            </div>
+            ";
+          }
+          else{
+            echo "
+            <div class=row style= 'margin-left: 130px;'>
+            <div class=col-md-6>
+              <div class=row>
+                <div class=col-md>
+                <h5> Total:</h5><input id='total' type=text name=total value= $total > 
+                </div>
+                </div>
+                <br>  
+            <div class=row>
+              <div class=col-md>
+              <h5>Cash Recived:</h5><input id='recevid' type=text name=recevid value = $recevid > 
+              </div>
+              </div>
+              
+              <div class=row>
+              <div class= col-md-3 >
+              <a href= index.php ><button class= app-content-headerButton  type= button  id= btn3  role= button >Cancel</button></a>
+              </div>
+              <div class= col-md-3  style= 'margin-left:65px;' >
+              <button class= app-content-headerButton  type= submit  id= btn2 >Submit</button>
+              </div>
+              </div>
+              </div>
+              <script>
+              var inputField = document.getElementById('total');
+              inputField.readOnly = true;
+              
+              var inputField2 = document.getElementById('recevid');
+              inputField2.readOnly = true;
+              </script>
+              ";
+          }
+            ?>
       </div>
-      </form>
+    </form>
     </section>
 
 
