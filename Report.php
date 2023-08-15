@@ -212,7 +212,7 @@
     <?php
           // Total Reports 
           // patients
-          $DPsql ="SELECT COUNT(P_ID) AS Patient FROM view_report WHERE P_RegDate BETWEEN '$from' AND '$to';";
+          $DPsql ="SELECT COUNT(PB_ID) AS Patient FROM view_report WHERE P_RegDate BETWEEN '$from' AND '$to';";
           $DPrun = mysqli_query($con,$DPsql);
           if (mysqli_num_rows($DPrun) > 0) {
             $DProw = mysqli_fetch_assoc($DPrun);
@@ -247,7 +247,7 @@
           //Remaining 
           $totalRemaining = $totalcash -$CashPaid;
                 
-          $sql = "SELECT * FROM view_report WHERE P_RegDate >= '$from' AND P_RegDate <= '$to';";
+          $sql = "SELECT * FROM view_report WHERE P_RegDate >= '$from' AND P_RegDate <= '$to' ORDER BY PB_ID DESC;";
           $resutl = $con->query($sql);
                 
             if(!$resutl){
@@ -265,7 +265,7 @@
               <div class= product-cell category ><span class= cell-label >Category:</span>$row[P_SName]</div>
               <div class= product-cell sales ><span class= cell-label ></span>$row[P_RegDate]</div>
               <div class= product-cell sales ><span class= cell-label ></span>$row[P_Note]</div>
-              <div class= product-cell sales ><span class= cell-label ></span>$row[PT_Name]</div>
+              <div class= product-cell sales ><span class= cell-label ></span>$row[PB_Treatment]</div>
               <div class= product-cell sales ><span class= cell-label ></span>$row[PB_Total]</div>
               <div class= product-cell stock ><span class= cell-label ></span>$row[PB_Receive]</div>
               <div class= product-cell stock ><span class= cell-label ></span>$remaining</div>
