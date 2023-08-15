@@ -190,7 +190,7 @@
          
           if(empty($search)){
           // Get all element of paitent form
-          $sql = "SELECT * FROM view_patient ORDER BY P_ID DESC;";
+          $sql = "SELECT * FROM view_patient ORDER BY PB_ID DESC;";
           $resutl = $con->query($sql);
           }
           
@@ -207,7 +207,7 @@
 
           //While loop to read database data
           while($row = $resutl->fetch_assoc()){
-              $id = $row["P_ID"];
+              $id = $row["PB_ID"];
             echo " 
             <a href='invoice.php?id=$id'> 
             <div class= products-row>
@@ -218,7 +218,7 @@
               <div class= product-cell category ><span class= cell-label >Category:</span>$row[P_SName]</div>
               <div class= product-cell sales ><span class= cell-label >Sales:</span>$row[P_Phone]</div>
               <div class= product-cell sales ><span class= cell-label >Sales:</span>$row[P_Address]</div>
-              <div class= product-cell sales ><span class= cell-label >Sales:</span>$row[PT_Name]</div>
+              <div class= product-cell sales ><span class= cell-label >Sales:</span>$row[PB_Treatment]</div>
               <div class= product-cell sales ><span class= cell-label >Sales:</span>$row[PB_Total]</div>
               <div class= product-cell stock ><span class= cell-label >Stock:</span>$row[PB_Receive]</div>
               </table> 

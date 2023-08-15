@@ -15,20 +15,22 @@
     $USERID = $_SESSION['userid'];
     $TYPE = $_SESSION['type'];
 
+    $userdata = $_SESSION['userdata'];
 
-  
-  $maxres ="empty";
+    $mainid=$userdata['mainid'];
+    $id = $userdata['newid'];
+    $name =$userdata['name'];
+    $sname = $userdata['sname'];
+    $phone = $userdata['phone'];
+    $address = $userdata['address'];
+    $note = $userdata['note'];
+    $treatmentName =$userdata['treatment'];
+    $total =$userdata['total'];
+    $recevid = $userdata['recived'];
+    $age= $userdata['age'];
+    $gender = $userdata['gender'];
+    
 
-  $name ="";
-  $sname = "";
-  $gender ="";
-  $age = "";
-  $phone = "";
-  $address = "";
-  $note = "N/A";
-  $treatment ="Implant";
-  $total ="0";
-  $recevid = "0";
   
   $errormessage ="";
   $success="";
@@ -39,30 +41,9 @@
     exit;
   }
   else{
-  
-    $sqlId = "SELECT MAX(P_ID) AS maxid FROM tbl_patient;";
-    $max = $con->query($sqlId);
-
-
-    
-    if ($max->num_rows > 0) {
-      // Get the maximum ID from the result set
-      $row = $max->fetch_assoc();
-      $maxres = $row["maxid"];
-      $maxres = $maxres+1;
-      } else {
-          echo "Max ID not Selected";
-      }
 
     // Using POST server request method 
     if($_SERVER['REQUEST_METHOD'] == 'POST'){
-      $name = $_POST["name"];
-      $sname = $_POST["sname"];
-      $gender = $_POST["gender"];
-      $age = $_POST["age"];
-      $phone = $_POST["phone"];
-      $address = $_POST["address"];
-      $note = $_POST["note"];
       $recevid = $_POST["recevid"];
       $total = $_POST["total"];
       
@@ -71,19 +52,14 @@
       
 
         do {
-          if(empty($name) || empty($phone) || empty($treatmentname) ){
+          if(empty($name) || empty($phone) || empty($treatmentName) ){
             $errormessage="All the field are Required";
             break;
           }
 
-          // INSERT INTO Patient Table 
-          $sql = "INSERT INTO `tbl_patient`( `P_Name`, `P_SName`,  `P_Gender`, `P_Age`, `P_Phone`, `P_Address`,  `P_Note`, `U_ID`) VALUES
-          ('$name', '$sname', '$gender','$age','$phone','$address','$note','$USERID');";
+          $sql = "INSERT INTO `tbl_patient_balance`(`PB_Treatment`, `PB_Total`, `PB_Receive`, `U_ID`, `P_ID`) 
+          VALUES ('$treatmentname','$total','$recevid','$USERID','$mainid');";
           $res = $con->query($sql);
-
-          $newsql = "INSERT INTO `tbl_patient_balance`(`PB_Treatment`, `PB_Total`, `PB_Receive`, `U_ID`, `P_ID`) 
-          VALUES ('$treatmentname','$total','$recevid','$USERID','$maxres');";
-          $res2 = $con->query($newsql);
 
           if(!$res){
             $errormessage = "invalid Query: ". $con->error;

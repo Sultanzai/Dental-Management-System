@@ -19,10 +19,8 @@
 
 
 
-  $userdata = $_SESSION['userdata'];
-
-  $clicked_value = "" ;
-
+    
+    $userdata = $_SESSION['userdata'];
   $maxres ="";
 
   $id = $userdata['newid'];
@@ -34,13 +32,12 @@
   $treatmentName =$userdata['treatment'];
   $total =$userdata['total'];
   $recevid = $userdata['recived'];
+  $age= $userdata['age'];
+  $gender = $userdata['gender'];
   
-  $errormessage ="";
-  $success="";
-  #$currentDate = date('Y-m-d');
- 
+  $arrayOfStrings = explode(", ", $treatmentName);
+
   if(empty($USERID) OR empty($USERNAME) OR empty($TYPE)){
-      
     header("location: /DMS/dist/login.php");
     exit;
   }
@@ -56,86 +53,34 @@
     $note = $_POST["note"];
     $recevid = $_POST["recevid"];    
     $total = $_POST["total"];
-    $treatmentName = $_POST["tre"];
 
-  
-
-    
-  // Check if a value has been clicked
-  if($treatmentName == 'Implant'){
-    $clicked_value = 1;
-  }
-  if($treatmentName == 'Orthodontic'){
-    $clicked_value = 2;
-  }
-  if($treatmentName == 'RCT'){
-    $clicked_value = 3;
-  }
-  if($treatmentName == 'Impacted surgery'){
-    $clicked_value = 4;
-  }
-  if($treatmentName == 'Wisdome extraction'){
-    $clicked_value = 5;
-  }
-  if($treatmentName == 'sample extraction'){
-    $clicked_value = 6;
-  }
-  if($treatmentName == 'sample filling'){
-    $clicked_value = 7;
-  }
-  if($treatmentName == 'Crown'){
-    $clicked_value = 8;
-  }
-  if($treatmentName == 'Bridg'){
-    $clicked_value = 9;
-  }
-  if($treatmentName == 'complete denture'){
-    $clicked_value = 10;
-  }
-  if($treatmentName == 'bleeching'){
-    $clicked_value = 11;
-  }
-  if($treatmentName == 'oral higien'){
-    $clicked_value = 12;
-  }
-  if($treatmentName == 'maxillofacial surgery'){
-    $clicked_value = 13;
-  }
-  if($treatmentName == 'laminate veneer'){
-    $clicked_value = 14;
-  }
-  if($treatmentName == 'TMJ disorder'){
-    $clicked_value = 15;
-  }
-  if($treatmentName == 'Space maintainer'){
-    $clicked_value = 16;
-  }
-  if($treatmentName == 'oral pathology'){
-    $clicked_value = 17;
-  }
-  if($treatmentName == 'consultation'){
-    $clicked_value = 18;
-  }
-
-
+    $treatment = $_POST['Treatment'];
+    $treatmentName = implode(", ", $treatment);
       do {
         if(empty($name) || empty($phone) || empty($address) ||empty($sname)){
-          $errormessage="All the field are Required";
-          break;
+          echo "
+          <script> 
+            alert(ALl filed must be filled);
+          </script>
+            ";          
+            break;
         }
 
         // Update Patient Table 
-        $sql = "UPDATE `tbl_patient` SET `P_Name`='$name',`P_SName`='$sname',`P_Phone`='$phone',`P_Address`='$address',`P_Note`='$note', `PT_ID`='$clicked_value'
-         WHERE `P_ID`='$id';";
+        $sql = "UPDATE `tbl_patient` SET `P_Name`='$name',`P_SName`='$sname',`P_Gender`='$gender',`P_Age`='$age',`P_Phone`='$phone',`P_Address`='$address',`P_Note`='$note',`U_ID`='$USERID' WHERE `P_ID` = '$id';";
         $res = $con->query($sql);
 
         //Update paitent balance
-        $newsql = "UPDATE `tbl_patient_balance` SET `PB_Total`='$total',`PB_Receive`='$recevid',`U_ID`='$USERID' WHERE `P_ID`='$id'";
+        $newsql = "UPDATE `tbl_patient_balance` SET `PB_Treatment`='$treatmentName',`PB_Total`='$total',`PB_Receive`='$recevid',`U_ID`='$USERID' WHERE `PB_ID`='$id'";
         $res2 = $con->query($newsql);
 
-        if(!$res){
-          $errormessage = "invalid Query: ". $con->error;
-          break;
+        if(!$res OR !$res2){
+          echo "
+          <script> 
+            alert(Unable to update the Patient);
+          </script>
+            ";          
+            break;
         }
           $name ="";
           $sname ="";
@@ -178,7 +123,22 @@
 
   <!-- Boots strap-->
   <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
-
+  <style>
+  .checkboxs{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height:80px;
+    padding-top:250px;
+  }
+  .checkboxs input{
+    align-items: center;
+    justify-content: center;
+    width:20px;
+    height:20px;
+    margin-top:2px;
+  }
+  </style>
 </head>
 <body>
 <!-- partial:index.partial.html -->
@@ -238,7 +198,7 @@
 
     <!-- Header Product with add product-->
     <div class="app-content-header">
-      <h1 class="app-content-headerText">Patient Registration</h1>
+      <h1 class="app-content-headerText">Update Patient</h1>
       <button class="mode-switch" title="Switch Theme">
           <defs></defs>
           <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
@@ -254,26 +214,44 @@
     box-shadow: 0px 0px 20px 0px;">
       <div class="container">
         <br><br>
-      <form method="post">
+      <form method="post" action='Update.php'>
         
         <div class="row">
-          <div class="col-md">
+          <div class="col-md-8">
 
             <div class="row">
               <div class="col-md-4">
                 <h4>Name </h4>
               </div>
               <div class="col-md-8">
-                <input type="text" name="name" value="<?php echo $name?>">
+                <input type="text" name="name" value="<?php echo $name ?>">
               </div>
             </div>
 
             <div class="row">
               <div class="col-md-4">
-                <h4>S/Name </h4>
+                <h4>F/Name </h4>
               </div>
               <div class="col-md-8">
-                <input type="text" name="sname" value="<?php echo $sname?>">
+                <input type="text" name="sname" value="<?php echo $sname ?>">
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-md-4">
+                <h4>Gender </h4>
+              </div>
+              <div class="col-md-8">
+                <input type="text" name = "gender" value="<?php echo $gender ?>">
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-md-4">
+                <h4>Age </h4>
+              </div>
+              <div class="col-md-8">
+                <input type="text" name ="age" value="<?php echo $age ?>">
               </div>
             </div>
 
@@ -282,7 +260,7 @@
                 <h4>Phone </h4>
               </div>
               <div class="col-md-8">
-                <input type="text" name="phone" value="<?php echo $phone?>">
+                <input type="text" name="phone" value="<?php echo $phone ?>">
               </div>
             </div>
 
@@ -291,97 +269,8 @@
                 <h4>Address </h4>
               </div>
               <div class="col-md-8">
-                <input type="text" name="address" value="<?php echo $address?>">
+                <input type="text" name="address" value="<?php echo $address ?>">
               </div>
-            </div>
-
-            <div class="row">
-              <div class="col-md-4">
-                <h4>Treatment </h4>
-              </div>
-            <div class="col-md-8">
-
-              <select name ="tre">
-                <?php 
-
-                if($treatmentName == "Implant"){
-                  echo "<option value ='Implant' selected> Implant</option> "; 
-                }
-                if($treatmentName == "Orthodontic"){
-                  echo "<option value ='Orthodontic' selected> Orthodontic</option> "; 
-                }
-                if($treatmentName == "RCT"){
-                  echo "<option value ='RCT' selected> RCT</option> "; 
-                }
-                if($treatmentName == "Impacted surgery"){
-                  echo "<option value ='Impacted surgery' selected> Impacted surgery</option> "; 
-                }
-                if($treatmentName == "Wisdome extraction"){
-                  echo "<option value ='Wisdome extraction' selected> Wisdome extraction</option> "; 
-                }
-                if($treatmentName == "sample extraction"){
-                  echo "<option value ='sample extraction' selected> sample extraction</option> "; 
-                }
-                if($treatmentName == "sample filling"){
-                  echo "<option value ='sample filling' selected> sample filling</option> "; 
-                }
-                if($treatmentName == "Crown"){
-                  echo "<option value ='Crown' selected> Crown</option> "; 
-                }
-                if($treatmentName == "Bridg"){
-                  echo "<option value ='Bridg' selected> Bridg</option> "; 
-                }
-                if($treatmentName == "complete denture"){
-                  echo "<option value ='complete denture' selected> complete denture</option> "; 
-                }
-                if($treatmentName == "bleeching"){
-                  echo "<option value ='bleeching' selected> bleeching</option> "; 
-                }
-                if($treatmentName == "oral higien"){
-                  echo "<option value ='oral higien' selected> oral higien</option> "; 
-                }
-                if($treatmentName == "maxillofacial surgery"){
-                  echo "<option value ='maxillofacial surgery' selected> maxillofacial surgery</option> "; 
-                }
-                if($treatmentName == "laminate veneer"){
-                  echo "<option value ='laminate veneer' selected> laminate veneer</option> "; 
-                }
-                if($treatmentName == "TMJ disorder"){
-                  echo "<option value ='TMJ disorder' selected> TMJ disorder</option> "; 
-                }
-                if($treatmentName == "Space maintainer"){
-                  echo "<option value ='Space maintainer' selected> Space maintainer</option> "; 
-                }
-                if($treatmentName == "oral pathology"){
-                  echo "<option value ='oral pathology' selected> oral pathology</option> "; 
-                }
-                if($treatmentName == "consultation"){
-                  echo "<option value ='consultation' selected> consultation</option> "; 
-                } 
-                
-                ?>
-
-                <option value ="Implant"> Implant</option>
-                <option value ="Orthodontic"> Orthodontic</option>
-                <option value ="RCT"> RCT</option>
-                <option value ="Impacted surgery"> Impacted surgery</option>
-                <option value ="Wisdome extraction"> Wisdome extraction</option>
-                <option value ="sample extraction"> sample extraction</option>
-                <option value ="sample filling"> sample filling</option>
-                <option value ="Crown"> Crown</option>
-                <option value ="Bridg"> Bridg</option>
-                <option value ="complete denture"> complete denture</option>
-                <option value ="bleeching"> bleeching</option>
-                <option value ="oral higien"> oral higien</option>
-                <option value ="maxillofacial surgery"> maxillofacial surgery</option>
-                <option value ="laminate veneer"> laminate veneer</option>
-                <option value ="TMJ disorder"> TMJ disorder</option>
-                <option value ="Space maintainer"> Space maintainer</option>
-                <option value ="oral pathology"> oral pathology</option>
-                <option value ="consultation"> consultation</option>
-              </select>
-
-            </div>
             </div>
 
             <div class="row">
@@ -389,95 +278,62 @@
                 <h4>Note</h4>
               </div>
               <div class="col-md-8">
-                <input type="text" name = "note" value="<?php echo $note?>">
+                <input type="text" name = "note" value="<?php echo $note ?>">
               </div>
             </div>
 
           </div>
+          <div class="col-md-4">
+          <section class="checkboxs">
+            <div id="checks">
+                  <h3> Treatments</h3>
+                  <input type='checkbox' name='Treatment[]'  value='Implant' <?php if(in_array('Implant', $arrayOfStrings)){ echo "checked"; } ?> > Implant<br>
+                   <input type='checkbox' name='Treatment[]' value='Orthodontic' <?php if(in_array('Orthodontic', $arrayOfStrings)){ echo "checked"; } ?>> Orthodontic<br>
+                   <input type='checkbox' name='Treatment[]' value='RCT' <?php if(in_array('RCT', $arrayOfStrings)){ echo "checked"; } ?>> RCT<br>
+                   <input type='checkbox' name='Treatment[]' value='Impacted surgery' <?php if(in_array('Impacted surgery', $arrayOfStrings)){ echo "checked"; } ?>> Impacted surgery<br>
+                   <input type='checkbox' name='Treatment[]' value='Wisdome extraction' <?php if(in_array('Wisdome extraction', $arrayOfStrings)){ echo "checked"; } ?>> Wisdome extraction<br>
+                   <input type='checkbox' name='Treatment[]' value='simple extraction' <?php if(in_array('simple extraction', $arrayOfStrings)){ echo "checked"; } ?>> simple extraction<br>
+                   <input type='checkbox' name='Treatment[]' value='Simple filling' <?php if(in_array('Simple filling', $arrayOfStrings)){ echo "checked"; } ?>> Simple filling<br>
+                   <input type='checkbox' name='Treatment[]' value='Crown' <?php if(in_array('Crown', $arrayOfStrings)){ echo "checked"; } ?>> Crown<br>
+                   <input type='checkbox' name='Treatment[]' value='Bridg' <?php if(in_array('Bridg', $arrayOfStrings)){ echo "checked"; } ?>> Bridg<br>
+                   <input type='checkbox' name='Treatment[]' value='complete denture' <?php if(in_array('complete denture', $arrayOfStrings)){ echo "checked"; } ?>> complete denture<br>
+                   <input type='checkbox' name='Treatment[]' value='bleeching' <?php if(in_array('bleeching', $arrayOfStrings)){ echo "checked"; } ?>> bleeching<br>
+                   <input type='checkbox' name='Treatment[]' value='oral higien' <?php if(in_array('oral higien', $arrayOfStrings)){ echo "checked"; } ?>> oral higien<br>
+                   <input type='checkbox' name='Treatment[]' value='maxillofacial surgery' <?php if(in_array('maxillofacial surgery', $arrayOfStrings)){ echo "checked"; } ?>> maxillofacial surgery<br>
+                   <input type='checkbox' name='Treatment[]' value='laminate veneer' <?php if(in_array('laminate veneer', $arrayOfStrings)){ echo "checked"; } ?>> laminate veneer<br>
+                   <input type='checkbox' name='Treatment[]' value='TMJ disorder' <?php if(in_array('TMJ disorder', $arrayOfStrings)){ echo "checked"; } ?>> TMJ disorder<br>
+                   <input type='checkbox' name='Treatment[]' value='Space maintainer' <?php if(in_array('Space maintainer', $arrayOfStrings)){ echo "checked"; } ?>> Space maintainer<br>
+                   <input type='checkbox' name='Treatment[]' value='oral pathology' <?php if(in_array('oral pathology', $arrayOfStrings)){ echo "checked"; } ?>> oral pathology<br>
+                   <input type='checkbox' name='Treatment[]' value='consultation' <?php if(in_array('consultation', $arrayOfStrings)){ echo "checked"; } ?>> consultation<br>
+                </div>
+          </section>
+          </div>
+
+
         </div>
      
-        <div class="row">
-          <div class="col-md-7">
+        <div class="row" style="margin-left: 130px;">
+          <div class="col-md-6">
             <div class="row">
-              <?php 
-              if(!empty($errormessage)){
-                echo"
-                <h2>$errormessage </h2>
-                ";
-              }
-              ?>
-            </div>
-            <div class="row">
-               <?php 
-              if(!empty($success)){
-                echo"
-                <h2> $success </h2>
+              <div class="col-md">
+                <h5> Total:</h5><input type="text" name="total" value="<?php echo $total ?>"> 
               </div>
-                ";
-              }
-              ?>
+          </div>
+          <br>  
+          <div class="row">
+            <div class="col-md">
+              <h5>Cash Recived:</h5><input type="text" name="recevid" value ="<?php echo $recevid ?>"> 
             </div>
           </div>
 
-          <?php 
-          if($TYPE=="Admin"){
-            echo"
-
-              <div class=row>
-                <div class=col-md>
-                  <h4> Total:</h4>
-                  <input style = margin-left:215px; margin-top: -140px; type=text name=total value='$total';> 
-                </div>
-              </div>  
-  
-              <div class=row>
-                <div class=col-md>  
-                  <h4> Recived:</h4> 
-                  <input style =margin-left:215px; margin-top: -140px;  type=text name=recevid value='$recevid'; >
-                </div>
-              </div>
-            
-            ";
-          }
-          else{
-            echo"
-              <div class=row>
-                <div class=col-md>
-                  <h4> Total:</h4>
-                  <input id=total style = margin-left:215px; margin-top: -140px; type=text name=total value='$total';> 
-                </div>
-              </div>  
-  
-              <div class=row>
-                <div class=col-md>  
-                  <h4> Recived:</h4> 
-                  <input id=recevid style =margin-left:215px; margin-top: -140px;  type=text name=recevid value='$recevid'; >
-                </div>
-              </div>
-
-              <script>
-              var inputField = document.getElementById('total');
-              inputField.readOnly = true;
-              
-              var inputField2 = document.getElementById('recevid');
-              inputField2.readOnly = true;
-            </script>
-
-            ";
-          }
-          ?>              
-          <div class="row">
-
-          <div class="col-md-4"></div>
+            <div class="row">
               <div class="col-md-3">
                 <a href="index.php"><button class="app-content-headerButton" type="button" id="btn3" role="button">Cancel</button></a>
               </div>
-              <div class="col-md-3">
+              <div class="col-md-3" style="margin-left:65px;">
                 <button class="app-content-headerButton" type="submit" id="btn2">Submit</button>
               </div>
-              <div class="col-md-2"></div>
             </div>
-          </div>
         </div>
       </div>
       </form>
