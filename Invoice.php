@@ -165,7 +165,7 @@
                     break;
                   }
                   else{
-                  $newsql = "UPDATE tbl_patient_balance SET PB_Receive = $totalpay WHERE P_ID = $id";
+                  $newsql = "UPDATE tbl_patient_balance SET PB_Receive = $totalpay WHERE PB_ID = $id";
                   $newres = $con->query($newsql);
                   }       
                       
