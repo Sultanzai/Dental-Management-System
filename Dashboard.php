@@ -74,7 +74,7 @@
 
     #################### WEEkly #############################    
     #Weekly patient 
-    $WPsql ="SELECT COUNT(PB_ID) AS Patient from tbl_patient where week(PB_ReceiveDate)=week(now());";
+    $WPsql ="SELECT COUNT(PB_ID) AS Patient from tbl_patient_balance where week(PB_ReceiveDate)=week(now());";
     $WPrun = mysqli_query($con,$WPsql);
     if (mysqli_num_rows($WPrun) > 0) {
       // Fetch the result as an associative array
@@ -108,7 +108,7 @@
 
           #################### Month #############################    
     #Monthly patient 
-    $MPsql ="SELECT COUNT(PB_ID) AS Patient from tbl_patient where month(PB_ReceiveDate)=month(now());";
+    $MPsql ="SELECT COUNT(PB_ID) AS Patient from tbl_patient_balance where month(PB_ReceiveDate)=month(now());";
     $MPrun = mysqli_query($con,$MPsql);
     if (mysqli_num_rows($MPrun) > 0) {
       // Fetch the result as an associative array

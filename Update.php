@@ -24,6 +24,7 @@
   $maxres ="";
 
   $id = $userdata['mainid'];
+  $newid = $userdata['newid'];
   $name =$userdata['name'];
   $sname = $userdata['sname'];
   $phone = $userdata['phone'];
@@ -67,15 +68,21 @@
             ";          
             break;
         }
-
-        // Update Patient Table 
+        if( $total < $recevid ){
+          echo "<script>
+          alert('Invalid Input please enter the valid amount!');
+        </script>";
+          break;
+        }
+        else{
+          // Update Patient Table 
         $sql = "UPDATE `tbl_patient` SET `P_Name`='$name',`P_SName`='$sname',`P_Gender`='$gender',`P_Age`='$age',`P_Phone`='$phone',`P_Address`='$address',`P_Note`='$note',`U_ID`='$USERID' WHERE `P_ID` = '$id';";
         $res = $con->query($sql);
 
         //Update paitent balance
-        $newsql = "UPDATE `tbl_patient_balance` SET `PB_Treatment`='$treatmentName',`PB_Total`='$total',`PB_Receive`='$recevid',`U_ID`='$USERID' WHERE `PB_ID`='$id'";
+        $newsql = "UPDATE `tbl_patient_balance` SET `PB_Treatment`='$treatmentName',`PB_Total`='$total',`PB_Receive`='$recevid',`U_ID`='$USERID' WHERE `PB_ID`='$newid'";
         $res2 = $con->query($newsql);
-
+        
         if(!$res){
           $errormessage = "invalid Query: ". $con->error;      
           break;
@@ -90,13 +97,14 @@
           $treatmentName ="";
           $total ="";
           $recevid = "";
-
+          
           $success = "patient Registed";
           header("location: /DMS/dist/index.php");
-
-      } while (false);
-
-    }
+          
+        }
+        } while (false);
+        
+      }
   }
 
 
