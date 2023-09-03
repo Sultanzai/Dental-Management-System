@@ -23,16 +23,13 @@
   $sname = "";
   $gender ="";
   $age = "";
-  $phone = "";
+  $phone = "+93";
   $address = "";
   $note = "N/A";
   $treatment ="Implant";
   $total ="0";
   $recevid = "0";
-  
-  $errormessage ="";
-  $success="";
-  
+    
   if(empty($USERID) OR empty($USERNAME) OR empty($TYPE)){
       
     header("location: /DMS/dist/login.php");
@@ -71,8 +68,10 @@
       
 
         do {
-          if(empty($name) || empty($phone) || empty($treatmentname) ){
-            $errormessage="All the field are Required";
+          if(empty($name) || empty($phone) || empty($_POST['Treatment']) ){
+            echo "<script>
+            alert('Invalid Input please enter Treatment Or phone number!')
+          </script>";
             break;
           }
 
@@ -85,22 +84,11 @@
           VALUES ('$treatmentname','$total','$recevid','$USERID','$maxres');";
           $res2 = $con->query($newsql);
 
-          if(!$res){
+          if(!$res or !$res2){
             $errormessage = "invalid Query: ". $con->error;
             break;
           }
-            $name ="";
-            $sname ="";
-            $gender ="";
-            $age = "";
-            $phone = "";
-            $address = "";
-            $note = "";
-            $treatmentName ="";
-            $total ="";
-            $recevid = "";
 
-            $success = "patient Registed";
 
             header("location: /DMS/dist/index.php");
 
@@ -211,7 +199,7 @@
     box-shadow: 0px 0px 20px 0px;>
       <div class="container">
         <br>
-      <form method="post">
+      <form onsubmit="disablebutton()" method="post" action="Registration.php">
         
         <div class="row">
           <div class="col-md-8">
@@ -340,8 +328,12 @@
     
   </div>
 </div>
-<!-- partial -->
+<!-- partial -->1
   <script  src="./script.js"></script>
-
+  <script>
+    function disablebutton(){
+      document.getElementById("btn2").disabled = true;
+    }
+    </script>
 </body>
 </html>
